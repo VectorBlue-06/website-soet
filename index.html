@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>School Of Engineering and Technology</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+
+<body>
+
+<!-- PRELOADER -->
+<div id="preloader">
+
+    <div class="loader-content">
+
+        <img src="images/logo.png" class="logo">
+
+        <h2>School of Engineering and Technology</h2>
+
+        <div class="spinner"></div>
+
+    </div>
+
+</div>
+
+
+<!-- MAIN WEBSITE -->
+<div id="content">
+
+<header>
+
+<!-- TOP BAR -->
+
+
+<div class="top-right">
+</div>
+
+</div>
+<header>
+
+<!-- ANNOUNCEMENT BAR -->
+<div class="announcement-bar">
+
+<div class="announcement-label">
+Announcements
+</div>
+
+<marquee class="announcement-text">
+One Day National Workshop On "AI ADOPTION TRENDS IN KEY INDUSTRIES UPDATES"    |   
+ Admission for new Academic session from August 2026
+</marquee>
+
+</div>
+
+<!-- LOGO AREA -->
+<div class="logo-area">
+<div class="left-header">
+
+<img src="images/logo.png" class="logo">
+
+<div class="title">
+<h2>Samrat Vikramaditya Vishwavidayalaya</h2>
+<h1>School of Engineering and Technology</h1>
+</div>
+</div>
+<img src="images/const.png" class="constitution">
+</div>
+
+
+<!-- NAVBAR -->
+<nav class="navbar">
+
+<a href="index.html" class="home-icon">
+<i class="fa-solid fa-house"></i>
+</a>
+<a href="#">About us</a>
+<a href="#">Campus life</a>
+<a href="#">Academics</a>
+<a href="#">Admissions</a>
+<a href="#">Research & Innovation</a>
+<a href="#">Training & Placement cell</a>
+<a href="#">Alumni</a>
+<a href="#">Contact Us</a>
+
+</nav>
+
+</header>
+
+<footer class="footer">
+  <div class="footer-container">
+
+    <div class="footer-col">
+      <img src="images/logo2.png" class="footer-logo">
+
+      <p>
+        School of Engineering and Technology <br>
+        Samrat Vikramaditya Vishwavidyalaya <br>
+        Ujjain, India
+      </p>
+
+      <p>+91-8770122362</p>
+      <p>soet@vikramuniv.ac.in</p>
+      <p>www.soet.ac.in</p>
+    </div>
+
+    <div class="footer-col">
+      <h3>Quick Links</h3>
+      <ul>
+        <li>Departments</li>
+        <li>Online services</li>
+        <li>Campus Life</li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h3>Explore</h3>
+      <ul>
+        <li>Rules</li>
+        <li>Educational Programmes</li>
+        <li>Institute Newsletter</li>
+        <li>PhD Seminar</li>
+        <li>Contact Us</li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h3>☁</h3>
+      <p id="date"></p>
+<p id="time"></p>
+<p id="location">Ujjain, India</p>
+
+<p id="weather">Loading weather...</p>
+<p id="temp"></p>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    Copyright © 2026 Student Tech Team SOET
+  </div>
+
+</footer>
+
+</div>
+
+
+<script src="js/script.js"></script>
+
+
+<script>
+
+// Date
+const today = new Date();
+document.getElementById("date").innerHTML =
+today.toDateString();
+
+// Time (updates every second)
+setInterval(function(){
+let now = new Date();
+document.getElementById("time").innerHTML =
+now.toLocaleTimeString();
+},1000);
+
+
+// WEATHER API
+const apiKey = "6ab4623b616a1ea162cf45d73c2dcb32";
+const city = "Ujjain";
+
+fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`)
+.then(response => response.json())
+.then(data => {
+
+document.getElementById("weather").innerHTML =
+data.weather[0].description;
+
+document.getElementById("temp").innerHTML =
+"Temp: " + data.main.temp + "°C";
+
+});
+
+</script>
+</body>
+
+</html>
