@@ -691,8 +691,8 @@ display:block;
     font-size: 30px;
     font-weight: 700;
     letter-spacing: 1px;
-    color: #222
-    margin-bottom; 15px;
+    color: #222;
+    margin-bottom: 15px;
 }
 
 .director-box img {
@@ -1304,5 +1304,980 @@ display:block;
     }
     .form-wrapper {
         padding: 25px;
+    }
+}
+/* ==========================================================================
+   ABOUT PAGE STYLES - FULL RESET
+   ========================================================================== */
+
+/* --- Page Banner --- */
+.about-banner {
+    color: white;
+    text-align: center;
+    padding: 120px 20px;
+    margin-bottom: 0;
+}
+.about-banner h1 { font-size: 48px; margin-bottom: 15px; letter-spacing: 2px; }
+
+/* --- Reusable Section Utilities --- */
+.section-title {
+    color: #333;
+    font-size: 32px;
+    margin-bottom: 50px;
+    position: relative;
+    padding-bottom: 15px;
+}
+.section-title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 60px;
+    height: 4px;
+    background-color: #800000;
+}
+.text-center.section-title::after {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* --- Overview Section --- */
+.about-overview {
+    padding: 80px 5%;
+    background-color: #fff;
+}
+.overview-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: center;
+}
+.overview-text { flex: 1.5; min-width: 300px; }
+.overview-text h2 { font-size: 32px; color: #800000; margin-bottom: 15px; }
+.title-underline { width: 50px; height: 4px; background: #ffcc00; margin-bottom: 20px; }
+.overview-text p { font-size: 16px; color: #555; line-height: 1.8; margin-bottom: 15px; }
+
+.overview-stats {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    min-width: 300px;
+}
+.stat-box {
+    background: #f4f6f9; padding: 30px 20px; text-align: center;
+    border-radius: 8px; border-bottom: 4px solid #800000; transition: transform 0.3s;
+}
+.stat-box:hover { transform: translateY(-5px); }
+.stat-box h3 { font-size: 36px; color: #800000; margin-bottom: 5px; }
+.stat-box p { color: #666; font-weight: bold; }
+
+/* --- Vision & Mission Section --- */
+.vision-mission-section {
+    padding: 80px 5%; background-color: #f4f6f9;
+}
+.vm-container {
+    display: flex; flex-wrap: wrap; gap: 40px; max-width: 1200px;
+    margin: 0 auto; justify-content: center;
+}
+.vm-card {
+    flex: 1; min-width: 300px; background: #ffffff; padding: 40px 30px;
+    border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    border-top: 5px solid #800000; transition: transform 0.3s ease;
+}
+.vm-card:hover { transform: translateY(-8px); box-shadow: 0 15px 40px rgba(0,0,0,0.1); }
+.vm-icon {
+    width: 60px; height: 60px; background-color: rgba(128, 0, 0, 0.1);
+    color: #800000; font-size: 28px; display: flex; align-items: center;
+    justify-content: center; border-radius: 50%; margin-bottom: 20px;
+}
+.vm-card h3 { color: #333; font-size: 24px; margin-bottom: 15px; }
+.vm-card p { color: #555; line-height: 1.7; font-size: 15.5px; }
+.mission-list { list-style: none; padding: 0; margin: 0; }
+.mission-list li { color: #555; line-height: 1.6; font-size: 15px; margin-bottom: 12px; display: flex; align-items: flex-start; gap: 10px; }
+.mission-list li i { color: #800000; font-size: 14px; margin-top: 5px; }
+
+/* --- Leadership Section --- */
+.leadership-section {
+    padding: 80px 5%; background-color: #fff;
+}
+.leader-row {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 50px;
+    margin-bottom: 70px; max-width: 1100px; margin-left: auto; margin-right: auto;
+}
+.leader-row.reverse { flex-direction: row-reverse; }
+.leader-image { flex: 1; min-width: 300px; position: relative; text-align: center; }
+.leader-image img { width: 100%; max-width: 350px; border-radius: 10px; box-shadow: 15px 15px 0px rgba(128, 0, 0, 0.1); }
+.leader-name {
+    background: #800000; color: white; padding: 15px; border-radius: 8px;
+    position: absolute; bottom: -20px; left: 50%; transform: translateX(-50%);
+    width: 80%; box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+.leader-name h4 { margin: 0; font-size: 18px; }
+.leader-name p { margin: 0; color: #ffcc00; font-size: 14px; }
+.leader-text { flex: 1.5; min-width: 300px; }
+.leader-text h3 { font-size: 26px; color: #333; margin-bottom: 20px; }
+.quote-icon { font-size: 40px; color: #f4f6f9; float: left; margin: 0 15px 10px 0; }
+.leader-text p { font-size: 16px; color: #555; line-height: 1.8; font-style: italic; }
+
+/* --- History Timeline (FIXED ALIGNMENT) --- */
+.history-section {
+    padding: 80px 5%; background-color: #f4f6f9;
+}
+.timeline { 
+    position: relative; max-width: 1000px; margin: 0 auto; box-sizing: border-box; 
+}
+.timeline * { box-sizing: border-box; } /* Forces padding inside the width */
+.timeline::after {
+    content: ''; position: absolute; width: 4px; background-color: #800000;
+    top: 0; bottom: 0; left: 50%; margin-left: -2px;
+}
+.timeline-item { padding: 10px 40px; position: relative; background-color: inherit; width: 50%; }
+.timeline-item.left { left: 0; }
+.timeline-item.right { left: 50%; }
+.timeline-item::after {
+    content: ''; position: absolute; width: 20px; height: 20px;
+    right: -10px; background-color: white; border: 4px solid #ffcc00;
+    top: 25px; border-radius: 50%; z-index: 1;
+}
+.timeline-item.right::after { left: -10px; right: auto; }
+.timeline-content {
+    padding: 20px 30px; background-color: white; position: relative;
+    border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+.timeline-content h2 { color: #800000; margin-bottom: 10px; }
+.timeline-content p { color: #555; line-height: 1.6; margin: 0; }
+
+@media screen and (max-width: 768px) {
+  .timeline::after { left: 31px; }
+  .timeline-item { width: 100%; padding-left: 70px; padding-right: 25px; }
+  .timeline-item.left::after, .timeline-item.right::after { left: 21px; }
+  .timeline-item.right { left: 0%; }
+}
+
+/* --- Leadership Team Grid --- */
+.faculty-section {
+    padding: 80px 5%; background-color: #fff; max-width: 1200px; margin: 0 auto;
+}
+.faculty-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px; margin-top: 20px;
+}
+.faculty-card {
+    background: #f9f9f9; border-radius: 10px; padding: 30px 20px;
+    text-align: center; border-top: 4px solid #800000; 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05); transition: transform 0.3s;
+}
+.faculty-card:hover { 
+    transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); 
+}
+
+/* Director Span Highlight */
+.director-card {
+    grid-column: 1 / -1; 
+    max-width: 700px; margin: 0 auto 30px;
+    border-top: 5px solid #ffcc00; 
+    background: #ffffff; box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+}
+.faculty-img {
+    width: 120px; height: 120px; margin: 0 auto 20px;
+    border-radius: 50%; overflow: hidden; border: 3px solid #ffcc00;
+}
+.director-card .faculty-img {
+    width: 150px; height: 150px; border-color: #800000;
+}
+.faculty-img img { width: 100%; height: 100%; object-fit: cover; }
+.faculty-card h4 { color: #333; font-size: 20px; margin-bottom: 5px; }
+.faculty-role { color: #800000; font-weight: bold; font-size: 14px; margin-bottom: 15px; }
+.faculty-desc { color: #666; font-size: 14.5px; line-height: 1.6; }
+/* ==========================================================================
+   WHY SOET PAGE STYLES - EXPANDED
+   ========================================================================== */
+
+/* --- Banner --- */
+.why-banner {
+    color: white; text-align: center; padding: 120px 20px; margin-bottom: 0;
+}
+.why-banner h1 { font-size: 48px; margin-bottom: 15px; letter-spacing: 1px; color: #fff;}
+
+/* --- Trust / Stats Bar --- */
+.trust-bar {
+    background-color: #800000;
+    color: white;
+    padding: 30px 5%;
+    border-bottom: 5px solid #ffcc00;
+}
+.trust-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.trust-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    min-width: 200px;
+}
+.trust-item i {
+    font-size: 36px;
+    color: #ffcc00;
+}
+.trust-item h4 {
+    margin: 0;
+    font-size: 20px;
+    letter-spacing: 0.5px;
+}
+.trust-item p {
+    margin: 0;
+    font-size: 14px;
+    color: #e0e0e0;
+}
+
+/* --- Centers of Excellence (Images with hover) --- */
+.excellence-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+.excellence-card {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    background: #fff;
+    transition: transform 0.3s;
+}
+.excellence-card:hover {
+    transform: translateY(-8px);
+}
+.excellence-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-bottom: 4px solid #ffcc00;
+}
+.excellence-content {
+    padding: 25px;
+}
+.excellence-content h3 {
+    color: #800000;
+    margin-bottom: 10px;
+    font-size: 22px;
+}
+.excellence-content p {
+    color: #555;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* --- Reasons Grid --- */
+.reasons-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px;
+}
+.reason-card {
+    background: #ffffff; padding: 40px 30px; border-radius: 12px; text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; border-bottom: 5px solid transparent;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.04);
+}
+.reason-card:hover {
+    transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    border-bottom: 5px solid #800000;
+}
+.reason-icon {
+    width: 80px; height: 80px; background: linear-gradient(135deg, #800000, #b30000);
+    color: white; font-size: 32px; display: flex; align-items: center;
+    justify-content: center; border-radius: 20px; margin: 0 auto 25px;
+    transform: rotate(45deg); transition: transform 0.3s ease;
+}
+.reason-card:hover .reason-icon { transform: rotate(0deg); }
+.reason-icon i { transform: rotate(-45deg); transition: transform 0.3s ease; }
+.reason-card:hover .reason-icon i { transform: rotate(0deg); }
+.reason-card h3 { color: #333; font-size: 22px; margin-bottom: 15px; }
+.reason-card p { color: #666; line-height: 1.7; font-size: 15px; }
+
+/* --- Call To Action Section --- */
+.cta-section {
+    background: linear-gradient(135deg, #800000, #4d0000); padding: 80px 20px;
+    text-align: center; color: white; margin-top: 0;
+}
+.cta-container h2 { font-size: 36px; margin-bottom: 15px; color: #ffcc00; }
+.cta-container p { font-size: 18px; margin-bottom: 30px; opacity: 0.9; }
+.cta-buttons { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+.btn {
+    padding: 15px 35px; font-size: 16px; font-weight: bold; border-radius: 5px;
+    text-decoration: none; transition: all 0.3s ease; display: inline-block;
+}
+.btn-primary { background-color: #ffcc00; color: #800000; }
+.btn-primary:hover { background-color: #fff; transform: translateY(-3px); }
+.btn-secondary { background-color: transparent; color: white; border: 2px solid white; }
+.btn-secondary:hover { background-color: white; color: #800000; transform: translateY(-3px); }
+
+/* Mobile adjustments */
+@media screen and (max-width: 768px) {
+    .trust-container { flex-direction: column; align-items: flex-start; padding-left: 20px; }
+}
+/* ==========================================================================
+   LIFE IN UJJAIN PAGE STYLES
+   ========================================================================== */
+
+/* --- Banner --- */
+.ujjain-banner {
+    color: white; text-align: center; padding: 120px 20px; margin-bottom: 0;
+}
+.ujjain-banner h1 { font-size: 54px; margin-bottom: 15px; letter-spacing: 2px; text-transform: uppercase;}
+
+/* --- Lifestyle Alternating Rows --- */
+.lifestyle-section {
+    background-color: #fff;
+}
+.lifestyle-row {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    margin-bottom: 80px;
+}
+.lifestyle-row.reverse {
+    flex-direction: row-reverse;
+}
+.lifestyle-img {
+    flex: 1;
+    min-width: 300px;
+    position: relative;
+}
+.lifestyle-img img {
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    transition: transform 0.4s ease;
+}
+.lifestyle-img:hover img {
+    transform: scale(1.02);
+}
+/* Add a decorative element behind the image */
+.lifestyle-img::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #ffcc00;
+    border-radius: 12px;
+    top: 20px;
+    left: -20px;
+    z-index: -1;
+}
+.lifestyle-row.reverse .lifestyle-img::before {
+    left: 20px;
+}
+.lifestyle-text {
+    flex: 1.2;
+    min-width: 300px;
+}
+.lifestyle-text h3 {
+    font-size: 32px;
+    color: #800000;
+    margin-bottom: 15px;
+}
+.lifestyle-text p {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.8;
+}
+
+/* --- Heritage Grid (Dark Mode Section) --- */
+.heritage-section {
+    background: #1a1a1a; /* Dark background to make photos pop */
+}
+.heritage-section .section-title::after {
+    background-color: #ffcc00; /* Switch underline to gold for dark mode */
+}
+.heritage-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+.heritage-card {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    height: 400px;
+    cursor: pointer;
+}
+.heritage-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+.heritage-card:hover img {
+    transform: scale(1.1); /* Slow zoom effect on hover */
+}
+.heritage-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.9));
+    padding: 30px 20px 20px;
+    color: white;
+    transform: translateY(30px);
+    transition: transform 0.4s ease;
+}
+.heritage-card:hover .heritage-overlay {
+    transform: translateY(0); /* Text slides up smoothly on hover */
+}
+.heritage-overlay h4 {
+    color: #ffcc00;
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+.heritage-overlay p {
+    font-size: 14px;
+    line-height: 1.5;
+    opacity: 0.9;
+}
+
+/* Responsive fixes for alternating rows */
+@media screen and (max-width: 900px) {
+    .lifestyle-row, .lifestyle-row.reverse {
+        flex-direction: column;
+        gap: 40px;
+    }
+    .lifestyle-img::before {
+        display: none; /* Hide the decorative offset box on mobile */
+    }
+}
+/* ==========================================================================
+   B.TECH ADMISSION PAGE STYLES
+   ========================================================================== */
+
+/* --- Banner --- */
+.admission-banner {
+    color: white; text-align: center; padding: 120px 20px; margin-bottom: 0;
+}
+.admission-banner h1 { font-size: 48px; margin-bottom: 15px; letter-spacing: 1px;}
+
+/* --- Pathway Process --- */
+.pathway-grid {
+    display: flex; flex-wrap: wrap; gap: 40px; justify-content: center; margin-bottom: 40px;
+}
+.pathway-card {
+    flex: 1; min-width: 320px; max-width: 500px; background: white; 
+    border-radius: 12px; padding: 40px 30px; position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08); border-top: 5px solid #800000;
+    transition: transform 0.3s ease;
+}
+.pathway-card:hover { transform: translateY(-5px); }
+.pathway-badge {
+    position: absolute; top: -15px; right: 20px; background: #800000; color: #ffcc00;
+    padding: 5px 15px; border-radius: 20px; font-weight: bold; font-size: 14px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+.pathway-icon {
+    width: 60px; height: 60px; background: #800000; color: white; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; font-size: 24px;
+    margin-bottom: 20px;
+}
+.pathway-card h3 { color: #333; font-size: 24px; margin-bottom: 15px; }
+.pathway-card p { color: #666; line-height: 1.6; margin-bottom: 20px; }
+.process-list { list-style: none; padding: 0; margin: 0; }
+.process-list li { margin-bottom: 12px; display: flex; align-items: center; gap: 10px; color: #444; font-weight: 500;}
+.process-list li i { color: #28a745; font-size: 16px; }
+
+/* --- Eligibility Box --- */
+.eligibility-box {
+    background: #fff3cd; border-left: 5px solid #ffc107; padding: 25px;
+    border-radius: 8px; max-width: 1040px; margin: 0 auto; color: #856404;
+}
+.eligibility-box h4 { margin-bottom: 10px; font-size: 18px; display: flex; align-items: center; gap: 10px; }
+.eligibility-box p { margin: 0; line-height: 1.6; font-size: 15px; }
+
+/* --- Branches Matrix --- */
+.branch-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px;
+}
+.branch-card {
+    background: #f9f9f9; padding: 35px 25px; border-radius: 10px; text-align: center;
+    position: relative; overflow: hidden; border: 1px solid #eee;
+    transition: all 0.3s ease;
+}
+.branch-card:hover {
+    background: #ffffff; box-shadow: 0 15px 35px rgba(128, 0, 0, 0.1);
+    transform: translateY(-5px); border-color: #800000;
+}
+.seat-badge {
+    position: absolute; top: 15px; left: -35px; background: #ffcc00; color: #800000;
+    padding: 5px 40px; font-weight: bold; font-size: 13px; transform: rotate(-45deg);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.branch-icon {
+    font-size: 45px; color: #800000; margin-bottom: 20px; transition: transform 0.3s;
+}
+.branch-card:hover .branch-icon { transform: scale(1.1); }
+.branch-card h3 { color: #333; font-size: 20px; margin-bottom: 15px; }
+.branch-focus { color: #666; font-size: 14.5px; line-height: 1.6; }
+.branch-focus strong { color: #800000; }
+/* ==========================================================================
+   M.TECH PROGRAMS PAGE STYLES
+   ========================================================================== */
+
+/* --- Banner --- */
+.mtech-banner {
+    color: white; text-align: center; padding: 120px 20px; margin-bottom: 0;
+}
+.mtech-banner h1 { font-size: 48px; margin-bottom: 15px; letter-spacing: 1px;}
+
+/* --- M.Tech Grid & Cards --- */
+.mtech-grid {
+    display: grid;
+    /* This makes cards wide enough to comfortably hold the specialization pills */
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    gap: 40px;
+}
+.mtech-card {
+    background: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+    border: 1px solid #eaeaea;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+.mtech-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(128, 0, 0, 0.15);
+    border-color: #800000;
+}
+
+/* Header */
+.mtech-header {
+    background: linear-gradient(135deg, #800000, #b30000);
+    color: white;
+    padding: 25px 30px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.mtech-header i {
+    font-size: 32px;
+    color: #ffcc00;
+}
+.mtech-header h3 {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+/* Body */
+.mtech-body {
+    padding: 30px;
+    flex-grow: 1; /* Pushes footer to the bottom evenly */
+}
+.mtech-desc {
+    color: #555;
+    font-size: 15.5px;
+    line-height: 1.7;
+    margin-bottom: 25px;
+    border-left: 4px solid #ffcc00;
+    padding-left: 15px;
+}
+.specs-title {
+    color: #333;
+    font-size: 16px;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+/* Specialization Pills Layout */
+.specs-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.specs-pills span {
+    background: #f4f6f9;
+    color: #444;
+    padding: 8px 16px;
+    border-radius: 50px; /* Makes them pill-shaped */
+    font-size: 13.5px;
+    font-weight: 500;
+    border: 1px solid #e0e0e0;
+    transition: all 0.2s ease;
+}
+.mtech-card:hover .specs-pills span {
+    background: #fff9e6; /* Slight gold tint on hover */
+    border-color: #ffcc00;
+    color: #800000;
+}
+
+/* Footer Details */
+.mtech-footer {
+    background: #fafafa;
+    padding: 20px 30px;
+    border-top: 1px solid #eaeaea;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+.footer-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #666;
+    font-size: 14px;
+    font-weight: bold;
+}
+.footer-item i {
+    color: #800000;
+    font-size: 16px;
+}
+
+/* Mobile Adjustments */
+@media screen and (max-width: 768px) {
+    .mtech-grid {
+        grid-template-columns: 1fr;
+    }
+    .mtech-footer {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+/* ==========================================================================
+   FEES & SCHOLARSHIPS PAGE STYLES
+   ========================================================================== */
+
+/* --- Banner --- */
+.fees-banner {
+    color: white; text-align: center; padding: 120px 20px; margin-bottom: 0;
+}
+.fees-banner h1 { font-size: 48px; margin-bottom: 15px; letter-spacing: 1px;}
+
+/* --- Fee Tables --- */
+.fee-table-container {
+    background: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    border: 1px solid #eaeaea;
+}
+.fee-header {
+    background: #800000;
+    color: white;
+    padding: 20px 25px;
+}
+.fee-header h3 {
+    margin: 0;
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.fee-header h3 i {
+    color: #ffcc00;
+}
+.styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0;
+    font-size: 16px;
+    text-align: left;
+}
+.styled-table thead tr {
+    background-color: #f4f6f9;
+    color: #333;
+    font-weight: bold;
+    border-bottom: 2px solid #ddd;
+}
+.styled-table th,
+.styled-table td {
+    padding: 15px 25px;
+}
+.styled-table tbody tr {
+    border-bottom: 1px solid #eee;
+    transition: background-color 0.2s ease;
+}
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #fafafa;
+}
+.styled-table tbody tr:hover {
+    background-color: #fdf5f5; /* Very light maroon hover */
+}
+.styled-table tbody tr:last-of-type {
+    border-bottom: none;
+}
+.total-row {
+    background-color: #fff9e6 !important; /* Gold tint for the total */
+    font-weight: bold;
+    color: #800000;
+    font-size: 18px;
+    border-top: 2px solid #ffcc00 !important;
+}
+
+/* Fee Note */
+.fee-note {
+    margin-top: 20px;
+    font-size: 14.5px;
+    color: #666;
+    background: #fdfdfd;
+    padding: 15px;
+    border-left: 4px solid #800000;
+    border-radius: 4px;
+}
+.fee-note i { color: #800000; margin-right: 5px;}
+
+/* --- Scholarships Grid --- */
+.scholarship-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+.scholarship-card {
+    background: #ffffff;
+    padding: 40px 30px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    border-bottom: 4px solid transparent;
+    transition: all 0.3s ease;
+}
+.scholarship-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    border-bottom: 4px solid #ffcc00;
+}
+.scholarship-icon {
+    width: 70px;
+    height: 70px;
+    background: rgba(128, 0, 0, 0.05);
+    color: #800000;
+    font-size: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    transition: background 0.3s, color 0.3s;
+}
+.scholarship-card:hover .scholarship-icon {
+    background: #800000;
+    color: #ffcc00;
+}
+.scholarship-card h4 {
+    color: #333;
+    font-size: 20px;
+    margin-bottom: 15px;
+    line-height: 1.4;
+}
+.scholarship-card p {
+    color: #666;
+    font-size: 14.5px;
+    line-height: 1.7;
+}
+
+/* Responsive Table */
+@media screen and (max-width: 600px) {
+    .styled-table th, .styled-table td {
+        padding: 12px 15px;
+        font-size: 14px;
+    }
+}
+/* ==========================================================================
+   ADMISSIONS FAQ PAGE STYLES
+   ========================================================================== */
+
+/* --- Banner --- */
+.faq-banner {
+    color: white; text-align: center; padding: 120px 20px; margin-bottom: 0;
+}
+.faq-banner h1 { font-size: 48px; margin-bottom: 15px; letter-spacing: 1px;}
+
+/* --- FAQ Categories --- */
+.faq-category-title {
+    color: #800000;
+    font-size: 24px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #ffcc00;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.faq-category-title i {
+    color: #ffcc00;
+    font-size: 28px;
+}
+
+/* --- Interactive Accordion Styling --- */
+.faq-accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.faq-item {
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+}
+
+/* Open State Styling */
+.faq-item[open] {
+    border-color: #800000;
+    box-shadow: 0 5px 15px rgba(128,0,0,0.1);
+}
+
+/* Summary (The Clickable Question) */
+.faq-item summary {
+    padding: 20px 25px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    cursor: pointer;
+    list-style: none; /* Removes default triangle */
+    position: relative;
+    background-color: #fafafa;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Custom Plus/Minus Icon using CSS */
+.faq-item summary::after {
+    content: '\002B'; /* Unicode Plus sign */
+    position: absolute;
+    right: 25px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px;
+    color: #800000;
+    font-weight: normal;
+    transition: transform 0.3s ease;
+}
+
+/* Hide default marker for webkit browsers */
+.faq-item summary::-webkit-details-marker {
+    display: none;
+}
+
+/* Hover and Active states */
+.faq-item summary:hover {
+    background-color: #f0f0f0;
+    color: #800000;
+}
+.faq-item[open] summary {
+    background-color: #800000;
+    color: #ffffff;
+    border-bottom: 1px solid #eee;
+}
+.faq-item[open] summary::after {
+    content: '\2212'; /* Unicode Minus sign */
+    color: #ffcc00;
+    transform: translateY(-50%) rotate(180deg);
+}
+
+/* Content (The Answer) */
+.faq-content {
+    padding: 20px 25px;
+    background-color: #ffffff;
+    color: #555;
+    line-height: 1.7;
+    font-size: 15.5px;
+    border-top: 1px solid #eaeaea;
+}
+.faq-content p {
+    margin: 0;
+}
+/* ==========================================================================
+   MAIN ADMISSIONS HUB PAGE STYLES
+   ========================================================================== */
+
+/* --- Banner --- */
+.admission-hub-banner {
+    color: white; text-align: center; padding: 120px 20px; margin-bottom: 0;
+}
+.admission-hub-banner h1 { font-size: 48px; margin-bottom: 15px; letter-spacing: 1px;}
+
+/* --- Gateway Grid (The 4 big buttons) --- */
+.gateway-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
+}
+.gateway-card {
+    background: #ffffff;
+    padding: 40px 30px;
+    border-radius: 12px;
+    text-align: center;
+    text-decoration: none; /* Because it's an <a> tag */
+    color: inherit;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    border: 1px solid #eaeaea;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.gateway-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(128,0,0,0.1);
+    border-color: #800000;
+}
+.gateway-card i {
+    font-size: 45px;
+    color: #800000;
+    margin-bottom: 20px;
+    transition: transform 0.3s, color 0.3s;
+}
+.gateway-card:hover i {
+    color: #ffcc00;
+    transform: scale(1.1);
+}
+.gateway-card h3 {
+    color: #333;
+    font-size: 22px;
+    margin-bottom: 15px;
+}
+.gateway-card p {
+    color: #666;
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    flex-grow: 1; /* Pushes the "View Details" to the bottom uniformly */
+}
+.view-link {
+    font-weight: bold;
+    color: #800000;
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+}
+.gateway-card:hover .view-link {
+    color: #b30000;
+}
+
+/* --- Quick Enquiry Form Inputs --- */
+.enquiry-form input:focus, 
+.enquiry-form select:focus, 
+.enquiry-form textarea:focus {
+    border-color: #800000 !important;
+    box-shadow: 0 0 5px rgba(128,0,0,0.2);
+}
+.enquiry-form button:hover {
+    background: #b30000 !important;
+    box-shadow: 0 5px 15px rgba(128,0,0,0.2);
+}
+
+/* Responsive Fixes */
+@media screen and (max-width: 768px) {
+    .enquiry-info, .enquiry-form {
+        padding: 40px 25px !important;
     }
 }
