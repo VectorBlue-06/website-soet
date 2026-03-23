@@ -89,6 +89,37 @@ color:#bbb;
 color:#444;
 }
 
+.theme-toggle-btn{
+background:#222;
+color:#fff;
+border:none;
+padding:6px 10px;
+border-radius:4px;
+font-size:12px;
+cursor:pointer;
+margin-left:8px;
+}
+
+.theme-toggle-btn:hover{
+background:#000;
+}
+
+body.dark-mode{
+background:#111;
+color:#eee;
+}
+
+body.dark-mode #content{
+filter: invert(1) hue-rotate(180deg);
+}
+
+body.dark-mode img,
+body.dark-mode video,
+body.dark-mode iframe,
+body.dark-mode .spinner{
+filter: invert(1) hue-rotate(180deg);
+}
+
 
 /* ---------------- LOGO AREA ---------------- */
 
