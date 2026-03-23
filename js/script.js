@@ -37,6 +37,8 @@ select.value = lang;
 select.dispatchEvent(new Event("change"));
 }
 
+}
+
 function applyTheme(mode){
 
 let toggleButton = document.getElementById("theme-toggle");
@@ -86,5 +88,3 @@ savedTheme = "light";
 applyTheme(savedTheme);
 
 });
-
-}
