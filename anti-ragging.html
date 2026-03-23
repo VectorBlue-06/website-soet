@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anti-Ragging — SoET</title>
+  <link rel="icon" type="image/png" href="../images/Vikram-university_Logo.png">
+  <link rel="stylesheet" href="../css/global.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <div id="navbar-root"></div>
+
+  <main id="main-content">
+    <section class="page-hero" style="background:linear-gradient(135deg,#dc2626,#991b1b)">
+      <div class="container" style="color:#fff">
+        <span class="section-badge" style="background:rgba(255,255,255,.2);color:#fff">Zero Tolerance</span>
+        <h1 class="page-hero-title" style="color:#fff">Anti-Ragging Policy</h1>
+        <p class="page-hero-desc" style="color:rgba(255,255,255,.9)">Ragging in any form is strictly prohibited and is a punishable offence. We are committed to providing a safe and respectful campus environment.</p>
+      </div>
+    </section>
+
+    <!-- What is Ragging -->
+    <section class="section">
+      <div class="container" style="max-width:900px">
+        <h2 class="section-title reveal-on-scroll">What Constitutes Ragging?</h2>
+        <div class="info-cards-grid" id="ragging-types"></div>
+      </div>
+    </section>
+
+    <!-- Consequences -->
+    <section class="section" style="background:var(--color-bg-alt)">
+      <div class="container" style="max-width:900px">
+        <h2 class="section-title reveal-on-scroll">Consequences of Ragging</h2>
+        <div id="consequences" class="consequences-list"></div>
+      </div>
+    </section>
+
+    <!-- Anti-Ragging Posters -->
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title reveal-on-scroll">Anti-Ragging Awareness</h2>
+        <div class="gallery-grid" style="grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem" id="posters-grid"></div>
+      </div>
+    </section>
+
+    <!-- Helpline -->
+    <section class="section" style="background:linear-gradient(135deg,var(--color-primary-red),var(--color-primary-blue))">
+      <div class="container" style="text-align:center;color:#fff">
+        <h2 class="reveal-on-scroll" style="font-size:2rem;margin-bottom:1rem">Anti-Ragging Helpline</h2>
+        <p style="margin-bottom:1.5rem;opacity:.9">If you or someone you know is being ragged, report immediately.</p>
+        <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+          <a href="tel:18001805522" class="btn" style="background:#fff;color:var(--color-primary-red);font-weight:700">
+            <i data-lucide="phone" style="width:18px;height:18px"></i> UGC Helpline: 1800-180-5522
+          </a>
+          <a href="https://www.antiragging.in" target="_blank" rel="noopener noreferrer" class="btn" style="border:2px solid #fff;color:#fff">
+            <i data-lucide="external-link" style="width:18px;height:18px"></i> www.antiragging.in
+          </a>
+          <a href="https://www.ugc.gov.in" target="_blank" rel="noopener noreferrer" class="btn" style="border:2px solid #fff;color:#fff">
+            <i data-lucide="external-link" style="width:18px;height:18px"></i> UGC Website
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="footer-root"></div>
+  <div id="toast-container"></div>
+
+  <script src="https://unpkg.com/pocketbase@0.25.2/dist/pocketbase.umd.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="../js/lib/theme.js"></script>
+  <script src="../js/lib/language.js"></script>
+  <script src="../js/lib/toast.js"></script>
+  <script src="../js/lib/pocketbase.js"></script>
+  <script src="../js/lib/auth.js"></script>
+  <script src="../js/lib/helpers.js"></script>
+  <script src="../js/components/navbar.js"></script>
+  <script src="../js/components/footer.js"></script>
+  <script src="../js/components/search.js"></script>
+  <script src="../js/pages/anti-ragging.js"></script>
+  <script>lucide.createIcons(); Helpers.initScrollReveal();</script>
+</body>
+</html>
