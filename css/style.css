@@ -23,7 +23,7 @@ font-family:Arial, Helvetica, sans-serif;
     
     /* ADD THESE TWO LINES */
     animation: forceHide 0.5s ease forwards;
-    animation-delay: 1.5s; 
+    animation-delay: 1s; 
 }
 @keyframes forceHide {
     100% {
