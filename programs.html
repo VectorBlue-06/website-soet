@@ -8,7 +8,6 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 </head>
 
@@ -37,12 +36,12 @@
 <div class="topbar">
 
 <div class="topbar-left">
-<a href="#">Students</a> |
-<a href="#">Faculty & Staff</a> |
-<a href="#">Alumni</a> |
-<a href="#">Industry</a> |
-<a href="#">Directory</a> |
-<a href="#">Contact</a>
+<a href="student-login.html">Students</a> |
+<a href="teacher-login.html">Faculty & Staff</a> |
+<a href="alumni.html">Alumni</a> |
+<a href="placement.html">Industry</a> |
+<a href="about.html#about-contact">Directory</a> |
+<a href="contact.html">Contact</a>
 </div>
 
 <div class="topbar-right">
@@ -52,6 +51,7 @@
 
 <span onclick="translatePage('hi')">हिंदी</span> |
 <span onclick="translatePage('en')">ENG</span>
+<button id="theme-toggle" class="theme-toggle-btn" onclick="toggleDarkMode()">Dark</button>
 
 <div id="google_translate_element"></div>
 </div>
@@ -82,7 +82,7 @@
 <div class="left-header">
 
 
-<a href=""index.html>
+<a href="index.html">
 <img src="images/logo.png" class="logo">
 </a>
 <div class="title">
@@ -91,9 +91,12 @@
 </div>
 </div>
 
+<div class="right-emblems">
+<img src="images/indian-national-emblem-ashokas-lion.png" class="emblem-right" alt="Indian National Emblem">
 <a href="https://www.india.gov.in" target="blank">
 <img src="images/const.png" class="constitution">
 </a>
+</div>
 </div>
 
 
@@ -105,16 +108,16 @@
 </a>
 
 <li class="nav-item">
-  <a href="About.html">About us</a>
+    <a href="about.html">About us</a>
 
   <div class="dropdown-menu">
 
-    <a href="#">Overview</a>
-    <a href="#">Vision & Mission</a>
-    <a href="#">Vice-Chancellor/Director's Message</a>
-    <a href="#">History</a>
-    <a href="#">Administration and Organization HOD details</a>
-    <a href="#">Contact US / How to reach</a>
+    <a href="about.html#about-overview">Overview</a>
+    <a href="about.html#about-vision">Vision & Mission</a>
+    <a href="about.html#about-leadership">Vice-Chancellor/Director's Message</a>
+    <a href="about.html#about-history">History</a>
+    <a href="about.html#about-administration">Administration and Organization HOD details</a>
+    <a href="about.html#about-contact">Contact US / How to reach</a>
 
   </div>
 </li>
@@ -161,6 +164,7 @@
     <a href="mtech-programs.html">M.TECH/PHD Admissions</a>
     <a href="fees-scholarships.html">Fee Structure & Scholarships</a>
     <a href="admissions-faq.html">Admission FAQ</a>
+    <a href="anti-ragging.html">Anti-Ragging Policy</a>
 
   </div>
 </li>
@@ -369,7 +373,7 @@
         <div class="footer-col">
             <h4>School of Engineering & Technology</h4>
             <div class="contact-details">
-                <p>Samrat Vikramaditya Vishwavidyalaya<br>Ujjain, Madhya Pradesh, India</p>
+                 <p>Samrat Vikramaditya Vishwavidayalaya<br>Ujjain, Madhya Pradesh, India</p>
                 <p style="margin-top: 20px;">T: <a href="tel:+918770122362">+91-8770122362</a></p>
                 <p>E: <a href="mailto:soet@vikramuniv.ac.in">soet@vikramuniv.ac.in</a></p>
                 <p>W: <a href="https://soet.ac.in" target="_blank">soet.ac.in</a></p>
@@ -435,6 +439,7 @@
         </div>
     </div>
 </footer>
+<script src="js/script.js"></script>
 <script>
 document.addEventListener("DOMContentLoaded", function() {
     // 1. Date & Time
