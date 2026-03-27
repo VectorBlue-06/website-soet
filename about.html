@@ -8,7 +8,107 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
+<style>
+/* =========================================
+           1. GLOBAL ELITE TYPOGRAPHY & FIXES
+           ========================================= */
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+            background-color: #f8fafc; /* Very soft slate-white background */
+            color: #334155;
+            margin: 0;
+            padding: 0;
+        }
 
+        /* =========================================
+           2. THE V2 ELITE IVY HERO
+           ========================================= */
+        .ivy-hero {
+            position: relative;
+            height: 60vh;
+            min-height: 450px;
+            display: flex;
+            align-items: flex-end;
+            padding: 0 8%;
+            margin-bottom: 90px;
+        }
+        .ivy-bg-image {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url('images/madhavbhavan.png') center/cover no-repeat;
+            background-attachment: fixed;
+            z-index: 1;
+        }
+        .ivy-bg-image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: rgba(15, 23, 42, 0.4); 
+            background-image: radial-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 1px);
+            background-size: 24px 24px;
+            z-index: 2;
+        }
+        .ivy-hero::before {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0; height: 40%;
+            background: linear-gradient(to top, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0) 100%);
+            z-index: 3;
+        }
+        .ivy-content {
+            position: relative;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(12px);
+            padding: 60px 70px;
+            max-width: 780px;
+            border-left: 12px solid #800000; 
+            box-shadow: 0 40px 80px -15px rgba(0, 0, 0, 0.25), 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            transform: translateY(45px); 
+            animation: eliteSlideUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+        }
+        @keyframes eliteSlideUp {
+            0% { transform: translateY(80px); opacity: 0; }
+            100% { transform: translateY(45px); opacity: 1; }
+        }
+        .ivy-breadcrumb {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #800000;
+            margin-bottom: 25px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .ivy-breadcrumb::before {
+            content: '';
+            display: inline-block;
+            width: 30px;
+            height: 2px;
+            background-color: #800000;
+        }
+        .ivy-breadcrumb a { color: #800000; text-decoration: none; }
+        .ivy-breadcrumb span { color: #94a3b8; }
+        .ivy-content h1 {
+            font-size: 4.5rem;
+            font-weight: 900;
+            color: #0f172a; 
+            margin: 0 0 20px 0;
+            line-height: 1;
+            letter-spacing: -2px;
+        }
+        .ivy-content p {
+            font-size: 1.25rem;
+            color: #475569;
+            line-height: 1.7;
+            margin: 0;
+            font-weight: 400;
+            max-width: 600px;
+        }
+</style>
 </head>
 
 <body>
@@ -208,13 +308,17 @@
 
 </nav>
 
-<section class="page-banner" style="background: linear-gradient(to right, rgba(10, 10, 10, 0.9), rgba(10, 10, 10, 0.4)), url('https://images.unsplash.com/photo-1541339907198-e08756ebafe3?auto=format&fit=crop&w=1950&q=80'); background-size: cover; background-position: center; padding: 150px 0 100px 0; border-bottom: 5px solid #800000;">
-    <div class="container" style="padding: 0 5%;">
-        <p style="color: #ffcc00; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; font-size: 14px;">Establishment & Legacy</p>
-        <h1 style="color: #fff; font-size: 54px; font-weight: 900; line-height: 1.1; margin-bottom: 20px; text-transform: uppercase;">About SOET.</h1>
-        <p style="color: #ccc; max-width: 600px; font-size: 18px; line-height: 1.6;">Engineering the future through uncompromising standards, rigorous academics, and a relentless pursuit of excellence since 2011.</p>
+<section class="ivy-hero">
+    <div class="ivy-bg-image"></div>
+    <div class="ivy-content">
+        <div class="ivy-breadcrumb">
+            <a href="index.html">Home</a> <span>/</span> About Us
+        </div>
+        <h1>About SOET</h1>
+        <p>Engineering the future through uncompromising standards, rigorous academics, and a relentless pursuit of excellence since 2011.</p>
     </div>
 </section>
+
 
 <section id="about-overview" class="section-padding" style="background: #fff;">
     <div class="container" style="display: flex; flex-wrap: wrap; gap: 60px; align-items: center;">
@@ -289,7 +393,7 @@
             </div>
             <div class="leader-content">
                 <h3 style="font-size: 28px; color: #111; margin-bottom: 5px; font-weight: 800;">Prof. Akhilesh Kumar Pandey</h3>
-                <p style="color: #800000; font-weight: bold; margin-bottom: 20px; text-transform: uppercase; font-size: 13px; letter-spacing: 1px;">Vice Chancellor, Vikram University</p>
+                <p style="color: #800000; font-weight: bold; margin-bottom: 20px; text-transform: uppercase; font-size: 13px; letter-spacing: 1px;">Vice Chancellor, Samrat Vikramaditya Vishwavidyalaya</p>
                 <p class="leader-quote">
                     "At our campus in historic Ujjain, we believe that true education goes beyond textbooks. We are here to spark your curiosity, teach you to think critically, and give you the hands-on skills you need to thrive in a fast-changing world. Technology is the backbone of modern civilization, and at SOET, we strive to build strong backbones."
                 </p>
@@ -324,7 +428,7 @@
                 <div class="timeline-year">2011</div>
                 <div class="timeline-content">
                     <h4>The Foundation</h4>
-                    <p>Establishment of the School of Engineering and Technology under the prestigious faculty of Engineering at Vikram University.</p>
+                    <p>Establishment of the School of Engineering and Technology under the prestigious faculty of Engineering at Samrat Vikramaditya Vishwavidyalaya.</p>
                 </div>
             </div>
 

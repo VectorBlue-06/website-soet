@@ -1,5 +1,5 @@
 # School of Engineering & Technology (SOET) - Official Website
-This repository contains the source code for the official website of SOET, Vikram University, Ujjain.
+This repository contains the source code for the official website of SOET, Samrat Vikramaditya Vishwavidyalaya, Ujjain.
 
 ## 🎓 About SOET
 Established in 2011, SOET is a premier technical department of Samrat Vikramaditya Vishwavidhyalay, offering AICTE-approved undergraduate (B.Tech) and postgraduate (M.Tech) degrees across various disciplines including Civil, Mechanical, Electrical, and Computer Science Engineering.

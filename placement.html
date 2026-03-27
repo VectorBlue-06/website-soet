@@ -68,13 +68,10 @@
 
 <!-- TOP BAR -->
 
-
-<div class="top-right">
-</div>
-
-</div>
 <header>
-
+    <div class="top-right">
+    </div>
+</header>
 
 
 <!-- LOGO AREA -->
@@ -208,117 +205,301 @@
 
 </nav>
 
-<section class="page-banner" style="background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1350&q=80'); background-size: cover; background-position: center; padding: 100px 0; text-align: center; color: white;">
-    <h1 style="font-size: 42px; text-transform: uppercase; letter-spacing: 1px;">Training & Placement Cell</h1>
-    <p style="color: #ffcc00; font-weight: bold; font-size: 16px;">SOET Vikram University / Empowering Careers</p>
-</section>
+<style>
+    /* --- BASE & VARIABLES --- */
+    :root {
+        --soet-maroon: #800000;
+        --soet-gold: #ffcc00;
+        --bg-light: #f8f9fa;
+        --text-dark: #111111;
+        --text-gray: #555555;
+        --line-color: #e0e0e0;
+        --sans-font: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        --serif-font: 'Georgia', 'Times New Roman', serif;
+    }
 
-<section id="tp-message" style="padding: 80px 5%; background: #fff;">
-    <div style="max-width: 1000px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 50px; align-items: center;">
-        <div style="flex: 1; min-width: 250px; text-align: center;">
-            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=400&fit=crop" style="width: 220px; height: 220px; object-fit: cover; border-radius: 50%; border: 6px solid #fdf2f2; box-shadow: 0 10px 20px rgba(0,0,0,0.1);" alt="T&P Officer">
-            <h4 style="margin-top: 20px; color: #800000; font-size: 20px;">Prof. [Name Here]</h4>
-            <small style="color: #666; font-weight: bold;">T&P Officer, SOET</small>
+    .placement-main-content {
+        font-family: var(--sans-font);
+        background-color: #fafafa;
+        color: var(--text-dark);
+        overflow-x: hidden;
+    }
+
+    /* --- HERO SECTION --- */
+    .placement-hero-section {
+        position: relative; 
+        width: 100%; 
+        height: 55vh; 
+        min-height: 450px; 
+        background: url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat; 
+        display: flex; 
+        align-items: flex-end; 
+        padding: 0 5%; 
+        margin-bottom: 80px;
+        box-sizing: border-box;
+    }
+    .hero-overlay {
+        position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+        background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.6) 100%); z-index: 1;
+    }
+    .hero-box {
+        position: relative; z-index: 2; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); 
+        padding: 45px 50px; border-radius: 8px; box-shadow: 0 20px 40px rgba(0,0,0,0.15); 
+        max-width: 800px; border-top: 6px solid var(--soet-maroon); bottom: -40px;
+    }
+
+    /* --- SWISS EDITORIAL SECTION (Message & Stats) --- */
+    .editorial-container {
+        max-width: 1200px; margin: 0 auto; padding: 40px 20px 80px;
+    }
+    .editorial-message-wrapper {
+        display: grid; grid-template-columns: 1fr 2.5fr; gap: 60px; margin-bottom: 120px; align-items: start;
+    }
+    @media (max-width: 900px) {
+        .editorial-message-wrapper { grid-template-columns: 1fr; gap: 30px; }
+    }
+    .desk-author-col { border-top: 4px solid var(--text-dark); padding-top: 20px; }
+    .desk-author-col h2 { font-size: 14px; text-transform: uppercase; letter-spacing: 2px; color: var(--text-gray); margin: 0 0 40px 0; font-weight: 600; }
+    .author-info { display: flex; align-items: center; gap: 20px; }
+    .author-avatar { width: 70px; height: 70px; background: #f4f4f4; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; color: var(--soet-maroon); font-size: 18px; }
+    .author-details h4 { margin: 0; font-size: 18px; color: var(--text-dark); font-weight: 700; }
+    .author-details p { margin: 4px 0 0; font-size: 14px; color: var(--text-gray); }
+    .desk-statement-col { position: relative; }
+    .desk-statement-col::before { content: "“"; position: absolute; top: -40px; left: -40px; font-size: 120px; font-family: var(--serif-font); color: rgba(128, 0, 0, 0.08); line-height: 1; z-index: -1; }
+    .desk-statement-col p { font-family: var(--serif-font); font-size: 32px; line-height: 1.4; color: var(--text-dark); margin: 0; }
+
+    .swiss-stats-wrapper { border-top: 2px solid var(--text-dark); padding-top: 20px; }
+    .stats-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 50px; }
+    .stats-header h3 { font-size: 48px; font-weight: 800; letter-spacing: -1.5px; color: var(--text-dark); margin: 0; }
+    .stats-header span { font-size: 14px; text-transform: uppercase; letter-spacing: 2px; color: var(--text-gray); font-weight: 600; }
+    .swiss-grid { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line-color); border-bottom: 1px solid var(--line-color); }
+    @media (max-width: 900px) {
+        .swiss-grid { grid-template-columns: repeat(2, 1fr); }
+        .swiss-stat-item:nth-child(1), .swiss-stat-item:nth-child(2) { border-bottom: 1px solid var(--line-color); }
+    }
+    @media (max-width: 500px) {
+        .swiss-grid { grid-template-columns: 1fr; }
+        .swiss-stat-item { border-bottom: 1px solid var(--line-color); border-right: none !important; }
+    }
+    .swiss-stat-item { padding: 40px 20px; border-right: 1px solid var(--line-color); text-align: center; transition: background 0.3s ease; }
+    .swiss-stat-item:last-child { border-right: none; }
+    .swiss-stat-item:hover { background: rgba(128, 0, 0, 0.03); }
+    .stat-huge { font-size: 72px; font-weight: 900; letter-spacing: -3px; color: var(--soet-maroon); margin-bottom: 10px; line-height: 1; }
+    .stat-label { font-size: 13px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-gray); font-weight: 600; }
+
+    /* --- LOOPING LOGOS MARQUEE --- */
+    .marquee-wrapper { background: #ffffff; padding: 80px 0; border-top: 1px solid #eee; border-bottom: 1px solid #eee; margin-bottom: 80px; overflow: hidden; }
+    .section-title { text-align: center; font-size: 32px; color: var(--text-dark); margin-bottom: 50px; font-weight: 800; letter-spacing: -0.5px; }
+    .marquee-container { display: flex; width: max-content; animation: scrollText 40s linear infinite; }
+    .marquee-container:hover { animation-play-state: paused; }
+    @keyframes scrollText { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    .logo-box { width: 200px; height: 100px; display: flex; align-items: center; justify-content: center; margin: 0 25px; }
+    .logo-box img { max-width: 100%; max-height: 100%; object-fit: contain; filter: grayscale(100%); transition: filter 0.3s, transform 0.3s; opacity: 0.7; }
+    .logo-box:hover img { filter: grayscale(0%); opacity: 1; transform: scale(1.05); }
+
+    /* --- RECRUITMENT PROCESS --- */
+    .process-section { max-width: 1280px; margin: 0 auto; padding: 0 20px 100px; }
+    .process-title-wrapper { text-align: center; margin-bottom: 60px; }
+    .process-title-wrapper h2 { font-size: 36px; color: var(--text-dark); margin-bottom: 15px; font-weight: 800; letter-spacing: -0.5px; }
+    .process-title-wrapper p { color: var(--text-gray); font-size: 16px; max-width: 600px; margin: 0 auto; }
+    .process-title-wrapper .accent-line { width: 60px; height: 4px; background: var(--soet-gold); margin: 20px auto 0; border-radius: 2px; }
+    .process-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 30px; }
+    .process-card { background: #ffffff; border-radius: 16px; padding: 40px 30px; position: relative; overflow: hidden; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04); border: 1px solid #f0f0f0; border-bottom: 4px solid transparent; transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); text-align: center; z-index: 1; }
+    .process-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(128, 0, 0, 0.08); border-bottom: 4px solid var(--soet-maroon); }
+    .process-card .bg-number { position: absolute; top: -15px; right: -10px; font-size: 120px; font-weight: 900; color: rgba(128, 0, 0, 0.03); line-height: 1; z-index: -1; transition: color 0.4s ease, transform 0.4s ease; }
+    .process-card:hover .bg-number { color: rgba(128, 0, 0, 0.08); transform: scale(1.05); }
+    .process-icon-wrapper { width: 80px; height: 80px; background: rgba(255, 204, 0, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 25px; transition: transform 0.4s ease; }
+    .process-card:hover .process-icon-wrapper { transform: scale(1.1); background: var(--soet-maroon); }
+    .process-icon-wrapper svg { width: 40px; height: 40px; stroke: var(--soet-maroon); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; transition: stroke 0.4s ease; }
+    .process-card:hover .process-icon-wrapper svg { stroke: #ffffff; }
+    .process-card h4 { color: #222; font-size: 20px; margin: 0 0 15px; font-weight: 700; }
+    .process-card p { color: #666; font-size: 14.5px; line-height: 1.6; margin: 0; }
+</style>
+
+<div class="placement-main-content">
+    
+    <section class="placement-hero-section">
+        <div class="hero-overlay"></div>
+        <div class="hero-box">
+            <div style="font-size: 13px; text-transform: uppercase; letter-spacing: 2px; color: #666; margin-bottom: 15px; font-weight: bold;">
+                <a href="index.html" style="color: #800000; text-decoration: none; transition: 0.3s;">Home</a> 
+                <span style="margin: 0 8px; color: #ccc;">/</span> 
+                <span style="color: #333;">Placement</span>
+            </div>
+            <h1 style="font-size: 44px; color: #222; margin-bottom: 15px; font-family: 'Georgia', serif; line-height: 1.2; font-weight: normal; margin-top: 0;">Training & Placement Cell</h1>
+            <p style="color: #555; font-size: 18px; margin: 0; border-left: 4px solid #ffcc00; padding-left: 15px; line-height: 1.6;">
+                Empowering Careers • Forging Industry Leaders • Building the Future
+            </p>
         </div>
-        <div style="flex: 2; min-width: 300px;">
-            <h2 style="color: #800000; margin-bottom: 20px; font-size: 32px;">Message from the Desk</h2>
-            <p style="color: #555; line-height: 1.8; font-style: italic; font-size: 16px; border-left: 4px solid #ffcc00; padding-left: 15px;">
-                "At SOET, our mission is to bridge the gap between academic brilliance and industrial requirements. We don't just provide placements; we build careers by nurturing technical expertise and professional ethics."
-            </p>
-            <p style="color: #555; line-height: 1.8; margin-top: 15px; font-size: 15px;">
-                Our students are prepared to lead in the global tech landscape. We invite industry leaders to explore the diverse talent pool at Vikram University and join us in shaping the innovators of tomorrow.
-            </p>
+    </section>
+
+    <div class="editorial-container">
+        <div class="editorial-message-wrapper">
+            <div id="tp-message" class="desk-author-col">
+                <h2>Message from the Desk</h2>
+                <div class="author-info">
+                    <div class="author-avatar">HOD</div>
+                    <div class="author-details">
+                        <h4>Dr. A. Sharma</h4>
+                        <p>Head, Training & Placement</p>
+                    </div>
+                </div>
+            </div>
+            <div class="desk-statement-col">
+                <p>At SOET, our mission extends beyond academic excellence to professional empowerment. We bridge the gap between rigorous engineering curricula and dynamic industry demands. Our proactive cell ensures every student is corporate-ready through continuous training, workshops, and direct industry exposure.</p>
+            </div>
+        </div>
+
+        <div class="swiss-stats-wrapper">
+            <div id="tp-stats" class="stats-header">
+                <h3>Placement Highlights</h3>
+                <span>Academic Year 2023-24</span>
+            </div>
+            <div class="swiss-grid">
+                <div class="swiss-stat-item">
+                    <div class="stat-huge">92%</div>
+                    <div class="stat-label">Placement Rate</div>
+                </div>
+                <div class="swiss-stat-item">
+                    <div class="stat-huge">18<span style="font-size: 32px; letter-spacing: -1px;"> LPA</span></div>
+                    <div class="stat-label">Highest Package</div>
+                </div>
+                <div class="swiss-stat-item">
+                    <div class="stat-huge">4.5<span style="font-size: 32px; letter-spacing: -1px;"> LPA</span></div>
+                    <div class="stat-label">Average Package</div>
+                </div>
+                <div class="swiss-stat-item">
+                    <div class="stat-huge">150+</div>
+                    <div class="stat-label">Visiting Companies</div>
+                </div>
+            </div>
         </div>
     </div>
-</section>
 
-<section id="tp-stats" style="padding: 80px 5%; background: #f9f9f9;">
-    <div style="text-align: center; margin-bottom: 40px;">
-        <h2 style="color: #800000; font-size: 32px;">Placement Statistics</h2>
-        <p style="color: #666;">Highlights from the recent academic year.</p>
+    <div class="marquee-wrapper">
+        <h2 class="section-title">Our Top Recruiters & Training Partners</h2>
+        <div class="marquee-container">
+            <div class="logo-box"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Tata_Consultancy_Services_Logo.svg" alt="TCS"></div>
+            <div class="logo-box"><img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Infosys_logo.svg" alt="Infosys"></div>
+            <div class="logo-box"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a0/Wipro_Primary_Logo_Color_RGB.svg" alt="Wipro"></div>
+            <div class="logo-box"><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" alt="IBM"></div>
+            <div class="logo-box"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon"></div>
+            <div class="logo-box"><img src="https://upload.wikimedia.org/wikipedia/commons/c/cd/Accenture.svg" alt="Accenture"></div>
+            <div class="logo-box"><img src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Hexagon_AB_logo.svg" alt="Hexagon"></div>
+            <div class="logo-box"><img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Fanuc_logo.svg" alt="Fanuc"></div>
+            <div class="logo-box"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Tata_Consultancy_Services_Logo.svg" alt="TCS"></div>
+            <div class="logo-box"><img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Infosys_logo.svg" alt="Infosys"></div>
+            <div class="logo-box"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a0/Wipro_Primary_Logo_Color_RGB.svg" alt="Wipro"></div>
+            <div class="logo-box"><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" alt="IBM"></div>
+            <div class="logo-box"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon"></div>
+            <div class="logo-box"><img src="https://upload.wikimedia.org/wikipedia/commons/c/cd/Accenture.svg" alt="Accenture"></div>
+            <div class="logo-box"><img src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Hexagon_AB_logo.svg" alt="Hexagon"></div>
+            <div class="logo-box"><img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Fanuc_logo.svg" alt="Fanuc"></div>
+        </div>
+    </div>
+
+    <div class="process-section">
+        <div id="tp-procedure" class="process-title-wrapper">
+            <h2>The Recruitment Process</h2>
+            <p>A streamlined, transparent, and efficient four-step pathway connecting our top-tier engineering talent with global industry leaders.</p>
+            <div class="accent-line"></div>
+        </div>
+        <div class="process-grid">
+            <div class="process-card">
+                <div class="bg-number">01</div>
+                <div class="process-icon-wrapper">
+                    <svg viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                </div>
+                <h4>Invitation</h4>
+                <p>The placement cell initiates contact by sending formal invitations alongside our comprehensive placement brochure to prospective recruiters.</p>
+            </div>
+            <div class="process-card">
+                <div class="bg-number">02</div>
+                <div class="process-icon-wrapper">
+                    <svg viewBox="0 0 24 24"><path d="M12 2a3 3 0 00-3 3v7a3 3 0 006 0V5a3 3 0 00-3-3z"></path><path d="M19 10v2a7 7 0 01-14 0v-2M12 19v4M8 23h8"></path></svg>
+                </div>
+                <h4>Pre-Placement Talk</h4>
+                <p>Companies engage with students through on-campus or virtual sessions, detailing company profiles, job roles, and career growth trajectories.</p>
+            </div>
+            <div class="process-card">
+                <div class="bg-number">03</div>
+                <div class="process-icon-wrapper">
+                    <svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"></path></svg>
+                </div>
+                <h4>Screening & Interviews</h4>
+                <p>A rigorous selection process commences, including aptitude assessments, group discussions, and specialized technical & HR interviews.</p>
+            </div>
+            <div class="process-card">
+                <div class="bg-number">04</div>
+                <div class="process-icon-wrapper">
+                    <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"></path></svg>
+                </div>
+                <h4>Final Offer</h4>
+                <p>Successful candidates are formally extended job offers, coordinated directly through the Training and Placement Cell to ensure transparency.</p>
+            </div>
+            
+        </div> 
+    </div> 
+    <section style="padding: 60px 20px; display: flex; justify-content: center; background-color: #fcfcfc;">
+    
+    <div id="tp-brochure" style="background-color: #ffffff; border: 1px solid #eaeaea; border-radius: 12px; box-shadow: 0 4px 24px rgba(0,0,0,0.03); max-width: 1000px; width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 40px 50px; flex-wrap: wrap; gap: 20px;">
+        
+        <div style="flex: 1; min-width: 300px;">
+            <h3 style="font-size: 1.6rem; color: #1a1a1a; margin-bottom: 8px; font-weight: 700; margin-top: 0;">Official Placement Brochure</h3>
+            <p style="color: #666; font-size: 1rem; margin: 0; line-height: 1.5; max-width: 500px;">
+                Explore our comprehensive academic programs, detailed placement statistics, and corporate engagement models for 2023-24.
+            </p>
+        </div>
+
+        <div>
+            <a href="assets/Placement_Brochure_2023_24.pdf" download target="_blank" style="display: inline-flex; align-items: center; gap: 10px; background-color: transparent; color: #800000; border: 2px solid #800000; padding: 12px 28px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 1rem; transition: all 0.3s ease;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                Download PDF
+            </a>
+        </div>
+
     </div>
     
-    <div class="stats-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 25px; max-width: 1000px; margin: 0 auto; text-align: center;">
-        <div class="stat-box">
-            <h3>92%</h3>
-            <p>Placement Rate</p>
-        </div>
-        <div class="stat-box">
-            <h3>12 LPA</h3>
-            <p>Highest Package</p>
-        </div>
-        <div class="stat-box">
-            <h3>50+</h3>
-            <p>Recruiting Partners</p>
-        </div>
-        <div class="stat-box">
-            <h3>4.5 LPA</h3>
-            <p>Average Package</p>
-        </div>
-    </div>
 </section>
-
-<section id="tp-brochure" style="padding: 80px 5%; background: #fff; text-align: center;">
-    <div style="background: linear-gradient(135deg, #800000, #5a0000); color: white; padding: 50px 30px; border-radius: 15px; max-width: 900px; margin: 0 auto; box-shadow: 0 15px 30px rgba(128,0,0,0.2);">
-        <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="#ffcc00" viewBox="0 0 16 16" style="margin-bottom: 15px;">
-          <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
-          <path d="M4.603 14.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.697 19.697 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077a.7.7 0 0 1 .477.365c.088.164.12.356.127.538.007.188-.012.396-.047.614-.084.51-.27 1.134-.52 1.794a10.954 10.954 0 0 0 .98 1.686 5.753 5.753 0 0 1 1.334.05c.364.066.734.195.96.465.12.144.193.32.2.518.007.192-.047.382-.138.563a1.04 1.04 0 0 1-.354.416.856.856 0 0 1-.51.138c-.331-.014-.654-.196-.933-.417a5.712 5.712 0 0 1-.911-.95 11.651 11.651 0 0 0-1.997.406 11.307 11.307 0 0 1-1.02 1.51c-.292.35-.609.656-.927.787a.793.793 0 0 1-.58.029zm1.379-1.901c-.166.076-.32.156-.459.238-.328.194-.541.383-.647.547-.094.145-.096.25-.04.361.01.022.02.036.026.044a.266.266 0 0 0 .035-.012c.137-.056.355-.235.635-.572a8.18 8.18 0 0 0 .45-.606zm1.64-1.33a12.71 12.71 0 0 1 1.01-.193 11.744 11.744 0 0 1-.51-.858 20.801 20.801 0 0 1-.5 1.05zm2.446.45c.15.163.296.3.435.41.24.19.407.253.498.256a.107.107 0 0 0 .07-.015.307.307 0 0 0 .094-.125.436.436 0 0 0 .059-.2.095.095 0 0 0-.026-.063c-.052-.062-.2-.152-.518-.209a3.876 3.876 0 0 0-.612-.053zM8.078 7.8a6.7 6.7 0 0 0 .2-.828c.031-.188.043-.343.038-.465a.613.613 0 0 0-.032-.198.517.517 0 0 0-.145.04c-.087.035-.158.106-.196.283-.04.192-.03.469.046.822.024.111.054.227.09.346z"/>
-        </svg>
-        <h2 style="margin-bottom: 15px; font-size: 28px;">Official Placement Brochure</h2>
-        <p style="margin-bottom: 30px; opacity: 0.9; font-size: 15px;">Download our comprehensive guide to view detailed student profiles, academic highlights, and past placement records.</p>
-        <a href="#" class="tp-btn">Download Brochure (PDF)</a>
-    </div>
-</section>
-
-<section id="tp-procedure" style="padding: 80px 5%; background: #f9f9f9;">
-    <h2 style="text-align: center; color: #800000; margin-bottom: 50px; font-size: 32px;">Recruitment Procedure</h2>
-    <div style="max-width: 800px; margin: 0 auto;">
-        <div class="step">
-            <div class="step-num">1</div>
-            <div class="step-text"><strong>Invitation:</strong> Placement Cell sends official invitations to companies along with student data and profiles.</div>
-        </div>
-        <div class="step">
-            <div class="step-num">2</div>
-            <div class="step-text"><strong>Pre-Placement Talk (PPT):</strong> Companies interact with students to introduce their culture, roles, and expectations.</div>
-        </div>
-        <div class="step">
-            <div class="step-num">3</div>
-            <div class="step-text"><strong>Selection Process:</strong> Written Tests, Group Discussions, and Personal Interviews are conducted on campus or online.</div>
-        </div>
-        <div class="step">
-            <div class="step-num">4</div>
-            <div class="step-text"><strong>Final Offer:</strong> Results are declared, and appointment letters are routed through the T&P Cell.</div>
-        </div>
-    </div>
-</section>
-
-<section id="tp-skills" style="padding: 80px 5%; background: #fff;">
-    <h2 style="text-align: center; color: #800000; margin-bottom: 50px; font-size: 32px;">Student Skill Development</h2>
-    <div class="skill-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; max-width: 1000px; margin: 0 auto;">
+    <section id="tp-skills" style="padding: 80px 0; background-color: #f9f9f9;">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
         
-        <div class="skill-card">
-            <i class="fas fa-laptop-code" style="font-size: 40px; color: #800000; margin-bottom: 20px;"></i>
-            <h3>Technical Workshops</h3>
-            <p>Regular sessions on Emerging Technologies, Coding Bootcamps, and Industry Certifications.</p>
-        </div>
-        
-        <div class="skill-card">
-            <i class="fas fa-comments" style="font-size: 40px; color: #800000; margin-bottom: 20px;"></i>
-            <h3>Soft Skills Training</h3>
-            <p>Dedicated modules for Communication Skills, Body Language, and Resume Building.</p>
-        </div>
-        
-        <div class="skill-card">
-            <i class="fas fa-user-tie" style="font-size: 40px; color: #800000; margin-bottom: 20px;"></i>
-            <h3>Mock Interviews</h3>
-            <p>One-on-one sessions with alumni and industry experts to simulate real interview scenarios.</p>
+        <div style="text-align: center; margin-bottom: 50px;">
+            <h2 style="font-size: 2.5rem; color: #1a1a1a; margin-bottom: 10px;">Student Skill Development</h2>
+            <div style="width: 50px; height: 4px; background: #ffcc00; margin: 0 auto;"></div>
+            <p style="color: #666; margin-top: 20px; max-width: 700px; margin-left: auto; margin-right: auto;">
+                We empower our students with industry-relevant certifications, soft skills training, and technical workshops to ensure they are day-one productive.
+            </p>
         </div>
 
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+            
+            <div style="background: white; padding: 40px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-top: 4px solid #800000;">
+                <h3 style="color: #800000; margin-bottom: 15px;">Technical Workshops</h3>
+                <p style="color: #444; line-height: 1.6;">Hands-on training in emerging technologies like AI/ML, Cloud Computing, and Full-stack development led by industry experts.</p>
+            </div>
+
+            <div style="background: white; padding: 40px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-top: 4px solid #800000;">
+                <h3 style="color: #800000; margin-bottom: 15px;">Soft Skills & Aptitude</h3>
+                <p style="color: #444; line-height: 1.6;">Comprehensive modules on communication, resume building, mock interviews, and quantitative aptitude sessions.</p>
+            </div>
+
+            <div style="background: white; padding: 40px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-top: 4px solid #800000;">
+                <h3 style="color: #800000; margin-bottom: 15px;">Industrial Visits</h3>
+                <p style="color: #444; line-height: 1.6;">Regular exposure to real-world engineering environments through visits to our training partners like Hexagon and Fanuc.</p>
+            </div>
+
+        </div>
     </div>
 </section>
+</div>
 
-<!-- FOOTER -->
-<footer class="elite-footer">
+ <!-- FOOTER -->
+ <footer class="elite-footer">
     <div class="footer-top-grid">
         
         <div class="footer-col">
@@ -430,4 +611,5 @@ document.addEventListener("DOMContentLoaded", function() {
     if(visCount) visCount.innerText = count.toLocaleString();
 });
 </script>
+</body>
 </HTML>

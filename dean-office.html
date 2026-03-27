@@ -7,7 +7,224 @@
 <link rel="stylesheet" href="css/style.css">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+/* ==========================================================================
+   OFFICE OF THE DEAN PAGE STYLES
+   ========================================================================== */
 
+/* --- Dean Message Section --- */
+.dean-message-section {
+    padding: 80px 5%;
+    background-color: var(--bg-white, #ffffff);
+}
+
+.dean-message-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 60px;
+    align-items: center;
+}
+
+.dean-profile {
+    flex: 1;
+    min-width: 300px;
+    text-align: center;
+}
+
+.dean-photo-wrapper {
+    width: 100%;
+    max-width: 380px;
+    margin: 0 auto 20px;
+    position: relative;
+}
+
+.dean-photo-wrapper img {
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 15px 15px 0px rgba(128, 0, 0, 0.1);
+    border: 3px solid var(--accent-gold, #ffcc00);
+}
+
+.dean-info h3 {
+    color: var(--primary-maroon, #800000);
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+.dean-info p {
+    color: var(--text-dark, #333);
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.dean-info span {
+    display: inline-block;
+    background: var(--bg-light, #f4f6f9);
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-size: 14px;
+    color: var(--text-muted, #666);
+}
+
+.dean-info span i {
+    color: var(--primary-maroon, #800000);
+}
+
+.dean-text {
+    flex: 1.5;
+    min-width: 300px;
+}
+
+.quote-icon-large {
+    font-size: 60px;
+    color: var(--bg-light, #f4f6f9);
+    float: left;
+    margin: 0 20px 10px 0;
+}
+
+.dean-text p {
+    font-size: 16px;
+    color: var(--text-light, #555);
+    line-height: 1.8;
+    margin-bottom: 20px;
+    text-align: justify;
+}
+
+/* --- Services Grid Section --- */
+.dean-services-section {
+    padding: 80px 5%;
+    background-color: var(--bg-light, #f4f6f9);
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+.service-card {
+    background: var(--bg-white, #ffffff);
+    padding: 40px 30px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    border-top: 4px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+    border-top-color: var(--primary-maroon, #800000);
+}
+
+.service-icon {
+    font-size: 40px;
+    color: var(--accent-gold, #ffcc00);
+    margin-bottom: 20px;
+    transition: transform 0.3s ease;
+}
+
+.service-card:hover .service-icon {
+    transform: scale(1.1);
+    color: var(--primary-maroon, #800000);
+}
+
+.service-card h3 {
+    color: var(--text-dark, #333);
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.service-card p {
+    color: var(--text-muted, #666);
+    font-size: 14.5px;
+    line-height: 1.6;
+}
+
+/* --- Dean Contact Box (Ivy League Edition) --- */
+.dean-contact-section {
+    padding: 0 5% 80px;
+    background-color: var(--bg-light, #f4f6f9);
+}
+
+.dean-contact-box {
+    /* Rich, deep academic Navy instead of the maroon gradient */
+    background: #0C2340; 
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 60px 50px;
+    /* Sharper corners look more formal and traditional than heavily rounded ones */
+    border-radius: 4px; 
+    text-align: center;
+    color: #ffffff;
+    box-shadow: 0 15px 35px rgba(12, 35, 64, 0.15);
+    /* A subtle champagne gold accent at the top for a premium feel */
+    border-top: 4px solid #C5A97C; 
+}
+
+.dean-contact-box h2 {
+    font-size: 32px;
+    /* Forcing a serif font gives it that historic, institutional authority */
+    font-family: 'Georgia', 'Times New Roman', serif; 
+    font-weight: normal;
+    margin-bottom: 12px;
+    color: #ffffff; /* Crisp white instead of bright yellow */
+    letter-spacing: 0.5px;
+}
+
+.dean-contact-box p {
+    font-size: 17px;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 35px;
+    /* Italicized serif subtitles are a staple of academic design */
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-style: italic; 
+}
+
+.contact-details-row {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    /* Removed the chunky black background in favor of elegant, thin borders */
+    background: transparent;
+    padding: 20px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.contact-details-row span {
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    letter-spacing: 0.5px;
+    font-weight: 500;
+}
+
+.contact-details-row i {
+    /* A muted, sophisticated champagne gold instead of neon yellow */
+    color: #C5A97C; 
+    font-size: 18px;
+}
+/* Mobile Adjustments */
+@media screen and (max-width: 768px) {
+    .dean-message-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    .quote-icon-large {
+        display: none; /* Hides giant quote on mobile to save space */
+    }
+    .dean-text p {
+        text-align: left;
+    }
+}
+</style>
 
 </head>
 
@@ -212,7 +429,7 @@
 <section class="page-banner large">
     <div class="banner-content">
         <h1>Office of the Dean</h1>
-        <p><a href="index.html">Home</a> / <a href="#">Campus Life</a> / Office of the Dean</p>
+        <p><a href="index.html">Home</a> / <a href="campus-life.html">Campus Life</a> / Office of the Dean</p>
     </div>
 </section>
 
@@ -221,12 +438,12 @@
         
         <div class="dean-profile">
             <div class="dean-photo-wrapper">
-                <img src="https://images.unsplash.com/photo-1557862921-37829c790f19?w=500&h=600&fit=crop" alt="Dean Student Welfare">
+                <img src="images/dean.jpeg" alt="Dean Student Welfare">
             </div>
             <div class="dean-info">
-                <h3>Prof. Dr. [Dean's Name]</h3>
+                <h3>Dr. S.K. Mishra</h3>
                 <p>Dean of Student Welfare (DSW)</p>
-                <span><i class="fa-solid fa-envelope"></i> dsw.soet@vikramuniv.ac.in</span>
+                <span><i class="fa-solid fa-square-phone"></i> 2514271</span>
             </div>
         </div>
 
@@ -294,7 +511,7 @@
         <p>The Office of the Dean is located on the Ground Floor, Administrative Block.</p>
         <div class="contact-details-row">
             <span><i class="fa-solid fa-clock"></i> <strong>Visiting Hours:</strong> 11:00 AM - 1:00 PM (Mon-Fri)</span>
-            <span><i class="fa-solid fa-phone"></i> <strong>Office Extension:</strong> +91 123 456 7890 (Ext: 102)</span>
+            <span><i class="fa-solid fa-phone"></i> <strong>Office Extension:</strong> 2514271 </span>
         </div>
         <a href="contact.html" class="btn btn-primary" style="margin-top: 20px;">Submit a Query Online</a>
     </div>
@@ -307,10 +524,10 @@
         <div class="footer-col">
             <h4>School of Engineering & Technology</h4>
             <div class="contact-details">
-                 <p>Samrat Vikramaditya Vishwavidayalaya<br>Ujjain, Madhya Pradesh, India</p>
-                <p style="margin-top: 20px;">T: <a href="tel:+918770122362">+91-8770122362</a></p>
-                <p>E: <a href="mailto:soet@vikramuniv.ac.in">soet@vikramuniv.ac.in</a></p>
-                <p>W: <a href="https://soet.ac.in" target="_blank">soet.ac.in</a></p>
+                <p>Samrat Vikramaditya Vishwavidyalaya<br>Ujjain, Madhya Pradesh, India</p>
+                <p><i class="fa-solid fa-phone" style="width: 25px; color: #8892b0;"></i> <a href="tel:+918770122362">+91-8770122362</a></p>
+                <p><i class="fa-solid fa-envelope" style="width: 25px; color: #8892b0;"></i> <a href="mailto:soet@vikramuniv.ac.in">soet@vikramuniv.ac.in</a></p>
+                <p><i class="fa-solid fa-globe" style="width: 25px; color: #8892b0;"></i> <a href="https://soet.ac.in" target="_blank">soet.ac.in</a></p>
             </div>
         </div>
 
@@ -318,10 +535,10 @@
             <h4>Academics</h4>
             <ul class="elite-links">
                 <li><a href="#">Departments</a></li>
-                <li><a href="#">Educational Programmes</a></li>
+                <li><a href="programs.html">Educational Programmes</a></li>
                 <li><a href="#">Rules & Regulations</a></li>
-                <li><a href="#">Online Services</a></li>
-                <li><a href="#">Campus Life</a></li>
+                <li><a href="https://vikram.mponline.gov.in">Online Services</a></li>
+                <li><a href="campus-life.html">Campus Life</a></li>
             </ul>
         </div>
 
@@ -330,9 +547,9 @@
             <ul class="elite-links">
                 <li><a href="#">NIRF Ranking</a></li>
                 <li><a href="#">NAAC Accreditation</a></li>
-                <li><a href="#">Anti-Ragging Committee</a></li>
+                <li><a href="anti-ragging.html">Anti-Ragging Committee</a></li>
                 <li><a href="#">Internal Complaints & Women Cell</a></li>
-                <li><a href="#">Contact Directory</a></li>
+                <li><a href="contact.html">Contact Directory</a></li>
             </ul>
         </div>
 

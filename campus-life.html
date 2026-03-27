@@ -1,328 +1,524 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-<title>School Of Engineering and Technology</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Life - School Of Engineering and Technology</title>
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-<link rel="stylesheet" href="css/style.css">
+    <style>
+        /* =========================================
+           1. GLOBAL ELITE TYPOGRAPHY & FIXES
+           ========================================= */
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+            background-color: #f8fafc; /* Very soft slate-white background */
+            color: #334155;
+            margin: 0;
+            padding: 0;
+        }
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+        /* =========================================
+           2. THE V2 ELITE IVY HERO
+           ========================================= */
+        .ivy-hero {
+            position: relative;
+            height: 60vh;
+            min-height: 450px;
+            display: flex;
+            align-items: flex-end;
+            padding: 0 8%;
+            margin-bottom: 90px;
+        }
+        .ivy-bg-image {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url('images/madhavbhavan.png') center/cover no-repeat;
+            background-attachment: fixed;
+            z-index: 1;
+        }
+        .ivy-bg-image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: rgba(15, 23, 42, 0.4); 
+            background-image: radial-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 1px);
+            background-size: 24px 24px;
+            z-index: 2;
+        }
+        .ivy-hero::before {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0; height: 40%;
+            background: linear-gradient(to top, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0) 100%);
+            z-index: 3;
+        }
+        .ivy-content {
+            position: relative;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(12px);
+            padding: 60px 70px;
+            max-width: 780px;
+            border-left: 12px solid #800000; 
+            box-shadow: 0 40px 80px -15px rgba(0, 0, 0, 0.25), 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            transform: translateY(45px); 
+            animation: eliteSlideUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+        }
+        @keyframes eliteSlideUp {
+            0% { transform: translateY(80px); opacity: 0; }
+            100% { transform: translateY(45px); opacity: 1; }
+        }
+        .ivy-breadcrumb {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #800000;
+            margin-bottom: 25px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .ivy-breadcrumb::before {
+            content: '';
+            display: inline-block;
+            width: 30px;
+            height: 2px;
+            background-color: #800000;
+        }
+        .ivy-breadcrumb a { color: #800000; text-decoration: none; }
+        .ivy-breadcrumb span { color: #94a3b8; }
+        .ivy-content h1 {
+            font-size: 4.5rem;
+            font-weight: 900;
+            color: #0f172a; 
+            margin: 0 0 20px 0;
+            line-height: 1;
+            letter-spacing: -2px;
+        }
+        .ivy-content p {
+            font-size: 1.25rem;
+            color: #475569;
+            line-height: 1.7;
+            margin: 0;
+            font-weight: 400;
+            max-width: 600px;
+        }
 
+        /* =========================================
+           3. EDITORIAL PAGE SECTIONS (The Upgrade)
+           ========================================= */
+        .editorial-section {
+            padding: 80px 8%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .section-title {
+            color: #0f172a;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+        }
+        .section-subtitle {
+            color: #64748b;
+            font-size: 1.15rem;
+            line-height: 1.8;
+            max-width: 700px;
+            margin-bottom: 50px;
+        }
 
+        /* The Image Overlap Layout */
+        .split-layout {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 60px;
+        }
+        .split-text { flex: 1; min-width: 300px; }
+        .split-images {
+            flex: 1; 
+            min-width: 300px; 
+            position: relative;
+        }
+        .img-main {
+            width: 85%;
+            border-radius: 4px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        .img-float {
+            width: 55%;
+            border-radius: 4px;
+            border: 8px solid #f8fafc;
+            position: absolute;
+            bottom: -40px;
+            right: 0;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        /* Premium Hub Cards */
+        .hub-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        .hub-card {
+            background: #ffffff;
+            padding: 40px 30px;
+            border-radius: 6px;
+            border: 1px solid #e2e8f0;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        .hub-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 3px;
+            background: transparent;
+            transition: 0.4s;
+        }
+        .hub-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.1);
+            border-color: transparent;
+        }
+        .hub-card:hover::before {
+            background: #800000; /* Subtle maroon top border on hover */
+        }
+        .hub-icon {
+            font-size: 2.2rem;
+            color: #800000;
+            margin-bottom: 20px;
+        }
+        .hub-card h3 {
+            font-size: 1.25rem;
+            color: #0f172a;
+            margin-bottom: 10px;
+        }
+        .hub-card p {
+            color: #64748b;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Elite Testimonial Cards */
+        .reviews-section {
+            background-color: #ffffff;
+            padding: 100px 8%;
+        }
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+        }
+        .review-card {
+            background: #f8fafc;
+            padding: 40px;
+            border-left: 4px solid #800000;
+            position: relative;
+        }
+        .quote-icon {
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            font-size: 4rem;
+            color: #e2e8f0;
+            opacity: 0.5;
+        }
+        .review-text {
+            font-style: italic;
+            color: #334155;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+        .student-profile {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .student-profile img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .student-profile h4 {
+            margin: 0 0 3px 0;
+            color: #0f172a;
+            font-size: 1rem;
+        }
+        .student-profile span {
+            color: #94a3b8;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Image Gallery Strip */
+        .image-strip {
+            display: flex;
+            width: 100%;
+            height: 300px;
+        }
+        .image-strip img {
+            flex: 1;
+            object-fit: cover;
+            min-width: 0; /* Allows even shrinking */
+            transition: 0.5s ease;
+            filter: grayscale(30%);
+        }
+        .image-strip img:hover {
+            flex: 1.5; /* Expands slightly when hovered */
+            filter: grayscale(0%);
+        }
+
+        @media (max-width: 768px) {
+            .ivy-content { padding: 40px 30px; }
+            .ivy-content h1 { font-size: 3rem; letter-spacing: -1px; }
+            .split-images { margin-top: 40px; }
+            .image-strip { flex-direction: column; height: auto; }
+            .image-strip img { height: 200px; }
+        }
+    </style>
 </head>
 
 <body>
 
-  
-
-<!-- PRELOADER -->
 <div id="preloader">
-
     <div class="loader-content">
-
         <img src="images/logo.png" class="logo">
-
         <h2>School of Engineering and Technology</h2>
-
         <div class="spinner"></div>
-
     </div>
-
 </div>
-
 
 <div class="SOET-Topstrip">
-
-<div class="topbar">
-
-<div class="topbar-left">
-<a href="student-login.html">Students</a> |
-<a href="teacher-login.html">Faculty & Staff</a> |
-<a href="alumni.html">Alumni</a> |
-<a href="placement.html">Industry</a> |
-<a href="about.html#about-contact">Directory</a> |
-<a href="contact.html">Contact</a>
+    <div class="topbar">
+        <div class="topbar-left">
+            <a href="student-login.html">Students</a> |
+            <a href="teacher-login.html">Faculty & Staff</a> |
+            <a href="alumni.html">Alumni</a> |
+            <a href="placement.html">Industry</a> |
+            <a href="about.html#about-contact">Directory</a> |
+            <a href="contact.html">Contact</a>
+        </div>
+        <div class="topbar-right">
+            <span onclick="changeFontSize(-1)">A-</span>
+            <span onclick="changeFontSize(0)">A</span>
+            <span onclick="changeFontSize(1)">A+</span>
+            <span onclick="translatePage('hi')">हिंदी</span> |
+            <span onclick="translatePage('en')">ENG</span>
+            <button id="theme-toggle" class="theme-toggle-btn" onclick="toggleDarkMode()">Dark</button>
+            <div id="google_translate_element"></div>
+        </div>
+    </div>
 </div>
 
-<div class="topbar-right">
-<span onclick="changeFontSize(-1)">A-</span>
-<span onclick="changeFontSize(0)">A</span>
-<span onclick="changeFontSize(1)">A+</span>
-
-<span onclick="translatePage('hi')">हिंदी</span> |
-<span onclick="translatePage('en')">ENG</span>
-<button id="theme-toggle" class="theme-toggle-btn" onclick="toggleDarkMode()">Dark</button>
-
-<div id="google_translate_element"></div>
-</div>
-
-</div>
-
-  </div>
-
-
-<!-- MAIN WEBSITE -->
 <div id="content">
 
-<header>
-
-<!-- TOP BAR -->
-
-
-<div class="top-right">
-</div>
-
-</div>
-<header>
-
-
-
-<!-- LOGO AREA -->
 <div class="logo-area">
-<div class="left-header">
-
-
-<a href="index.html">
-<img src="images/logo.png" class="logo">
-</a>
-<div class="title">
-<h2>Samrat Vikramaditya Vishwavidayalaya</h2>
-<h1>School of Engineering and Technology</h1>
-</div>
-</div>
-
-<div class="right-emblems">
-<img src="images/indian-national-emblem-ashokas-lion.png" class="emblem-right" alt="Indian National Emblem">
-<a href="https://www.india.gov.in" target="blank">
-<img src="images/const.png" class="constitution">
-</a>
-</div>
+    <div class="left-header">
+        <a href="index.html">
+            <img src="images/logo.png" class="logo">
+        </a>
+        <div class="title">
+            <h2>Samrat Vikramaditya Vishwavidayalaya</h2>
+            <h1>School of Engineering and Technology</h1>
+        </div>
+    </div>
+    <div class="right-emblems">
+        <img src="images/indian-national-emblem-ashokas-lion.png" class="emblem-right" alt="Indian National Emblem">
+        <a href="https://www.india.gov.in" target="blank">
+            <img src="images/const.png" class="constitution">
+        </a>
+    </div>
 </div>
 
-
-<!-- NAVBAR -->
 <nav class="navbar">
-
-<a href="index.html" class="home-icon">
-<i class="fa-solid fa-house"></i>
-</a>
-
-<li class="nav-item">
-    <a href="about.html">About us</a>
-
-  <div class="dropdown-menu">
-
-    <a href="about.html#about-overview">Overview</a>
-    <a href="about.html#about-vision">Vision & Mission</a>
-    <a href="about.html#about-leadership">Vice-Chancellor/Director's Message</a>
-    <a href="about.html#about-history">History</a>
-    <a href="about.html#about-administration">Administration and Organization HOD details</a>
-    <a href="about.html#about-contact">Contact US / How to reach</a>
-
-  </div>
-</li>
-
-<li class="nav-item">
-  <a href="campus-life.html">Campus Life</a>
-
-  <div class="dropdown-menu">
-
-    <a href="dean-office.html">Office of the Dean</a>
-    <a href="hostels-dining.html">Hostels and Dining faclities</a>
-    <a href="ncc-nss.html">NCC & NSS</a>
-    <a href="clubs-society.html">Clubs and Societies</a>
-    <a href="sports.html">Sports Infrastructure and Teams</a>
-    <a href="annual-fests.html">Annual Fests</a>
-    <a href="campus-facilities.html">Campus Facilities</a>
-
-  </div>
-</li>
-
-<li class="nav-item">
-  <a href="academics.html">Academics</a>
-
-  <div class="dropdown-menu">
-
-    <a href="programs.html">Programs Offered</a>
-    <a href="undergraduate.html">Under-Graduate</a>
-    <a href="postgraduate.html">Post-Graduate</a>
-    <a href="nptel.html">NPTEL/MOOCS</a>
-    <a href="library.html">Central and College Library</a>
-    <a href="exam-cell.html">Examination Cell</a>
-
-  </div>
-</li>
-
-<li class="nav-item">
-  <a href="admission.html">Admissions</a>
-
-  <div class="dropdown-menu">
-
-    <a href="why-soet.html">Why SOET Ujjain?</a>
-    <a href="life-in-ujjain.html">Life in Ujjain</a>
-    <a href="btech-admissions.html">B.TECH Admissions</a>
-    <a href="mtech-programs.html">M.TECH/PHD Admissions</a>
-    <a href="fees-scholarships.html">Fee Structure & Scholarships</a>
-    <a href="admissions-faq.html">Admission FAQ</a>
-    <a href="anti-ragging.html">Anti-Ragging Policy</a>
-
-  </div>
-</li>
-
-<li class="nav-item">
-  <a href="research.html">Research and Innovations</a>
-
-  <div class="dropdown-menu">
-
-    <a href="research.html#rnd-dean">Dean of R&D</a>
-    <a href="research.html#rnd-projects">Sponsored Projects and Grants</a>
-    <a href="research.html#rnd-patents">Patents & Publications</a>
-    <a href="research.html#rnd-facilities">Central Research Facilities</a>
-    <a href="research.html#rnd-incubation">Incubation Center & E-Cell</a>
-
-  </div>
-</li>
-
-<li class="nav-item">
-  <a href="placement.html">Training & Placement cell</a>
-
-  <div class="dropdown-menu">
-    <a href="placement.html#tp-message">Message from T&P Officer</a>
-    <a href="placement.html#tp-stats">Placement Statistics and Annual Report</a>
-    <a href="placement.html#tp-brochure">Official Placement Brochure</a>
-    <a href="placement.html#tp-procedure">Recruitment Procedure</a>
-    <a href="placement.html#tp-skills">Student Skill Development</a>
-  </div>
-</li>
-
-<li class="nav-item">
-  <a href="alumni.html">Alumni</a>
-</li>
-
-<a href="contact.html">Contact Us</a>
-<li>
-<a href="#" onclick="openSearch()">
-<i class="fa-solid fa-magnifying-glass search-icon"></i>
-</a>
-</li>
-
+    <a href="index.html" class="home-icon"><i class="fa-solid fa-house"></i></a>
+    
+    <li class="nav-item">
+        <a href="about.html">About us</a>
+        <div class="dropdown-menu">
+            <a href="about.html#about-overview">Overview</a>
+            <a href="about.html#about-vision">Vision & Mission</a>
+            <a href="about.html#about-leadership">Vice-Chancellor/Director's Message</a>
+            <a href="about.html#about-history">History</a>
+            <a href="about.html#about-administration">Administration and Organization HOD details</a>
+            <a href="about.html#about-contact">Contact US / How to reach</a>
+        </div>
+    </li>
+    <li class="nav-item">
+        <a href="campus-life.html">Campus Life</a>
+        <div class="dropdown-menu">
+            <a href="dean-office.html">Office of the Dean</a>
+            <a href="hostels-dining.html">Hostels and Dining faclities</a>
+            <a href="ncc-nss.html">NCC & NSS</a>
+            <a href="clubs-society.html">Clubs and Societies</a>
+            <a href="sports.html">Sports Infrastructure and Teams</a>
+            <a href="annual-fests.html">Annual Fests</a>
+            <a href="campus-facilities.html">Campus Facilities</a>
+        </div>
+    </li>
+    <li class="nav-item">
+        <a href="academics.html">Academics</a>
+        <div class="dropdown-menu">
+            <a href="programs.html">Programs Offered</a>
+            <a href="undergraduate.html">Under-Graduate</a>
+            <a href="postgraduate.html">Post-Graduate</a>
+            <a href="nptel.html">NPTEL/MOOCS</a>
+            <a href="library.html">Central and College Library</a>
+            <a href="exam-cell.html">Examination Cell</a>
+        </div>
+    </li>
+    <li class="nav-item">
+        <a href="admission.html">Admissions</a>
+        <div class="dropdown-menu">
+            <a href="why-soet.html">Why SOET Ujjain?</a>
+            <a href="life-in-ujjain.html">Life in Ujjain</a>
+            <a href="btech-admissions.html">B.TECH Admissions</a>
+            <a href="mtech-programs.html">M.TECH/PHD Admissions</a>
+            <a href="fees-scholarships.html">Fee Structure & Scholarships</a>
+            <a href="admissions-faq.html">Admission FAQ</a>
+            <a href="anti-ragging.html">Anti-Ragging Policy</a>
+        </div>
+    </li>
+    <li class="nav-item">
+        <a href="research.html">Research and Innovations</a>
+        <div class="dropdown-menu">
+            <a href="research.html#rnd-dean">Dean of R&D</a>
+            <a href="research.html#rnd-projects">Sponsored Projects and Grants</a>
+            <a href="research.html#rnd-patents">Patents & Publications</a>
+            <a href="research.html#rnd-facilities">Central Research Facilities</a>
+            <a href="research.html#rnd-incubation">Incubation Center & E-Cell</a>
+        </div>
+    </li>
+    <li class="nav-item">
+        <a href="placement.html">Training & Placement cell</a>
+        <div class="dropdown-menu">
+            <a href="placement.html#tp-message">Message from T&P Officer</a>
+            <a href="placement.html#tp-stats">Placement Statistics and Annual Report</a>
+            <a href="placement.html#tp-brochure">Official Placement Brochure</a>
+            <a href="placement.html#tp-procedure">Recruitment Procedure</a>
+            <a href="placement.html#tp-skills">Student Skill Development</a>
+        </div>
+    </li>
+    <li class="nav-item">
+        <a href="alumni.html">Alumni</a>
+    </li>
+    <li class="nav-item">
+        <a href="contact.html">Contact Us</a>
+    </li>
+    <li class="nav-item">
+        <a href="#" onclick="openSearch()">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+        </a>
+    </li>
 </nav>
 
-
-<section class="page-banner" style="background: linear-gradient(rgba(128,0,0,0.7), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1541339907198-e08756ebafe3?auto=format&fit=crop&w=1350&q=80'); background-size: cover; background-position: center; padding: 120px 0; text-align: center; color: white;">
-    <h1 style="font-size: 50px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px;">Experience Campus Life</h1>
-    <p style="font-size: 18px; color: #ffcc00; font-weight: bold;">Discover the vibrant community at Vikram University, SOET</p>
-</section>
-
-<section style="padding: 60px 5%; background: #fff; display: flex; flex-wrap: wrap; align-items: center; gap: 40px; max-width: 1200px; margin: 0 auto;">
-    <div style="flex: 1; min-width: 300px;">
-        <h2 style="color: #800000; margin-bottom: 20px; font-size: 32px;">More Than Just Classrooms</h2>
-        <p style="color: #555; line-height: 1.8; font-size: 16px; margin-bottom: 15px;">
-            At the School of Engineering and Technology (SOET), education extends far beyond the four walls of a lecture hall. Set within the historic and sprawling Vikram University campus, our students experience a melting pot of culture, technology, sports, and leadership.
-        </p>
-        <p style="color: #555; line-height: 1.8; font-size: 16px;">
-            Whether you are building robots, leading a social drive, playing in the university band, or simply enjoying a sunset near the library lawns, every moment here is designed to shape your future.
-        </p>
-    </div>
-    <div style="flex: 1; min-width: 300px; position: relative;">
-        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=500&h=400&fit=crop" style="width: 80%; border-radius: 10px; box-shadow: 0 10px 20px rgba(0,0,0,0.15);" alt="Students laughing">
-        <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=400&h=300&fit=crop" style="width: 60%; border-radius: 10px; border: 5px solid #fff; position: absolute; bottom: -30px; right: 0; box-shadow: 0 10px 20px rgba(0,0,0,0.15);" alt="Campus activity">
+<section class="ivy-hero">
+    <div class="ivy-bg-image"></div>
+    <div class="ivy-content">
+        <div class="ivy-breadcrumb">
+            <a href="index.html">SOET Home</a> <span>/</span> Campus Life
+        </div>
+        <h1>Campus Life</h1>
+        <p>A vibrant ecosystem of innovation, culture, and the relentless pursuit of engineering excellence.</p>
     </div>
 </section>
 
-<section style="padding: 80px 5%; background: #f9f9f9; margin-top: 40px;">
-    <div style="text-align: center; margin-bottom: 50px;">
-        <h2 style="color: #800000; font-size: 36px;">Explore the Campus Hub</h2>
-        <p style="color: #666;">Click on any section below to dive deeper into our facilities and student organizations.</p>
+<section class="editorial-section">
+    <div class="split-layout">
+        <div class="split-text">
+            <h2 class="section-title">More Than Just Classrooms</h2>
+            <p class="section-subtitle">
+                At the School of Engineering and Technology (SOET), education extends far beyond the four walls of a lecture hall. Set within the historic and sprawling Samrat Vikramaditya Vishwavidyalaya campus, our students experience a melting pot of culture, technology, sports, and leadership.
+            </p>
+            <p class="section-subtitle" style="margin-bottom: 0;">
+                Whether you are building robots, leading a social drive, playing in the university band, or simply enjoying a sunset near the library lawns, every moment here is designed to shape your future.
+            </p>
+        </div>
+        <div class="split-images">
+            <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&q=80" class="img-main" alt="Students laughing">
+            <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=600&q=80" class="img-float" alt="Campus activity">
+        </div>
+    </div>
+</section>
+
+<section class="editorial-section" style="background-color: #f8fafc; padding-top: 100px;">
+    <div style="text-align: center; margin-bottom: 60px;">
+        <h2 class="section-title">Explore the Campus Hub</h2>
+        <p class="section-subtitle" style="margin: 0 auto;">Dive deeper into our world-class facilities and dynamic student organizations.</p>
     </div>
 
-    <div class="hub-grid" style="max-width: 1200px; margin: 0 auto;">
-        
+    <div class="hub-grid">
         <a href="dean-office.html" class="hub-card">
             <div class="hub-icon"><i class="fa-solid fa-user-tie"></i></div>
             <h3>Office of the Dean</h3>
             <p>Leadership, student welfare, and administration.</p>
         </a>
-
         <a href="hostels-dining.html" class="hub-card">
             <div class="hub-icon"><i class="fa-solid fa-building"></i></div>
             <h3>Hostels & Dining</h3>
             <p>Your comfortable home away from home.</p>
         </a>
-
         <a href="ncc-nss.html" class="hub-card">
             <div class="hub-icon"><i class="fa-solid fa-shield-halved"></i></div>
             <h3>NCC & NSS</h3>
             <p>Discipline, leadership, and community service.</p>
         </a>
-
         <a href="clubs-society.html" class="hub-card">
             <div class="hub-icon"><i class="fa-solid fa-users-gear"></i></div>
             <h3>Clubs & Societies</h3>
             <p>Code-D-Code, cultural clubs, and technical societies.</p>
         </a>
-
         <a href="sports.html" class="hub-card">
             <div class="hub-icon"><i class="fa-solid fa-medal"></i></div>
             <h3>Sports Infrastructure</h3>
             <p>Courts, tracks, teams, and the annual sports meet.</p>
         </a>
-
         <a href="annual-fests.html" class="hub-card">
             <div class="hub-icon"><i class="fa-solid fa-masks-theater"></i></div>
             <h3>Annual Fests</h3>
             <p>Experience the grand "Vikramotsav" celebration.</p>
         </a>
-
-        <a href="campus-facilities.html" class="hub-card highlight-card">
-            <div class="hub-icon"><i class="fa-solid fa-map-location-dot"></i></div>
-            <h3>Campus Facilities</h3>
-            <p>Libraries, smart classrooms, IT centers, and more.</p>
-        </a>
-
     </div>
 </section>
 
-<section style="padding: 80px 5%; background: #1a1a1a; color: #fff; text-align: center;">
-    <div style="max-width: 1000px; margin: 0 auto;">
-        <h2 style="color: #ffcc00; margin-bottom: 20px;"><i class="fa-solid fa-map-location-dot"></i> Navigate SOET & Vikram University</h2>
-        <p style="opacity: 0.8; margin-bottom: 40px; font-size: 16px;">
-            Explore our sprawling campus. Use the interactive map below to find academic blocks, hostels, and sports facilities before you even arrive.
-        </p>
-        
-        <div class="map-wrapper" style="width: 100%; height: 450px; border-radius: 15px; overflow: hidden; border: 4px solid #333; box-shadow: 0 15px 30px rgba(0,0,0,0.5); position: relative;">
-            
-            <iframe 
-             src="https://maps.google.com/maps?q=School+of+Engineering+and+Technology,+Vikram+University,+Ujjain&t=&z=15&ie=UTF8&iwloc=&output=embed" 
-             width="100%" 
-             height="100%" 
-             style="border:0;" 
-             allowfullscreen="" 
-             loading="lazy" 
-             referrerpolicy="no-referrer-when-downgrade"
-             class="grayscale-map">
-            </iframe>
-            
-        </div>
-        
-        <div style="margin-top: 30px;">
-            <a href="https://maps.google.com/?q=Vikram+University+Ujjain" target="_blank" style="display: inline-block; padding: 12px 30px; background: #ffcc00; color: #000; text-decoration: none; font-weight: bold; border-radius: 5px; transition: 0.3s; margin-top: 10px;">
-                Open in Google Maps <i class="fa-solid fa-arrow-up-right-from-square" style="margin-left: 5px;"></i>
-            </a>
-        </div>
-    </div>
-</section>
-
-<section style="padding: 80px 5%; background: #fdf2f2;">
+<section class="editorial-section" style="background: #0f172a; color: #fff;">
     <div style="text-align: center; margin-bottom: 50px;">
-        <h2 style="color: #800000; font-size: 36px;">Student Voices</h2>
-        <p style="color: #666;">Hear what our engineers have to say about life at SOET.</p>
+        <h2 class="section-title" style="color: #ffffff;">Navigate SOET & Samrat Vikramaditya Vishwavidyalaya</h2>
+        <p class="section-subtitle" style="color: #94a3b8; margin: 0 auto;">
+            Explore our sprawling campus. Find academic blocks, hostels, and sports facilities before you arrive.
+        </p>
+    </div>
+    
+    <div style="width: 100%; height: 500px; border-radius: 8px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.4);">
+        <iframe 
+         src="https://maps.google.com/maps?q=School+of+Engineering+and+Technology,+Vikram+University,+Ujjain&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+         width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+    </div>
+</section>
+
+<section class="reviews-section">
+    <div style="text-align: center; margin-bottom: 60px;">
+        <h2 class="section-title">Student Voices</h2>
+        <p class="section-subtitle" style="margin: 0 auto;">Hear what our engineers have to say about life at SOET.</p>
     </div>
 
-    <div class="reviews-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto;">
-        
+    <div class="reviews-grid">
         <div class="review-card">
-            <div class="quote-icon"><i class="fa-solid fa-quote-left"></i></div>
+            <i class="fa-solid fa-quote-right quote-icon"></i>
             <p class="review-text">"The coding culture here is amazing! Joining Code-D-Code transformed my programming skills. Also, the late-night discussions in the Sandipani hostel are memories I'll cherish forever."</p>
             <div class="student-profile">
                 <img src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?w=100&h=100&fit=crop" alt="Student">
@@ -334,8 +530,8 @@
         </div>
 
         <div class="review-card">
-            <div class="quote-icon"><i class="fa-solid fa-quote-left"></i></div>
-            <p class="review-text">"Vikramotsav is hands down the best time of the year! Between managing the tech-a-thon and participating in the cultural dance, the campus energy is just unmatched. The library is also a great peaceful retreat."</p>
+            <i class="fa-solid fa-quote-right quote-icon"></i>
+            <p class="review-text">"Vikramotsav is hands down the best time of the year! Between managing the tech-a-thon and participating in the cultural dance, the campus energy is just unmatched."</p>
             <div class="student-profile">
                 <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop" alt="Student">
                 <div>
@@ -346,8 +542,8 @@
         </div>
 
         <div class="review-card">
-            <div class="quote-icon"><i class="fa-solid fa-quote-left"></i></div>
-            <p class="review-text">"As a part of the university cricket team, I can safely say our sports infrastructure is top-notch. Balancing academics with daily practice is challenging, but the faculty is incredibly supportive."</p>
+            <i class="fa-solid fa-quote-right quote-icon"></i>
+            <p class="review-text">"As a part of the university cricket team, I can safely say our sports infrastructure is top-notch. Balancing academics with daily practice is challenging, but the faculty is supportive."</p>
             <div class="student-profile">
                 <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&h=100&fit=crop" alt="Student">
                 <div>
@@ -356,21 +552,18 @@
                 </div>
             </div>
         </div>
-
     </div>
 </section>
 
-<section style="display: flex; flex-wrap: wrap; width: 100%; height: 250px; overflow: hidden;">
-    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=250&fit=crop" style="flex: 1; min-width: 250px; object-fit: cover; transition: 0.4s;" class="gallery-img">
-    <img src="https://images.unsplash.com/photo-1544148103-0773bf10d330?w=400&h=250&fit=crop" style="flex: 1; min-width: 250px; object-fit: cover; transition: 0.4s;" class="gallery-img">
-    <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=400&h=250&fit=crop" style="flex: 1; min-width: 250px; object-fit: cover; transition: 0.4s;" class="gallery-img">
-    <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=400&h=250&fit=crop" style="flex: 1; min-width: 250px; object-fit: cover; transition: 0.4s;" class="gallery-img">
+<section class="image-strip">
+    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&q=80" alt="Gallery">
+    <img src="https://images.unsplash.com/photo-1544148103-0773bf10d330?w=600&q=80" alt="Gallery">
+    <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&q=80" alt="Gallery">
+    <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=600&q=80" alt="Gallery">
 </section>
 
-<!-- FOOTER -->
 <footer class="elite-footer">
     <div class="footer-top-grid">
-        
         <div class="footer-col">
             <h4>School of Engineering & Technology</h4>
             <div class="contact-details">
@@ -418,21 +611,18 @@
                 <span class="data-value"><span id="weather">--</span>, <span id="temp">--</span></span>
             </div>
         </div>
-
     </div>
 
     <div class="footer-bottom-bar">
         <div class="bottom-bar-content">
             <div class="legal-text">
-                &copy; 2026 Student Tech Team SOET.<br>All rights reserved.
+                © 2026 Student Tech Team SOET.<br>All rights reserved.
             </div>
-            
             <div class="footer-logo-center">
                 <a href="index.html">
                     <img src="images/logo2.png" alt="SOET University Logo">
                 </a>
             </div>
-
             <div class="visitor-stats">
                 Last Updated: <span id="lastUpdated"></span><br>
                 Unique Visitors: <span id="visitorCount"></span>
@@ -440,7 +630,8 @@
         </div>
     </div>
 </footer>
-<script src="js/script.js"></script>
+
+</div> <script src="js/script.js"></script>
 <script>
 document.addEventListener("DOMContentLoaded", function() {
     // 1. Date & Time
@@ -480,4 +671,5 @@ document.addEventListener("DOMContentLoaded", function() {
     if(visCount) visCount.innerText = count.toLocaleString();
 });
 </script>
-</HTML>
+</body>
+</html>

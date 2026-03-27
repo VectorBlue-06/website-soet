@@ -7,8 +7,60 @@
 <link rel="stylesheet" href="css/style.css">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+/* ================= FEST PAGE CSS ================= */
 
+.fest-card {
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: transform 0.4s ease;
+    border: none;
+}
 
+.fest-card:hover {
+    transform: translateY(-10px);
+}
+
+.fest-card h3 {
+    font-size: 22px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.fest-card ul {
+    list-style: none;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+}
+
+.fest-card li {
+    margin-bottom: 8px;
+    position: relative;
+}
+
+.fest-card li::before {
+    content: "•";
+    color: #ffcc00;
+    font-weight: bold;
+    display: inline-block; 
+    width: 1em;
+    margin-left: -1em;
+}
+
+/* Responsiveness for the Highlight Gallery */
+@media (max-width: 768px) {
+    .fest-banner h1 {
+        font-size: 32px;
+    }
+    .fest-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
 </head>
 
 <body>
@@ -218,7 +270,7 @@
     <div style="max-width: 800px; margin: 0 auto;">
         <h2 style="color: #800000; margin-bottom: 20px;">Celebrating Heritage & Innovation</h2>
         <p style="color: #555; line-height: 1.8;">
-            Vikramotsav is more than just a fest; it is a tradition at Vikram University. It brings together the ancient cultural soul of Ujjain and the modern technical spirit of SOET. From classical dance and poetry to high-end coding battles and robotics, the fest is a 3-day extravaganza of talent.
+            Vikramotsav is more than just a fest; it is a tradition at Samrat Vikramaditya Vishwavidyalaya. It brings together the ancient cultural soul of Ujjain and the modern technical spirit of SOET. From classical dance and poetry to high-end coding battles and robotics, the fest is a 3-day extravaganza of talent.
         </p>
     </div>
 </section>
@@ -277,22 +329,6 @@
     </div>
 </section>
 
-<section style="padding: 50px 5%; background: linear-gradient(rgba(128,0,0,0.9), rgba(128,0,0,0.9)), url('images/bg-pattern.png'); color: white; text-align: center;">
-    <h3>Upcoming: Vikramotsav 2026</h3>
-    <div style="display: flex; justify-content: center; gap: 30px; margin: 30px 0;">
-        <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px; width: 120px;">
-            <span style="display: block; font-size: 30px; font-weight: bold;">FEB</span>
-            <small>Month</small>
-        </div>
-        <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px; width: 120px;">
-            <span style="display: block; font-size: 30px; font-weight: bold;">15-17</span>
-            <small>Dates</small>
-        </div>
-    </div>
-    <p>Registrations for external colleges opening soon!</p>
-    <a href="#" style="display: inline-block; margin-top: 20px; padding: 12px 35px; background: #ffcc00; color: #000; text-decoration: none; border-radius: 50px; font-weight: bold;">Register Your Team</a>
-</section>
-
 <!-- FOOTER -->
 <footer class="elite-footer">
     <div class="footer-top-grid">
@@ -300,10 +336,10 @@
         <div class="footer-col">
             <h4>School of Engineering & Technology</h4>
             <div class="contact-details">
-                 <p>Samrat Vikramaditya Vishwavidayalaya<br>Ujjain, Madhya Pradesh, India</p>
-                <p style="margin-top: 20px;">T: <a href="tel:+918770122362">+91-8770122362</a></p>
-                <p>E: <a href="mailto:soet@vikramuniv.ac.in">soet@vikramuniv.ac.in</a></p>
-                <p>W: <a href="https://soet.ac.in" target="_blank">soet.ac.in</a></p>
+                <p>Samrat Vikramaditya Vishwavidyalaya<br>Ujjain, Madhya Pradesh, India</p>
+                <p><i class="fa-solid fa-phone" style="width: 25px; color: #8892b0;"></i> <a href="tel:+918770122362">+91-8770122362</a></p>
+                <p><i class="fa-solid fa-envelope" style="width: 25px; color: #8892b0;"></i> <a href="mailto:soet@vikramuniv.ac.in">soet@vikramuniv.ac.in</a></p>
+                <p><i class="fa-solid fa-globe" style="width: 25px; color: #8892b0;"></i> <a href="https://soet.ac.in" target="_blank">soet.ac.in</a></p>
             </div>
         </div>
 
@@ -311,10 +347,10 @@
             <h4>Academics</h4>
             <ul class="elite-links">
                 <li><a href="#">Departments</a></li>
-                <li><a href="#">Educational Programmes</a></li>
+                <li><a href="programs.html">Educational Programmes</a></li>
                 <li><a href="#">Rules & Regulations</a></li>
-                <li><a href="#">Online Services</a></li>
-                <li><a href="#">Campus Life</a></li>
+                <li><a href="https://vikram.mponline.gov.in">Online Services</a></li>
+                <li><a href="campus-life.html">Campus Life</a></li>
             </ul>
         </div>
 
@@ -323,9 +359,9 @@
             <ul class="elite-links">
                 <li><a href="#">NIRF Ranking</a></li>
                 <li><a href="#">NAAC Accreditation</a></li>
-                <li><a href="#">Anti-Ragging Committee</a></li>
+                <li><a href="anti-ragging.html">Anti-Ragging Committee</a></li>
                 <li><a href="#">Internal Complaints & Women Cell</a></li>
-                <li><a href="#">Contact Directory</a></li>
+                <li><a href="contact.html">Contact Directory</a></li>
             </ul>
         </div>
 
