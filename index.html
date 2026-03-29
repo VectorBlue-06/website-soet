@@ -73,6 +73,77 @@
 .hp-ticker-item a:hover { color: var(--hp-red); }
 .hp-ticker-dot { color: #ccc; }
 
+/* Govt-style notice board */
+.hp-notice-wrap {
+  background: #fff;
+  border-bottom: 1px solid var(--hp-border);
+  padding: 24px 0 18px;
+}
+.hp-notice-board {
+  width: min(1180px, 92%);
+  margin: 0 auto;
+  border: 1px solid #d8c6a6;
+  border-radius: 8px;
+  background: #fffcf5;
+  overflow: hidden;
+}
+.hp-notice-head {
+  background: #7a0000;
+  color: #fff;
+  padding: 12px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+.hp-notice-head h2 {
+  font-size: 18px;
+  font-family: var(--hp-serif);
+  letter-spacing: .2px;
+}
+.hp-notice-meta {
+  font-size: 12px;
+  font-weight: 600;
+  color: #ffe7a8;
+}
+.hp-notice-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.hp-notice-item {
+  display: grid;
+  grid-template-columns: 120px 88px 1fr;
+  gap: 12px;
+  padding: 12px 16px;
+  border-top: 1px solid #eadfc7;
+  align-items: center;
+}
+.hp-notice-date {
+  font-size: 12px;
+  font-weight: 700;
+  color: #5f5f5f;
+}
+.hp-notice-tag {
+  display: inline-block;
+  text-align: center;
+  padding: 4px 8px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .2px;
+  text-transform: uppercase;
+}
+.hp-tag-important { background: #8b0000; color: #fff; }
+.hp-tag-latest { background: #d49400; color: #1d1300; }
+.hp-tag-event { background: #ececec; color: #222; }
+.hp-notice-item a,
+.hp-notice-item span {
+  font-size: 14px;
+  color: #161616;
+}
+.hp-notice-item a:hover { color: var(--hp-red); }
+
 /* ─────────────────────────────────────────
    HERO
 ───────────────────────────────────────── */
@@ -544,6 +615,7 @@
   .hp-qlink:nth-child(odd) { border-right: 1px solid var(--hp-border); }
   .hp-accred-row { flex-wrap: wrap; }
   .hp-accred-cell { flex: 1 1 33%; border-bottom: 1px solid var(--hp-border); }
+  .hp-notice-item { grid-template-columns: 1fr; gap: 6px; }
 }
 </style>
 </head>
@@ -552,14 +624,6 @@
 <!-- ═══════════════════════════════════════
      PRELOADER — unchanged from your site
 ═══════════════════════════════════════ -->
-<div id="preloader">
-  <div class="loader-content">
-    <img src="images/logo.png" class="logo">
-    <h2>School of Engineering and Technology</h2>
-    <div class="spinner"></div>
-  </div>
-</div>
-
 <!-- ═══════════════════════════════════════
      TOP STRIP — unchanged
 ═══════════════════════════════════════ -->
@@ -729,6 +793,37 @@
       <span class="hp-ticker-item">🔬 New Advanced Research Lab inaugurated — AI & Machine Learning Center</span>
     </div>
   </div>
+
+  <section class="hp-notice-wrap" aria-labelledby="hp-notice-title">
+    <div class="hp-notice-board">
+      <div class="hp-notice-head">
+        <h2 id="hp-notice-title">Important Notice Board</h2>
+        <span class="hp-notice-meta">Latest and important updates first</span>
+      </div>
+      <ul class="hp-notice-list">
+        <li class="hp-notice-item">
+          <span class="hp-notice-date">29 Mar 2026</span>
+          <span class="hp-notice-tag hp-tag-important">Important</span>
+          <a href="admission.html">B.Tech and M.Tech admission registration window is now open for session 2026-27.</a>
+        </li>
+        <li class="hp-notice-item">
+          <span class="hp-notice-date">27 Mar 2026</span>
+          <span class="hp-notice-tag hp-tag-latest">Latest</span>
+          <a href="exam-cell.html">Mid-semester examination schedule has been published by the Examination Cell.</a>
+        </li>
+        <li class="hp-notice-item">
+          <span class="hp-notice-date">24 Mar 2026</span>
+          <span class="hp-notice-tag hp-tag-important">Important</span>
+          <a href="fees-scholarships.html">Last date for scholarship verification on the institute portal is 05 Apr 2026.</a>
+        </li>
+        <li class="hp-notice-item">
+          <span class="hp-notice-date">20 Mar 2026</span>
+          <span class="hp-notice-tag hp-tag-event">Event</span>
+          <a href="annual-fests.html">Annual technical and cultural fest schedule released for April 2026 activities.</a>
+        </li>
+      </ul>
+    </div>
+  </section>
 
   <!-- ═══ HERO ═══ -->
   <div class="hp-hero">
