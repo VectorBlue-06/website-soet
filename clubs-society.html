@@ -1,326 +1,994 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-<title>Clubs & Societies - School Of Engineering and Technology</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clubs & Societies — School Of Engineering and Technology</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="css/style.css">
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-<style>
-/* ─────────────────────────────────────────
-       CLUBS & SOCIETIES PAGE - CORE STYLES
-    ───────────────────────────────────────── */
+  <style>
+    /* ============================================================
+       TOKENS
+    ============================================================ */
     :root {
-      --soet-maroon: #800000;
-      --soet-gold:   #ffcc00;
-      --bg-light:    #f8f9fa;
-      --text-dark:   #111111;
-      --text-gray:   #555555;
-      --line-color:  #e0e0e0;
-      --sans-font:   'Helvetica Neue', Helvetica, Arial, sans-serif;
-      --serif-font:  'Georgia', 'Times New Roman', serif;
+      --maroon:      #800000;
+      --maroon-dark: #5a0000;
+      --gold:        #c9a84c;
+      --gold-light:  #e8c97a;
+      --gold-pale:   #fdf6e3;
+
+      /* category accent colours */
+      --tech:        #1a3a6e;
+      --cultural:    #6b2d8b;
+      --sports:      #1a6e3a;
+      --social:      #7d4a00;
+      --coming:      #555566;
+
+      --bg-white:    #ffffff;
+      --bg-light:    #f5f4f0;
+      --bg-warm:     #fdfcf8;
+      --text-dark:   #1a1a2e;
+      --text-mid:    #444455;
+      --text-muted:  #777788;
+      --serif:       'Playfair Display', Georgia, serif;
+      --sans:        'DM Sans', 'Segoe UI', sans-serif;
+      --radius:      8px;
+      --shadow:      0 4px 24px rgba(0,0,0,0.06);
+      --shadow-lift: 0 16px 40px rgba(0,0,0,0.11);
     }
 
-    .cs-main { font-family: var(--sans-font); background: #fafafa; color: var(--text-dark); overflow-x: hidden; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--sans); color: var(--text-dark); background: var(--bg-white); }
 
-/* ── HERO ── */
-    .cs-hero {
-      position: relative;
-      width: 100%; height: 46vh; min-height: 380px;
-      background: url('https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
-      background-attachment: fixed;
-      display: flex; align-items: flex-end; padding: 0 5%;
-      margin-bottom: 80px; box-sizing: border-box;
+    /* ── shared ── */
+    .section-label {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 11px; font-weight: 600; letter-spacing: 2.5px;
+      text-transform: uppercase; color: var(--maroon); margin-bottom: 12px;
     }
-    .cs-hero-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.8) 100%);
-      z-index: 1;
+    .section-label::before { content:''; display:block; width:28px; height:2px; background:var(--gold); }
+
+    .section-title-xl {
+      font-family: var(--serif);
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      color: var(--text-dark); font-weight: 700; line-height: 1.2; margin-bottom: 16px;
     }
-    .cs-hero-box {
-      position: relative; z-index: 2;
-      background: rgba(255,255,255,0.95); backdrop-filter: blur(12px);
-      padding: 45px 50px; border-radius: 8px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-      max-width: 800px; border-top: 6px solid var(--soet-maroon);
-      bottom: -40px;
+    .section-title-xl em { color: var(--maroon); font-style: italic; }
+
+    .reveal { opacity:0; transform:translateY(28px); transition:opacity .65s ease, transform .65s ease; }
+    .reveal.active { opacity:1; transform:translateY(0); }
+    .d1{transition-delay:.1s} .d2{transition-delay:.2s}
+    .d3{transition-delay:.3s} .d4{transition-delay:.4s} .d5{transition-delay:.5s}
+
+    /* ============================================================
+       BANNER
+    ============================================================ */
+    .page-banner.large {
+      position: relative; background: var(--maroon-dark);
+      padding: 80px 5% 60px; overflow: hidden;
     }
-    .cs-breadcrumb {
-      font-size: 13px; text-transform: uppercase; letter-spacing: 2px;
-      color: #666; margin-bottom: 15px; font-weight: bold;
+    .page-banner.large::before {
+      content: ''; position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 60% 80% at 80% 50%, rgba(201,168,76,.18) 0%, transparent 70%),
+        url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c9a84c' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
     }
-    .cs-breadcrumb a { color: var(--soet-maroon); text-decoration: none; transition: .3s; }
-    .cs-breadcrumb .sep { margin: 0 8px; color: #ccc; }
-    .cs-hero-box h1 {
-      font-size: 44px; color: #222; margin: 0 0 15px;
-      font-family: var(--serif-font); line-height: 1.2;
-      font-weight: normal;
+    .banner-content { position:relative; z-index:1; max-width:1200px; margin:0 auto; }
+    .banner-content h1 {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      color: #fff; font-weight: 700; margin-bottom: 14px;
     }
-    .cs-hero-box p {
-      color: #555; font-size: 18px; margin: 0;
-      border-left: 4px solid var(--soet-gold);
-      padding-left: 15px; line-height: 1.6;
+    .banner-content h1 span { color: var(--gold-light); }
+    .banner-breadcrumb {
+      display:flex; align-items:center; gap:10px;
+      font-size:13px; color:rgba(255,255,255,.65);
     }
-    /* ==========================================================================
-   CLUBS & SOCIETIES PAGE STYLES
-   ========================================================================== */
+    .banner-breadcrumb a { color:rgba(255,255,255,.65); text-decoration:none; transition:color .2s; }
+    .banner-breadcrumb a:hover { color:var(--gold-light); }
+    .banner-breadcrumb i { font-size:10px; opacity:.5; }
 
-/* Club Grid Layout */
-.club-grid, .society-grid {
-    display: grid;
-    gap: 25px;
-}
-
-/* Club Cards */
-.club-card {
-    background: #fff;
-    border: 1px solid #eee;
-    border-radius: 12px;
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    display: flex;
-    flex-direction: column;
-}
-
-.club-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-}
-
-/* Icons and Visuals */
-.club-card i {
-    transition: transform 0.3s ease;
-}
-
-.club-card:hover i {
-    transform: scale(1.1);
-}
-
-/* Category Badges */
-.club-card span {
-    display: inline-block;
-    padding: 4px 12px;
-    border-radius: 20px;
-    font-size: 11px;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-}
-
-/* Upcoming Club Styling */
-.club-card[style*="dashed"] {
-    background: #fafafa;
-    border: 2px dashed #ccc !important;
-    box-shadow: none !important;
-}
-
-.club-card[style*="dashed"]:hover {
-    border-color: var(--primary-maroon, #800000) !important;
-    transform: none;
-}
-
-/* Society Cards (Samrat Vikramaditya Vishwavidyalaya Section) */
-.society-grid > div {
-    transition: all 0.3s ease;
-    cursor: default;
-}
-
-.society-grid > div:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-}
-
-.society-grid h4 {
-    color: #333;
-    margin-top: 0;
-}
-
-.society-grid p {
-    line-height: 1.5;
-    margin-bottom: 0;
-}
-
-/* Call to Action Button */
-.club-cta-btn {
-    display: inline-block;
-    padding: 12px 30px;
-    background: #ffcc00;
-    color: #000;
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 5px;
-    transition: background 0.3s ease, transform 0.2s ease;
-}
-
-.club-cta-btn:hover {
-    background: #e6b800;
-    transform: scale(1.05);
-}
-
-/* Mobile Responsiveness */
-@media (max-width: 768px) {
-    .club-grid {
-        grid-template-columns: 1fr; /* Stack clubs on small screens */
+    /* ============================================================
+       INTRO
+    ============================================================ */
+    .intro-section { padding:80px 5%; background:var(--bg-white); }
+    .intro-inner {
+      max-width:1200px; margin:0 auto;
+      display:grid; grid-template-columns:1fr 400px; gap:70px; align-items:center;
     }
-    
-    .society-grid {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    .intro-text p { font-size:16px; line-height:1.9; color:var(--text-mid); margin-bottom:16px; }
+
+    /* filter tabs */
+    .filter-bar {
+      display:flex; flex-wrap:wrap; gap:10px; margin-top:32px;
     }
-}
+    .fbtn {
+      display:inline-flex; align-items:center; gap:7px;
+      padding:9px 18px; border-radius:4px; font-size:13px; font-weight:600;
+      border:2px solid transparent; cursor:pointer; transition:all .22s;
+      background:var(--bg-light); color:var(--text-mid);
+    }
+    .fbtn.active, .fbtn:hover { color:#fff; }
+    .fbtn[data-cat="all"]      { border-color:var(--maroon);  }
+    .fbtn[data-cat="all"].active, .fbtn[data-cat="all"]:hover { background:var(--maroon); border-color:var(--maroon); }
+    .fbtn[data-cat="tech"]     { border-color:var(--tech);    }
+    .fbtn[data-cat="tech"].active,     .fbtn[data-cat="tech"]:hover     { background:var(--tech);    border-color:var(--tech); }
+    .fbtn[data-cat="cultural"] { border-color:var(--cultural);}
+    .fbtn[data-cat="cultural"].active, .fbtn[data-cat="cultural"]:hover { background:var(--cultural); border-color:var(--cultural); }
+    .fbtn[data-cat="sports"]   { border-color:var(--sports);  }
+    .fbtn[data-cat="sports"].active,   .fbtn[data-cat="sports"]:hover   { background:var(--sports);  border-color:var(--sports); }
+    .fbtn[data-cat="social"]   { border-color:var(--social);  }
+    .fbtn[data-cat="social"].active,   .fbtn[data-cat="social"]:hover   { background:var(--social);  border-color:var(--social); }
 
-</style>
+    /* intro stat pills */
+    .stat-pills { display:flex; flex-wrap:wrap; gap:14px; }
+    .stat-pill {
+      flex:1; min-width:120px;
+      background:var(--bg-light); border-radius:var(--radius);
+      padding:20px 18px; text-align:center;
+      border-bottom:3px solid var(--gold);
+    }
+    .stat-pill .sp-num {
+      font-family:var(--serif); font-size:2rem; font-weight:700;
+      color:var(--maroon); display:block; line-height:1;
+    }
+    .stat-pill .sp-label { font-size:11px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:var(--text-muted); margin-top:4px; display:block; }
 
+    /* ============================================================
+       STATS STRIP
+    ============================================================ */
+    .stats-strip { background:var(--maroon-dark); padding:48px 5%; position:relative; overflow:hidden; }
+    .stats-strip::before {
+      content:''; position:absolute; inset:0;
+      background:repeating-linear-gradient(45deg,transparent,transparent 20px,rgba(255,255,255,.015) 20px,rgba(255,255,255,.015) 21px);
+    }
+    .stats-grid {
+      max-width:1100px; margin:0 auto;
+      display:grid; grid-template-columns:repeat(4,1fr);
+      gap:1px; background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.1);
+      position:relative; z-index:1;
+    }
+    .stat-item { padding:32px 20px; text-align:center; background:rgba(255,255,255,.03); transition:background .3s; }
+    .stat-item:hover { background:rgba(255,255,255,.07); }
+    .stat-item i { display:block; font-size:20px; color:rgba(255,255,255,.2); margin-bottom:12px; }
+    .stat-item .snum { font-family:var(--serif); font-size:clamp(1.8rem,3vw,2.6rem); font-weight:700; color:var(--gold-light); display:block; line-height:1; margin-bottom:6px; }
+    .stat-item .slabel { font-size:11px; font-weight:500; letter-spacing:1.5px; text-transform:uppercase; color:rgba(255,255,255,.5); }
+
+    /* ============================================================
+       CLUBS GRID
+    ============================================================ */
+    .clubs-section { padding:90px 5%; background:var(--bg-light); }
+    .clubs-section-inner { max-width:1200px; margin:0 auto; }
+
+    .clubs-grid {
+      display:grid; grid-template-columns:repeat(3,1fr);
+      gap:24px; margin-top:50px;
+    }
+
+    /* category section labels inside grid */
+    .cat-divider {
+      grid-column:1/-1;
+      display:flex; align-items:center; gap:16px;
+      padding:28px 0 8px;
+    }
+    .cat-divider-line { flex:1; height:1px; background:rgba(0,0,0,.08); }
+    .cat-divider-label {
+      display:inline-flex; align-items:center; gap:10px;
+      font-size:12px; font-weight:700; letter-spacing:2px; text-transform:uppercase;
+      padding:6px 16px; border-radius:3px; white-space:nowrap;
+    }
+    .cat-tech     { background:rgba(26,58,110,.1);  color:var(--tech);     }
+    .cat-cultural { background:rgba(107,45,139,.1); color:var(--cultural); }
+    .cat-sports   { background:rgba(26,110,58,.1);  color:var(--sports);   }
+    .cat-social   { background:rgba(125,74,0,.1);   color:var(--social);   }
+
+    /* club card */
+    .club-card {
+      background:var(--bg-white); border-radius:var(--radius);
+      overflow:hidden; box-shadow:var(--shadow);
+      border:1px solid rgba(0,0,0,.05);
+      display:flex; flex-direction:column;
+      transition:transform .3s ease, box-shadow .3s ease;
+    }
+    .club-card:hover { transform:translateY(-7px); box-shadow:var(--shadow-lift); }
+    .club-card.coming-soon { opacity:.7; }
+    .club-card.coming-soon:hover { transform:none; box-shadow:var(--shadow); }
+
+    .club-card-header {
+      height:110px; display:flex; align-items:center; justify-content:center;
+      font-size:44px; position:relative; overflow:hidden;
+    }
+    .club-card-header::after {
+      content:''; position:absolute; inset:0;
+      background:url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.06'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E");
+    }
+    .club-card-header i { position:relative; z-index:1; color:rgba(255,255,255,.92); }
+    .hdr-tech     { background:linear-gradient(135deg, #1a3a6e, #2d5aa0); }
+    .hdr-cultural { background:linear-gradient(135deg, #6b2d8b, #9c44cc); }
+    .hdr-sports   { background:linear-gradient(135deg, #1a6e3a, #2ea85a); }
+    .hdr-social   { background:linear-gradient(135deg, #7d4a00, #c07800); }
+    .hdr-coming   { background:linear-gradient(135deg, #3a3a4a, #5a5a6e); }
+
+    .club-card-body { padding:26px 24px; flex:1; display:flex; flex-direction:column; }
+
+    .club-cat-tag {
+      display:inline-block; font-size:10px; font-weight:700;
+      letter-spacing:2px; text-transform:uppercase;
+      padding:3px 10px; border-radius:3px; margin-bottom:12px;
+    }
+    .tag-tech     { background:rgba(26,58,110,.1);  color:var(--tech);     }
+    .tag-cultural { background:rgba(107,45,139,.1); color:var(--cultural); }
+    .tag-sports   { background:rgba(26,110,58,.1);  color:var(--sports);   }
+    .tag-social   { background:rgba(125,74,0,.1);   color:var(--social);   }
+    .tag-coming   { background:rgba(85,85,102,.1);  color:var(--coming);   }
+
+    .club-card-body h3 {
+      font-family:var(--serif); font-size:18px; font-weight:700;
+      color:var(--text-dark); margin-bottom:10px;
+    }
+    .club-card-body p { font-size:13.5px; line-height:1.75; color:var(--text-muted); flex:1; }
+
+    .club-meta {
+      display:flex; flex-wrap:wrap; gap:12px;
+      margin-top:18px; padding-top:16px; border-top:1px solid rgba(0,0,0,.06);
+      font-size:12.5px; color:var(--text-muted);
+    }
+    .club-meta span { display:inline-flex; align-items:center; gap:6px; }
+    .club-meta i { font-size:11px; color:var(--maroon); }
+    .coming-badge {
+      display:inline-flex; align-items:center; gap:6px;
+      background:rgba(85,85,102,.08); color:var(--coming);
+      font-size:11px; font-weight:700; letter-spacing:1.5px;
+      padding:5px 12px; border-radius:20px; text-transform:uppercase;
+      margin-top:14px; border:1px dashed rgba(85,85,102,.3);
+    }
+
+    /* ============================================================
+       UNIVERSITY SOCIETIES
+    ============================================================ */
+    .societies-section { padding:90px 5%; background:var(--bg-white); }
+    .societies-inner { max-width:1200px; margin:0 auto; }
+    .societies-grid {
+      display:grid; grid-template-columns:repeat(4,1fr);
+      gap:24px; margin-top:50px;
+    }
+    .society-card {
+      background:var(--bg-light); border-radius:var(--radius);
+      padding:32px 26px; border:1px solid rgba(0,0,0,.05);
+      transition:transform .3s, box-shadow .3s;
+      position:relative; overflow:hidden;
+    }
+    .society-card::after {
+      content:''; position:absolute; bottom:0; left:0; right:0;
+      height:3px; background:var(--gold);
+      transform:scaleX(0); transform-origin:left; transition:transform .3s;
+    }
+    .society-card:hover { transform:translateY(-6px); box-shadow:var(--shadow-lift); background:var(--bg-warm); }
+    .society-card:hover::after { transform:scaleX(1); }
+    .society-card:hover .sc-icon { background:var(--maroon); color:#fff; }
+
+    .sc-icon {
+      width:54px; height:54px; border-radius:var(--radius);
+      display:flex; align-items:center; justify-content:center;
+      font-size:22px; margin-bottom:20px; transition:all .3s;
+      background:rgba(128,0,0,.07); color:var(--maroon);
+    }
+    .society-card h3 { font-family:var(--serif); font-size:17px; font-weight:700; color:var(--text-dark); margin-bottom:10px; }
+    .society-card p  { font-size:13.5px; line-height:1.75; color:var(--text-muted); }
+
+    /* ============================================================
+       UPCOMING EVENTS STRIP
+    ============================================================ */
+    .events-section { padding:80px 5%; background:var(--bg-light); }
+    .events-inner { max-width:1200px; margin:0 auto; }
+    .events-timeline { margin-top:48px; display:flex; flex-direction:column; gap:0; }
+    .event-row {
+      display:grid; grid-template-columns:120px 1fr;
+      gap:30px; align-items:start; position:relative;
+      padding-bottom:32px;
+    }
+    .event-row:last-child { padding-bottom:0; }
+    .event-row::before {
+      content:''; position:absolute;
+      left:59px; top:12px; bottom:0; width:2px;
+      background:rgba(0,0,0,.07);
+    }
+    .event-row:last-child::before { display:none; }
+
+    .event-date-col { text-align:center; position:relative; z-index:1; }
+    .event-date-bubble {
+      width:52px; height:52px; border-radius:50%;
+      background:var(--maroon); color:#fff;
+      display:flex; flex-direction:column; align-items:center; justify-content:center;
+      margin:0 auto; line-height:1.1;
+    }
+    .event-date-bubble .eday { font-size:17px; font-weight:700; }
+    .event-date-bubble .emon { font-size:9px; font-weight:600; letter-spacing:1px; text-transform:uppercase; }
+
+    .event-content {
+      background:var(--bg-white); border-radius:var(--radius);
+      padding:22px 26px; box-shadow:var(--shadow);
+      border-left:4px solid var(--gold);
+      display:flex; align-items:flex-start; justify-content:space-between; gap:16px; flex-wrap:wrap;
+    }
+    .event-content h4 { font-family:var(--serif); font-size:17px; font-weight:700; color:var(--text-dark); margin-bottom:4px; }
+    .event-content p  { font-size:13px; color:var(--text-muted); line-height:1.6; }
+    .event-tag {
+      flex-shrink:0; display:inline-block;
+      font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase;
+      padding:4px 12px; border-radius:20px; align-self:flex-start;
+      margin-top:2px;
+    }
+    .event-tag.tech     { background:rgba(26,58,110,.1);  color:var(--tech);     }
+    .event-tag.cultural { background:rgba(107,45,139,.1); color:var(--cultural); }
+    .event-tag.sports   { background:rgba(26,110,58,.1);  color:var(--sports);   }
+    .event-tag.inter    { background:rgba(128,0,0,.1);    color:var(--maroon);   }
+
+    /* ============================================================
+       START A CLUB CTA
+    ============================================================ */
+    .cta-section {
+      padding:90px 5%;
+      background:var(--maroon-dark); position:relative; overflow:hidden;
+    }
+    .cta-section::before {
+      content:''; position:absolute; inset:0;
+      background:radial-gradient(ellipse 50% 100% at 0% 50%, rgba(201,168,76,.12) 0%, transparent 60%),
+                 radial-gradient(ellipse 40% 80% at 100% 50%, rgba(201,168,76,.06) 0%, transparent 60%);
+    }
+    .cta-inner {
+      max-width:1100px; margin:0 auto; position:relative; z-index:1;
+      display:grid; grid-template-columns:1fr auto; gap:60px; align-items:center;
+    }
+    .cta-inner .section-label { color:var(--gold-light); }
+    .cta-inner .section-label::before { background:var(--gold-light); }
+    .cta-inner h2 {
+      font-family:var(--serif); font-size:clamp(1.8rem,3.5vw,2.6rem);
+      color:#fff; font-weight:700; margin-bottom:14px;
+    }
+    .cta-inner h2 em { color:var(--gold-light); font-style:italic; }
+    .cta-inner p { color:rgba(255,255,255,.65); font-size:15px; line-height:1.8; max-width:500px; }
+    .cta-steps {
+      display:flex; flex-direction:column; gap:16px; margin-top:30px;
+    }
+    .cta-step {
+      display:flex; align-items:flex-start; gap:16px;
+      font-size:14px; color:rgba(255,255,255,.75);
+    }
+    .cta-step-num {
+      width:30px; height:30px; flex-shrink:0; border-radius:50%;
+      background:rgba(201,168,76,.2); border:1px solid var(--gold);
+      color:var(--gold-light); font-size:13px; font-weight:700;
+      display:flex; align-items:center; justify-content:center;
+    }
+    .cta-box {
+      background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12);
+      backdrop-filter:blur(10px); border-radius:var(--radius);
+      padding:40px 36px; text-align:center; min-width:260px;
+    }
+    .cta-box i { font-size:40px; color:var(--gold-light); margin-bottom:20px; display:block; }
+    .cta-box p { color:rgba(255,255,255,.7); font-size:14px; margin-bottom:24px; line-height:1.7; }
+    .cta-btn {
+      display:inline-flex; align-items:center; gap:10px;
+      background:var(--gold); color:var(--maroon-dark);
+      font-size:13.5px; font-weight:700; letter-spacing:.5px;
+      padding:14px 28px; border-radius:4px; text-decoration:none;
+      transition:all .3s;
+    }
+    .cta-btn:hover { background:var(--gold-light); transform:translateY(-2px); box-shadow:0 8px 20px rgba(201,168,76,.3); }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width:1024px) {
+      .intro-inner    { grid-template-columns:1fr; }
+      .clubs-grid     { grid-template-columns:repeat(2,1fr); }
+      .societies-grid { grid-template-columns:repeat(2,1fr); }
+      .stats-grid     { grid-template-columns:repeat(2,1fr); }
+      .cta-inner      { grid-template-columns:1fr; }
+      .cta-box        { max-width:320px; }
+    }
+    @media (max-width:640px) {
+      .clubs-grid, .societies-grid { grid-template-columns:1fr; }
+      .event-row { grid-template-columns:60px 1fr; gap:16px; }
+      .event-row::before { left:29px; }
+    }
+
+    /* hide/show for filter */
+    .club-card[data-cat] { transition:opacity .3s, transform .3s; }
+    .club-card.hidden { display:none; }
+  </style>
 </head>
-
 <body>
-<div id="topbar-placeholder"></div>
 
-<div id="content">
-<div id="header-placeholder"></div>
-<div id="navbar-placeholder"></div>
-<section class="cs-hero">
-    <div class="cs-hero-overlay"></div>
-    <div class="cs-hero-box">
-      <div class="cs-breadcrumb">
-        <a href="index.html">Home</a>
-        <span style="color: #333;"   class="sep">/</span>
-        <a href="campus-life.html">Campus Life</a>
-        <span style="color: #333;"   class="sep">/</span>
-        <a href="clubs-society.html">Clubs & Societies</a>
-        <span style="color: #333;"   class="sep"></span>
+  <div id="topbar-placeholder"></div>
+  <div id="content">
+    <div id="header-placeholder"></div>
+    <div id="navbar-placeholder"></div>
+
+    <!-- ══════════════════════════════════════
+         BANNER
+    ══════════════════════════════════════ -->
+    <section class="page-banner large">
+      <div class="banner-content">
+        <h1>Clubs &amp; <span>Societies</span></h1>
+        <nav class="banner-breadcrumb" aria-label="breadcrumb">
+          <a href="index.html">Home</a>
+          <i class="fa-solid fa-chevron-right"></i>
+          <a href="campus-life.html">Campus Life</a>
+          <i class="fa-solid fa-chevron-right"></i>
+          <span>Clubs &amp; Societies</span>
+        </nav>
       </div>
-      <h1>Clubs & Societies</h1>
-      <p>Discover the vibrant communities that make life at SOET exciting and enriching.</p>
-    </div>
-  </section>
+    </section>
 
-<section class="container" style="padding: 60px 5%; text-align: center; background: #fff;">
-    <h2 style="color: #800000; font-size: 32px; margin-bottom: 20px;">Fuel Your Passion</h2>
-    <p style="max-width: 900px; margin: 0 auto; line-height: 1.8; color: #555; font-size: 16px;">
-        Life at SOET and Samrat Vikramaditya Vishwavidyalaya isn't just about lectures and labs. Our vibrant club culture allows you to lead, innovate, and collaborate. From high-octane coding challenges to cultural festivals, there is a community for everyone.
-    </p>
-</section>
+    <!-- ══════════════════════════════════════
+         INTRO
+    ══════════════════════════════════════ -->
+    <section class="intro-section">
+      <div class="intro-inner">
+        <div class="intro-text reveal">
+          <div class="section-label">Student Life</div>
+          <h2 class="section-title-xl">Fuel Your <em>Passion.</em><br>Find Your <em>Tribe.</em></h2>
+          <p>Life at SOET isn't just lectures and labs. Our vibrant club ecosystem is where engineers become leaders, artists, athletes, and change-makers. With over 18 active student bodies, there's a community for every curiosity.</p>
+          <p>All clubs are officially recognised by the Dean's Office and receive institutional funding, access to campus venues, and support from faculty advisors.</p>
+          <div class="filter-bar" id="filterBar">
+            <button class="fbtn active" data-cat="all"><i class="fa-solid fa-border-all"></i> All Clubs</button>
+            <button class="fbtn" data-cat="tech"><i class="fa-solid fa-microchip"></i> Technical</button>
+            <button class="fbtn" data-cat="cultural"><i class="fa-solid fa-masks-theater"></i> Cultural</button>
+            <button class="fbtn" data-cat="sports"><i class="fa-solid fa-trophy"></i> Sports</button>
+            <button class="fbtn" data-cat="social"><i class="fa-solid fa-hands-holding-circle"></i> Social</button>
+          </div>
+        </div>
 
-<section style="padding: 40px 5%; background: #f9f9f9;">
-    <h2 style="color: #800000; border-left: 5px solid #ffcc00; padding-left: 15px; margin-bottom: 30px;">
-        SOET Departmental Clubs
-    </h2>
-    <div class="club-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px;">
-        
-        <div class="club-card" style="background: #fff; border: 1px solid #eee; border-radius: 12px; overflow: hidden; transition: 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
-            <div style="background: #1a1a1a; padding: 40px; text-align: center;">
-                <i class="fa-solid fa-code" style="font-size: 50px; color: #00ff00;"></i>
+        <div class="stat-pills reveal d2">
+          <div class="stat-pill">
+            <span class="sp-num">18+</span>
+            <span class="sp-label">Active Clubs</span>
+          </div>
+          <div class="stat-pill">
+            <span class="sp-num">1,400+</span>
+            <span class="sp-label">Members</span>
+          </div>
+          <div class="stat-pill">
+            <span class="sp-num">40+</span>
+            <span class="sp-label">Events / Year</span>
+          </div>
+          <div class="stat-pill">
+            <span class="sp-num">100%</span>
+            <span class="sp-label">Student-Led</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         STATS STRIP
+    ══════════════════════════════════════ -->
+    <section class="stats-strip">
+      <div class="stats-grid">
+        <div class="stat-item reveal">
+          <i class="fa-solid fa-award"></i>
+          <span class="snum">12</span>
+          <span class="slabel">State-Level Awards</span>
+        </div>
+        <div class="stat-item reveal d1">
+          <i class="fa-solid fa-calendar-check"></i>
+          <span class="snum">40+</span>
+          <span class="slabel">Events Per Year</span>
+        </div>
+        <div class="stat-item reveal d2">
+          <i class="fa-solid fa-users"></i>
+          <span class="snum">1,400+</span>
+          <span class="slabel">Student Members</span>
+        </div>
+        <div class="stat-item reveal d3">
+          <i class="fa-solid fa-handshake"></i>
+          <span class="snum">8+</span>
+          <span class="slabel">Industry Partners</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         CLUBS GRID
+    ══════════════════════════════════════ -->
+    <section class="clubs-section" id="clubs">
+      <div class="clubs-section-inner">
+        <div class="section-label">SOET Departmental Clubs</div>
+        <h2 class="section-title-xl">Find Your <em>Community</em></h2>
+        <p style="font-size:15px;color:var(--text-muted);max-width:600px;line-height:1.8;">
+          Every club is student-founded, faculty-advised, and Dean's Office approved — built to complement your academic journey with real-world skills and unforgettable experiences.
+        </p>
+
+        <div class="clubs-grid" id="clubsGrid">
+
+          <!-- ── TECHNICAL ── -->
+          <div class="cat-divider reveal" id="div-tech">
+            <div class="cat-divider-line"></div>
+            <span class="cat-divider-label cat-tech"><i class="fa-solid fa-microchip"></i> Technical</span>
+            <div class="cat-divider-line"></div>
+          </div>
+
+          <div class="club-card reveal" data-cat="tech">
+            <div class="club-card-header hdr-tech"><i class="fa-solid fa-code"></i></div>
+            <div class="club-card-body">
+              <span class="club-cat-tag tag-tech">Technical</span>
+              <h3>Code-D-Code</h3>
+              <p>The premier coding community of SOET. Focused on competitive programming, full-stack web development, and preparing students for national-level hackathons and coding olympiads.</p>
+              <div class="club-meta">
+                <span><i class="fa-solid fa-calendar-days"></i> Every Saturday</span>
+                <span><i class="fa-solid fa-users"></i> 180+ Members</span>
+                <span><i class="fa-solid fa-location-dot"></i> CS Lab Block</span>
+              </div>
             </div>
-            <div style="padding: 25px;">
-                <h3 style="margin-bottom: 10px; color: #333;">Code-D-Code</h3>
-                <span style="background: #e8f5e9; color: #2e7d32; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: bold;">TECHNICAL</span>
-                <p style="margin-top: 15px; font-size: 14.5px; color: #666; line-height: 1.6;">
-                    The premier coding community of SOET. Focused on competitive programming, web development, and preparing students for tech hackathons.
-                </p>
-                <div style="margin-top: 20px; border-top: 1px solid #eee; padding-top: 15px;">
-                    <small style="color: #999;"><i class="fa-solid fa-calendar-days"></i> Meets: Every Saturday</small>
-                </div>
+          </div>
+
+          <div class="club-card reveal d1" data-cat="tech">
+            <div class="club-card-header hdr-tech"><i class="fa-solid fa-robot"></i></div>
+            <div class="club-card-body">
+              <span class="club-cat-tag tag-tech">Technical</span>
+              <h3>Robo-Tech Society</h3>
+              <p>Hardware enthusiasts club focused on Arduino, Raspberry Pi, drone technology, and industrial automation. Regularly participates in inter-college robo-wars and build competitions.</p>
+              <div class="club-meta">
+                <span><i class="fa-solid fa-calendar-days"></i> Bi-weekly</span>
+                <span><i class="fa-solid fa-users"></i> 95+ Members</span>
+                <span><i class="fa-solid fa-location-dot"></i> ECE Workshop</span>
+              </div>
             </div>
-        </div>
+          </div>
 
-        <div class="club-card" style="background: #fff; border: 1px solid #eee; border-radius: 12px; overflow: hidden; opacity: 0.8; border: 2px dashed #ccc;">
-            <div style="padding: 40px; text-align: center; background: #f0f0f0;">
-                <i class="fa-solid fa-robot" style="font-size: 50px; color: #666;"></i>
+          <div class="club-card reveal d2" data-cat="tech">
+            <div class="club-card-header hdr-tech"><i class="fa-solid fa-brain"></i></div>
+            <div class="club-card-body">
+              <span class="club-cat-tag tag-tech">Technical</span>
+              <h3>AI & Data Science Club</h3>
+              <p>Exploring machine learning, data analytics, and artificial intelligence through workshops, Kaggle competitions, and collaborative research projects with faculty mentors.</p>
+              <div class="club-meta">
+                <span><i class="fa-solid fa-calendar-days"></i> Wednesdays</span>
+                <span><i class="fa-solid fa-users"></i> 120+ Members</span>
+                <span><i class="fa-solid fa-location-dot"></i> CS Seminar Hall</span>
+              </div>
             </div>
-            <div style="padding: 25px;">
-                <h3 style="margin-bottom: 10px; color: #333;">Robo-Tech Society</h3>
-                <span style="background: #eee; color: #777; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: bold;">COMING SOON</span>
-                <p style="margin-top: 15px; font-size: 14.5px; color: #666; line-height: 1.6;">
-                    An upcoming initiative for hardware enthusiasts, focusing on Arduino projects, Drone tech, and Automation.
-                </p>
+          </div>
+
+          <div class="club-card reveal" data-cat="tech">
+            <div class="club-card-header hdr-tech"><i class="fa-solid fa-bolt"></i></div>
+            <div class="club-card-body">
+              <span class="club-cat-tag tag-tech">Technical</span>
+              <h3>Circuit Breakers (EE Club)</h3>
+              <p>The electrical engineering club dedicated to circuit design, PCB fabrication, IoT prototyping, and smart energy systems. Hosts the annual inter-college circuit design challenge.</p>
+              <div class="club-meta">
+                <span><i class="fa-solid fa-calendar-days"></i> Thursdays</span>
+                <span><i class="fa-solid fa-users"></i> 85+ Members</span>
+                <span><i class="fa-solid fa-location-dot"></i> EE Lab</span>
+              </div>
             </div>
+          </div>
+
+          <div class="club-card reveal d1" data-cat="tech">
+            <div class="club-card-header hdr-tech"><i class="fa-solid fa-drafting-compass"></i></div>
+            <div class="club-card-body">
+              <span class="club-cat-tag tag-tech">Technical</span>
+              <h3>Mech Innovators</h3>
+              <p>A mechanical engineering club for CAD design enthusiasts, focusing on SolidWorks, 3D printing, and sustainable product design. Participates in national BAJA and SAE events.</p>
+              <div class="club-meta">
+                <span><i class="fa-solid fa-calendar-days"></i> Fridays</span>
+                <span><i class="fa-solid fa-users"></i> 75+ Members</span>
+                <span><i class="fa-solid fa-location-dot"></i> ME Design Studio</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="club-card reveal d2 coming-soon" data-cat="tech">
+            <div class="club-card-header hdr-coming"><i class="fa-solid fa-satellite-dish"></i></div>
+            <div class="club-card-body">
+              <span class="club-cat-tag tag-coming">Coming Soon</span>
+              <h3>CubeSat &amp; Space Tech Club</h3>
+              <p>An upcoming initiative for students fascinated by aerospace and satellite technology, with plans to build and submit a functional CubeSat prototype in collaboration with ISRO.</p>
+              <div class="coming-badge"><i class="fa-solid fa-clock"></i> Launching 2025–26</div>
+            </div>
+          </div>
+
+          <!-- ── CULTURAL ── -->
+          <div class="cat-divider reveal" id="div-cultural">
+            <div class="cat-divider-line"></div>
+            <span class="cat-divider-label cat-cultural"><i class="fa-solid fa-masks-theater"></i> Cultural</span>
+            <div class="cat-divider-line"></div>
+          </div>
+
+          <div class="club-card reveal" data-cat="cultural">
+            <div class="club-card-header hdr-cultural"><i class="fa-solid fa-music"></i></div>
+            <div class="club-card-body">
+              <span class="club-cat-tag tag-cultural">Cultural</span>
+              <h3>Swar Sangam Music Club</h3>
+              <p>For vocalists and instrumentalists alike — classical, folk, and western genres all find a home here. The club organises open-mic nights and performs at all major university events.</p>
+              <div class="club-meta">
+                <span><i class="fa-solid fa-calendar-days"></i> Tuesdays</span>
+                <span><i class="fa-solid fa-users"></i> 110+ Members</span>
+                <span><i class="fa-solid fa-location-dot"></i> Cultural Hall</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="club-card reveal d1" data-cat="cultural">
+            <div class="club-card-header hdr-cultural"><i class="fa-solid fa-person-dancing"></i></div>
+            <div class="club-card-body">
+              <span class="club-cat-tag tag-cultural">Cultural</span>
+              <h3>Nritya Rang Dance Club</h3>
+              <p>A vibrant dance collective covering classical Indian forms, folk dances of MP, and contemporary styles. Represents SOET at state youth festivals and inter-university dance competitions.</p>
+              <div class="club-meta">
+                <span><i class="fa-solid fa-calendar-days"></i> Mon & Wed</span>
+                <span><i class="fa-solid fa-users"></i> 90+ Members</span>
+                <span><i class="fa-solid fa-location-dot"></i> Open Amphitheatre</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="club-card reveal d2" data-cat="cultural">
+            <div class="club-card-header hdr-cultural"><i class="fa-solid fa-camera"></i></div>
+            <div class="club-card-body">
+              <span class="club-cat-tag tag-cultural">Cultural</span>
+              <h3>Lens &amp; Frame Photography</h3>
+              <p>The official photography and visual storytelling club of SOET. Runs workshops on DSLR, mobile photography, and photo editing. Publishes the annual SOET Campus Photo Journal.</p>
+              <div class="club-meta">
+                <span><i class="fa-solid fa-calendar-days"></i> Sundays</span>
+                <span><i class="fa-solid fa-users"></i> 70+ Members</span>
+                <span><i class="fa-solid fa-location-dot"></i> Media Room</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="club-card reveal" data-cat="cultural">
+            <div class="club-card-header hdr-cultural"><i class="fa-solid fa-book-open"></i></div>
+            <div class="club-card-body">
+              <span class="club-cat-tag tag-cultural">Cultural</span>
+              <h3>Vaad-Vivaad Debate Society</h3>
+              <p>Trains students in structured argumentation, public speaking, and Model UN diplomacy. Regularly wins laurels at Hindi and English debate competitions at state and national level.</p>
+              <div class="club-meta">
+                <span><i class="fa-solid fa-calendar-days"></i> Alternating Fridays</span>
+                <span><i class="fa-solid fa-users"></i> 60+ Members</span>
+                <span><i class="fa-solid fa-location-dot"></i> Seminar Room 2</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── SPORTS ── -->
+          <div class="cat-divider reveal" id="div-sports">
+            <div class="cat-divider-line"></div>
+            <span class="cat-divider-label cat-sports"><i class="fa-solid fa-trophy"></i> Sports</span>
+            <div class="cat-divider-line"></div>
+          </div>
+
+          <div class="club-card reveal" data-cat="sports">
+            <div class="club-card-header hdr-sports"><i class="fa-solid fa-chess-knight"></i></div>
+            <div class="club-card-body">
+              <span class="club-cat-tag tag-sports">Sports</span>
+              <h3>Chess &amp; Strategy Board Club</h3>
+              <p>Nurturing analytical thinking through chess, scrabble, and strategic board games. Hosts campus-wide tournaments and prepares students for AICTE and university chess championships.</p>
+              <div class="club-meta">
+                <span><i class="fa-solid fa-calendar-days"></i> Daily (evenings)</span>
+                <span><i class="fa-solid fa-users"></i> 100+ Members</span>
+                <span><i class="fa-solid fa-location-dot"></i> Common Room</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="club-card reveal d1" data-cat="sports">
+            <div class="club-card-header hdr-sports"><i class="fa-solid fa-volleyball"></i></div>
+            <div class="club-card-body">
+              <span class="club-cat-tag tag-sports">Sports</span>
+              <h3>SOET Sports Council</h3>
+              <p>The umbrella body overseeing cricket, football, volleyball, and athletics teams. Coordinates inter-department tournaments, trial selections, and representation at university games.</p>
+              <div class="club-meta">
+                <span><i class="fa-solid fa-calendar-days"></i> Year-round</span>
+                <span><i class="fa-solid fa-users"></i> 250+ Members</span>
+                <span><i class="fa-solid fa-location-dot"></i> Sports Ground</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="club-card reveal d2" data-cat="sports">
+            <div class="club-card-header hdr-sports"><i class="fa-solid fa-dumbbell"></i></div>
+            <div class="club-card-body">
+              <span class="club-cat-tag tag-sports">Sports</span>
+              <h3>Fitness &amp; Wellness Club</h3>
+              <p>Promoting physical health and mental well-being through yoga sessions, gym orientation programs, and nutrition awareness workshops in collaboration with the campus health centre.</p>
+              <div class="club-meta">
+                <span><i class="fa-solid fa-calendar-days"></i> Daily 6–7 AM</span>
+                <span><i class="fa-solid fa-users"></i> 140+ Members</span>
+                <span><i class="fa-solid fa-location-dot"></i> Gym / Yoga Court</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── SOCIAL ── -->
+          <div class="cat-divider reveal" id="div-social">
+            <div class="cat-divider-line"></div>
+            <span class="cat-divider-label cat-social"><i class="fa-solid fa-hands-holding-circle"></i> Social Impact</span>
+            <div class="cat-divider-line"></div>
+          </div>
+
+          <div class="club-card reveal" data-cat="social">
+            <div class="club-card-header hdr-social"><i class="fa-solid fa-seedling"></i></div>
+            <div class="club-card-body">
+              <span class="club-cat-tag tag-social">Social Impact</span>
+              <h3>Green Engineers Eco Club</h3>
+              <p>Driving campus sustainability through tree plantation drives, e-waste collection campaigns, energy audits of SOET buildings, and awareness of SDG goals among students.</p>
+              <div class="club-meta">
+                <span><i class="fa-solid fa-calendar-days"></i> Monthly drives</span>
+                <span><i class="fa-solid fa-users"></i> 130+ Members</span>
+                <span><i class="fa-solid fa-location-dot"></i> Campus-wide</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="club-card reveal d1" data-cat="social">
+            <div class="club-card-header hdr-social"><i class="fa-solid fa-lightbulb"></i></div>
+            <div class="club-card-body">
+              <span class="club-cat-tag tag-social">Social Impact</span>
+              <h3>E-Cell &amp; Entrepreneurship Club</h3>
+              <p>Connecting students with startup ecosystems, startup pitching workshops, mentor networks, and the university's incubation cell. Hosts the annual startup demo day — IGNITE.</p>
+              <div class="club-meta">
+                <span><i class="fa-solid fa-calendar-days"></i> Bi-weekly</span>
+                <span><i class="fa-solid fa-users"></i> 160+ Members</span>
+                <span><i class="fa-solid fa-location-dot"></i> Innovation Hub</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="club-card reveal d2" data-cat="social">
+            <div class="club-card-header hdr-social"><i class="fa-solid fa-people-carry-box"></i></div>
+            <div class="club-card-body">
+              <span class="club-cat-tag tag-social">Social Impact</span>
+              <h3>Samvedna — Social Service Club</h3>
+              <p>A student-led humanitarian initiative running free tech literacy classes in local government schools, blood donation camps, and rural sanitation awareness campaigns in Ujjain district.</p>
+              <div class="club-meta">
+                <span><i class="fa-solid fa-calendar-days"></i> Weekends</span>
+                <span><i class="fa-solid fa-users"></i> 200+ Members</span>
+                <span><i class="fa-solid fa-location-dot"></i> Off-campus outreach</span>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /clubs-grid -->
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         UNIVERSITY SOCIETIES
+    ══════════════════════════════════════ -->
+    <section class="societies-section" id="societies">
+      <div class="societies-inner">
+        <div class="section-label">University-Wide</div>
+        <h2 class="section-title-xl">Central <em>Societies</em> of SVV</h2>
+        <p style="font-size:15px;color:var(--text-muted);max-width:650px;line-height:1.8;">
+          SOET students have full access to the central societies of Samrat Vikramaditya Vishwavidyalaya, bringing together participants from all departments and disciplines.
+        </p>
+
+        <div class="societies-grid">
+          <div class="society-card reveal">
+            <div class="sc-icon"><i class="fa-solid fa-masks-theater"></i></div>
+            <h3>Literary &amp; Cultural Society</h3>
+            <p>Organizers of the annual university fest, Vikramotsav, youth festivals, and inter-college debate competitions drawing 5,000+ participants.</p>
+          </div>
+          <div class="society-card reveal d1">
+            <div class="sc-icon"><i class="fa-solid fa-trophy"></i></div>
+            <h3>University Sports Board</h3>
+            <p>Promoting excellence in Athletics, Cricket, Football, Kabaddi, and Indoor sports at district, state, and national levels under AIU affiliation.</p>
+          </div>
+          <div class="society-card reveal d2">
+            <div class="sc-icon"><i class="fa-solid fa-hands-holding-child"></i></div>
+            <h3>NSS &amp; Community Wing</h3>
+            <p>National Service Scheme chapters conducting blood donation camps, rural literacy drives, and environmental initiatives across Ujjain and Dewas districts.</p>
+          </div>
+          <div class="society-card reveal d3">
+            <div class="sc-icon"><i class="fa-solid fa-palette"></i></div>
+            <h3>Fine Arts Society</h3>
+            <p>For students passionate about painting, sculpture, folk art, and photography. Hosts annual exhibitions open to the public and college community.</p>
+          </div>
         </div>
+      </div>
+    </section>
 
-    </div>
-</section>
+    <!-- ══════════════════════════════════════
+         UPCOMING EVENTS
+    ══════════════════════════════════════ -->
+    <section class="events-section" id="events">
+      <div class="events-inner">
+        <div class="section-label">What's Coming Up</div>
+        <h2 class="section-title-xl">Upcoming <em>Club Events</em></h2>
+        <p style="font-size:15px;color:var(--text-muted);max-width:600px;line-height:1.8;">
+          Mark your calendars — the next wave of student-led events is here.
+        </p>
 
-<section style="padding: 60px 5%; background: #fff;">
-    <h2 style="color: #800000; border-left: 5px solid #800000; padding-left: 15px; margin-bottom: 30px;">
-        University-Wide Societies
-    </h2>
-    <p style="margin-bottom: 40px; color: #555;">Students of SOET also have full access to the central societies of Samrat Vikramaditya Vishwavidyalaya, which bring together students from all disciplines.</p>
-    
-    <div class="society-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
-        
-        <div style="padding: 25px; border-radius: 10px; background: #fff9f0; border-top: 4px solid #ff9800;">
-            <i class="fa-solid fa-masks-theater" style="font-size: 30px; color: #ff9800; margin-bottom: 15px;"></i>
-            <h4 style="font-size: 18px; margin-bottom: 10px;">Literary & Cultural Society</h4>
-            <p style="font-size: 14px; color: #666;">Organizers of the annual university fest, youth festivals, and inter-college debate competitions.</p>
+        <div class="events-timeline">
+
+          <div class="event-row reveal">
+            <div class="event-date-col">
+              <div class="event-date-bubble"><span class="eday">18</span><span class="emon">May</span></div>
+            </div>
+            <div class="event-content">
+              <div>
+                <h4>HackSOET 2025 — 24-Hour Hackathon</h4>
+                <p>Code-D-Code club's flagship event. Open to all SOET students. Prizes worth ₹50,000. Problem statements released 1 week prior.</p>
+              </div>
+              <span class="event-tag tech">Technical</span>
+            </div>
+          </div>
+
+          <div class="event-row reveal d1">
+            <div class="event-date-col">
+              <div class="event-date-bubble"><span class="eday">24</span><span class="emon">May</span></div>
+            </div>
+            <div class="event-content">
+              <div>
+                <h4>Vikram Utsav — Inter-Dept Cultural Night</h4>
+                <p>Annual cultural showcase by Nritya Rang and Swar Sangam featuring dance, music, drama, and standup comedy. Open to all students.</p>
+              </div>
+              <span class="event-tag cultural">Cultural</span>
+            </div>
+          </div>
+
+          <div class="event-row reveal d2">
+            <div class="event-date-col">
+              <div class="event-date-bubble"><span class="eday">31</span><span class="emon">May</span></div>
+            </div>
+            <div class="event-content">
+              <div>
+                <h4>IGNITE Demo Day — E-Cell Startup Pitching</h4>
+                <p>Student startups pitch to a panel of investors and mentors from Madhya Pradesh's startup ecosystem. Applications close May 20th.</p>
+              </div>
+              <span class="event-tag inter">E-Cell</span>
+            </div>
+          </div>
+
+          <div class="event-row reveal d3">
+            <div class="event-date-col">
+              <div class="event-date-bubble"><span class="eday">07</span><span class="emon">Jun</span></div>
+            </div>
+            <div class="event-content">
+              <div>
+                <h4>Robo-Wars 2025 — Autonomous Bot Competition</h4>
+                <p>Inter-college bot battle hosted by the Robo-Tech Society. Teams of 3–4 compete in obstacle, combat, and line-follower rounds.</p>
+              </div>
+              <span class="event-tag tech">Technical</span>
+            </div>
+          </div>
+
+          <div class="event-row reveal d4">
+            <div class="event-date-col">
+              <div class="event-date-bubble"><span class="eday">15</span><span class="emon">Jun</span></div>
+            </div>
+            <div class="event-content">
+              <div>
+                <h4>Green Campus Drive — Tree Plantation &amp; Audit</h4>
+                <p>Green Engineers Eco Club's annual campus greening drive. 500 saplings to be planted across the university grounds. Volunteers welcome.</p>
+              </div>
+              <span class="event-tag sports">Social</span>
+            </div>
+          </div>
+
         </div>
+      </div>
+    </section>
 
-        <div style="padding: 25px; border-radius: 10px; background: #e3f2fd; border-top: 4px solid #2196f3;">
-            <i class="fa-solid fa-trophy" style="font-size: 30px; color: #2196f3; margin-bottom: 15px;"></i>
-            <h4 style="font-size: 18px; margin-bottom: 10px;">University Sports Board</h4>
-            <p style="font-size: 14px; color: #666;">Promoting excellence in Athletics, Cricket, Football, and Indoor sports at state and national levels.</p>
+    <!-- ══════════════════════════════════════
+         START A CLUB CTA
+    ══════════════════════════════════════ -->
+    <section class="cta-section">
+      <div class="cta-inner">
+        <div class="reveal">
+          <div class="section-label">Get Involved</div>
+          <h2>Want to <em>Start</em> a<br>New Club?</h2>
+          <p>The Office of the Dean actively encourages student-led initiatives. If you have a vision for a new club or society, here's how to make it happen.</p>
+          <div class="cta-steps">
+            <div class="cta-step"><div class="cta-step-num">1</div><span>Draft a proposal with your club's goals, membership plan, and faculty advisor.</span></div>
+            <div class="cta-step"><div class="cta-step-num">2</div><span>Submit the proposal to the Dean's office for review and approval.</span></div>
+            <div class="cta-step"><div class="cta-step-num">3</div><span>Once approved, receive institutional support, funding, and a campus venue.</span></div>
+          </div>
         </div>
-
-        <div style="padding: 25px; border-radius: 10px; background: #f1f8e9; border-top: 4px solid #4caf50;">
-            <i class="fa-solid fa-hands-holding-child" style="font-size: 30px; color: #4caf50; margin-bottom: 15px;"></i>
-            <h4 style="font-size: 18px; margin-bottom: 10px;">Eco Club / NSS</h4>
-            <p style="font-size: 14px; color: #666;">Dedicated to environmental awareness, tree plantation drives, and social service in rural Ujjain.</p>
+        <div class="cta-box reveal d2">
+          <i class="fa-solid fa-lightbulb"></i>
+          <p>Have a great idea for a club or an event? Reach out to the Student Welfare Cell today.</p>
+          <a href="contact.html" class="cta-btn">
+            <i class="fa-solid fa-paper-plane"></i> Contact DSW Office
+          </a>
         </div>
+      </div>
+    </section>
 
-        <div style="padding: 25px; border-radius: 10px; background: #f3e5f5; border-top: 4px solid #9c27b0;">
-            <i class="fa-solid fa-palette" style="font-size: 30px; color: #9c27b0; margin-bottom: 15px;"></i>
-            <h4 style="font-size: 18px; margin-bottom: 10px;">Fine Arts Society</h4>
-            <p style="font-size: 14px; color: #666;">For students interested in painting, photography, and sculpture. Regular exhibitions on campus.</p>
-        </div>
+    <div id="footer-placeholder"></div>
+  </div><!-- /#content -->
 
-    </div>
-</section>
+  <script src="js/script.js"></script>
+  <script src="js/components-loader.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
 
-<section style="padding: 60px 5%; text-align: center; background: linear-gradient(135deg, #800000, #4a0000); color: #fff;">
-    <h2 style="margin-bottom: 15px;">Want to start a new club?</h2>
-    <p style="margin-bottom: 30px; opacity: 0.9;">The Office of the Dean supports student-led initiatives. Submit your proposal today!</p>
-    <a href="contact.html" style="display: inline-block; padding: 12px 30px; background: #ffcc00; color: #000; text-decoration: none; font-weight: bold; border-radius: 5px; transition: 0.3s;">Contact Student Welfare Cell</a>
-</section>
-<!-- FOOTER -->
-<div id="footer-placeholder"></div>
-<script src="js/script.js"></script>
-<script src="js/components-loader.js"></script>
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    // 1. Date & Time
-    const dateEl = document.getElementById("date");
-    const timeEl = document.getElementById("time");
-    
-    if(dateEl) dateEl.innerHTML = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
-    
-    setInterval(function(){
-        if(timeEl) timeEl.innerHTML = new Date().toLocaleTimeString('en-US', { hour12: false });
-    }, 1000);
+      /* ── Scroll Reveal ── */
+      function revealAll() {
+        document.querySelectorAll(".reveal").forEach(function(el) {
+          if (el.getBoundingClientRect().top < window.innerHeight - 60) el.classList.add("active");
+        });
+      }
+      window.addEventListener("scroll", revealAll);
+      setTimeout(revealAll, 120);
 
-    // 2. Weather API
-    const apiKey = "6ab4623b616a1ea162cf45d73c2dcb32";
-    const city = "Ujjain";
+      /* ── Club Category Filter ── */
+      var filterBtns = document.querySelectorAll(".fbtn");
+      var clubCards  = document.querySelectorAll(".club-card[data-cat]");
+      var catDividers = {
+        tech:     document.getElementById("div-tech"),
+        cultural: document.getElementById("div-cultural"),
+        sports:   document.getElementById("div-sports"),
+        social:   document.getElementById("div-social")
+      };
 
-    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`)
-    .then(response => response.json())
-    .then(data => {
-        if (data.weather && data.weather.length > 0) {
-            let desc = data.weather[0].description;
-            document.getElementById("weather").innerHTML = desc.charAt(0).toUpperCase() + desc.slice(1);
-            document.getElementById("temp").innerHTML = Math.round(data.main.temp) + "°C";
-        }
-    })
-    .catch(err => console.log("Weather error:", err));
+      filterBtns.forEach(function(btn) {
+        btn.addEventListener("click", function() {
+          var cat = btn.getAttribute("data-cat");
 
-    // 3. Stats
-    const lastUp = document.getElementById("lastUpdated");
-    if(lastUp) lastUp.innerHTML = document.lastModified;
+          /* update active button */
+          filterBtns.forEach(function(b){ b.classList.remove("active"); });
+          btn.classList.add("active");
 
-    let count = localStorage.getItem("visitorCount");
-    count = count === null ? 1 : Number(count) + 1;
-    localStorage.setItem("visitorCount", count);
-    
-    const visCount = document.getElementById("visitorCount");
-    if(visCount) visCount.innerText = count.toLocaleString();
-});
-</script>
-</HTML>
+          /* show/hide cards */
+          clubCards.forEach(function(card) {
+            if (cat === "all" || card.getAttribute("data-cat") === cat) {
+              card.classList.remove("hidden");
+            } else {
+              card.classList.add("hidden");
+            }
+          });
+
+          /* show/hide dividers */
+          Object.keys(catDividers).forEach(function(key) {
+            if (!catDividers[key]) return;
+            if (cat === "all" || cat === key) {
+              catDividers[key].classList.remove("hidden");
+            } else {
+              catDividers[key].classList.add("hidden");
+            }
+          });
+
+          /* re-run reveal on newly visible items */
+          setTimeout(revealAll, 50);
+        });
+      });
+
+      /* ── Date / Time / Weather ── */
+      try {
+        var dateEl = document.getElementById("date");
+        var timeEl = document.getElementById("time");
+        if (dateEl) dateEl.innerHTML = new Date().toLocaleDateString("en-GB", {day:"numeric", month:"short", year:"numeric"});
+        setInterval(function(){ if (timeEl) timeEl.innerHTML = new Date().toLocaleTimeString("en-US", {hour12:false}); }, 1000);
+
+        fetch("https://api.openweathermap.org/data/2.5/weather?q=Ujjain&units=metric&appid=6ab4623b616a1ea162cf45d73c2dcb32")
+          .then(function(r){ return r.json(); })
+          .then(function(data){
+            if (data.weather) {
+              var d = data.weather[0].description;
+              var wEl = document.getElementById("weather"), tEl = document.getElementById("temp");
+              if (wEl) wEl.innerHTML = d.charAt(0).toUpperCase() + d.slice(1);
+              if (tEl) tEl.innerHTML = Math.round(data.main.temp) + "°C";
+            }
+          }).catch(function(){});
+
+        var lu = document.getElementById("lastUpdated");
+        if (lu) lu.innerHTML = document.lastModified;
+        var c = localStorage.getItem("visitorCount");
+        c = c === null ? 1 : Number(c) + 1;
+        localStorage.setItem("visitorCount", c);
+        var vc = document.getElementById("visitorCount");
+        if (vc) vc.innerText = c.toLocaleString();
+      } catch(e) {}
+    });
+  </script>
+</body>
+</html>

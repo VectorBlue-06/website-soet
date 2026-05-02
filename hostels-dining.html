@@ -1,201 +1,963 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-<title>Hostels & Dining - School Of Engineering and Technology</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hostels & Dining — School Of Engineering and Technology</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="css/style.css">
+  <style>
+    /* ============================================================
+       DESIGN TOKENS
+    ============================================================ */
+    :root {
+      --maroon:       #800000;
+      --maroon-dark:  #5a0000;
+      --maroon-mid:   #6e0000;
+      --gold:         #c9a84c;
+      --gold-light:   #e8c97a;
+      --gold-pale:    #fdf6e3;
+      --boys-blue:    #1a3a6e;
+      --girls-rose:   #7d2352;
+      --bg-white:     #ffffff;
+      --bg-light:     #f5f4f0;
+      --bg-warm:      #fdfcf8;
+      --text-dark:    #1a1a2e;
+      --text-mid:     #444455;
+      --text-muted:   #777788;
+      --serif:        'Playfair Display', Georgia, serif;
+      --sans:         'DM Sans', 'Segoe UI', sans-serif;
+      --radius:       8px;
+      --shadow-soft:  0 4px 24px rgba(0,0,0,0.06);
+      --shadow-lift:  0 16px 40px rgba(0,0,0,0.1);
+    }
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--sans); color: var(--text-dark); background: var(--bg-white); }
 
+    /* ============================================================
+       SHARED UTILITIES
+    ============================================================ */
+    .section-label {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 11px; font-weight: 600; letter-spacing: 2.5px;
+      text-transform: uppercase; color: var(--maroon); margin-bottom: 12px;
+    }
+    .section-label::before {
+      content: ''; display: block; width: 28px; height: 2px; background: var(--gold);
+    }
+    .section-title-xl {
+      font-family: var(--serif);
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      color: var(--text-dark); font-weight: 700; line-height: 1.2; margin-bottom: 16px;
+    }
+    .section-title-xl em { color: var(--maroon); font-style: italic; }
 
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+    .d1 { transition-delay: .1s; } .d2 { transition-delay: .2s; }
+    .d3 { transition-delay: .3s; } .d4 { transition-delay: .4s; }
+    .d5 { transition-delay: .5s; }
+
+    /* ============================================================
+       PAGE BANNER
+    ============================================================ */
+    .page-banner.large {
+      position: relative;
+      background: var(--maroon-dark);
+      padding: 80px 5% 60px;
+      overflow: hidden;
+    }
+    .page-banner.large::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 60% 80% at 80% 50%, rgba(201,168,76,0.18) 0%, transparent 70%),
+        url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c9a84c' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .banner-content { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; }
+    .banner-content h1 {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      color: #fff; font-weight: 700; margin-bottom: 14px;
+    }
+    .banner-content h1 span { color: var(--gold-light); }
+    .banner-breadcrumb {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 13px; color: rgba(255,255,255,0.65);
+    }
+    .banner-breadcrumb a { color: rgba(255,255,255,0.65); text-decoration: none; transition: color .2s; }
+    .banner-breadcrumb a:hover { color: var(--gold-light); }
+    .banner-breadcrumb i { font-size: 10px; opacity: .5; }
+
+    /* ============================================================
+       INTRO SECTION
+    ============================================================ */
+    .intro-section {
+      padding: 80px 5%;
+      background: var(--bg-white);
+    }
+    .intro-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 420px;
+      gap: 70px; align-items: center;
+    }
+    .intro-text p {
+      font-size: 16px; line-height: 1.9; color: var(--text-mid);
+      margin-bottom: 18px;
+    }
+    .intro-text p:last-child { margin-bottom: 0; }
+
+    /* Tab nav for quick jump */
+    .quick-tabs {
+      display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px;
+    }
+    .qtab {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 20px; border-radius: 4px; font-size: 13px; font-weight: 600;
+      text-decoration: none; transition: all .25s; border: 2px solid transparent;
+    }
+    .qtab.boys  { background: rgba(26,58,110,0.08); color: var(--boys-blue); border-color: rgba(26,58,110,0.2); }
+    .qtab.girls { background: rgba(125,35,82,0.08); color: var(--girls-rose); border-color: rgba(125,35,82,0.2); }
+    .qtab.mess  { background: rgba(128,0,0,0.07);   color: var(--maroon);     border-color: rgba(128,0,0,0.18); }
+    .qtab.boys:hover  { background: var(--boys-blue);  color: #fff; border-color: var(--boys-blue); }
+    .qtab.girls:hover { background: var(--girls-rose); color: #fff; border-color: var(--girls-rose); }
+    .qtab.mess:hover  { background: var(--maroon);     color: #fff; border-color: var(--maroon); }
+
+    /* Admission notice card */
+    .notice-card {
+      background: var(--gold-pale);
+      border: 1px solid rgba(201,168,76,0.35);
+      border-left: 5px solid var(--gold);
+      border-radius: var(--radius);
+      padding: 32px 28px;
+    }
+    .notice-card h4 {
+      font-family: var(--serif); font-size: 18px;
+      color: var(--text-dark); margin-bottom: 12px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .notice-card h4 i { color: var(--gold); }
+    .notice-card p { font-size: 14px; line-height: 1.8; color: var(--text-mid); }
+
+    /* ============================================================
+       STATS STRIP
+    ============================================================ */
+    .stats-strip {
+      background: var(--maroon-dark); padding: 50px 5%;
+      position: relative; overflow: hidden;
+    }
+    .stats-strip::before {
+      content: ''; position: absolute; inset: 0;
+      background: repeating-linear-gradient(45deg, transparent, transparent 20px,
+        rgba(255,255,255,0.015) 20px, rgba(255,255,255,0.015) 21px);
+    }
+    .stats-grid {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(5, 1fr);
+      gap: 1px; background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.1);
+      position: relative; z-index: 1;
+    }
+    .stat-item { padding: 34px 20px; text-align: center; background: rgba(255,255,255,0.03); transition: background .3s; }
+    .stat-item:hover { background: rgba(255,255,255,0.07); }
+    .stat-item i { display: block; font-size: 20px; color: rgba(255,255,255,0.2); margin-bottom: 12px; }
+    .stat-item .snum {
+      font-family: var(--serif); font-size: clamp(1.8rem, 3vw, 2.6rem);
+      font-weight: 700; color: var(--gold-light); display: block; line-height: 1; margin-bottom: 6px;
+    }
+    .stat-item .slabel {
+      font-size: 11px; font-weight: 500; letter-spacing: 1.5px;
+      text-transform: uppercase; color: rgba(255,255,255,0.5);
+    }
+
+    /* ============================================================
+       HOSTEL SECTIONS (shared shell, different accent colours)
+    ============================================================ */
+    .hostel-section {
+      padding: 90px 5%;
+    }
+    .hostel-section.boys-section  { background: var(--bg-white); }
+    .hostel-section.girls-section { background: var(--bg-warm); }
+
+    .hostel-header {
+      max-width: 1200px; margin: 0 auto 50px;
+      display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 20px;
+    }
+    .hostel-header .section-label.boys  { color: var(--boys-blue); }
+    .hostel-header .section-label.boys::before  { background: var(--boys-blue); }
+    .hostel-header .section-label.girls { color: var(--girls-rose); }
+    .hostel-header .section-label.girls::before { background: var(--girls-rose); }
+
+    .gender-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 8px 18px; border-radius: 30px; font-size: 13px; font-weight: 600;
+    }
+    .gender-badge.boys  { background: rgba(26,58,110,0.08);  color: var(--boys-blue); }
+    .gender-badge.girls { background: rgba(125,35,82,0.08);  color: var(--girls-rose); }
+
+    /* Hostel cards grid */
+    .hostel-grid {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; gap: 24px;
+    }
+    .hostel-grid.boys-grid  { grid-template-columns: repeat(3, 1fr); }
+    .hostel-grid.girls-grid { grid-template-columns: repeat(2, 1fr); }
+
+    .hostel-card {
+      background: var(--bg-white);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(0,0,0,0.05);
+      transition: transform .3s ease, box-shadow .3s ease;
+      position: relative;
+    }
+    .hostel-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lift); }
+
+    .hostel-card-top {
+      height: 6px;
+    }
+    .boys-section  .hostel-card-top { background: linear-gradient(90deg, var(--boys-blue), #2d5aa0); }
+    .girls-section .hostel-card-top { background: linear-gradient(90deg, var(--girls-rose), #a0366a); }
+
+    .hostel-card-body { padding: 28px 26px; }
+
+    .block-tag {
+      display: inline-block; font-size: 10px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      padding: 4px 10px; border-radius: 3px; margin-bottom: 14px;
+    }
+    .boys-section  .block-tag { background: rgba(26,58,110,0.1);  color: var(--boys-blue); }
+    .girls-section .block-tag { background: rgba(125,35,82,0.1);  color: var(--girls-rose); }
+
+    .hostel-card h3 {
+      font-family: var(--serif); font-size: 19px; font-weight: 700;
+      color: var(--text-dark); margin-bottom: 10px;
+    }
+    .warden-row {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 13.5px; color: var(--text-muted);
+      padding-top: 14px; margin-top: 14px;
+      border-top: 1px solid rgba(0,0,0,0.06);
+    }
+    .warden-row i { font-size: 14px; }
+    .boys-section  .warden-row i { color: var(--boys-blue); }
+    .girls-section .warden-row i { color: var(--girls-rose); }
+
+    .hostel-amenity-chips {
+      display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px;
+    }
+    .chip {
+      font-size: 11px; padding: 3px 10px; border-radius: 20px;
+      font-weight: 500; background: var(--bg-light); color: var(--text-muted);
+    }
+
+    /* ============================================================
+       AMENITIES SECTION
+    ============================================================ */
+    .amenities-section {
+      padding: 90px 5%;
+      background: var(--bg-light);
+    }
+    .amenities-inner { max-width: 1200px; margin: 0 auto; }
+    .amenities-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 2px; background: rgba(0,0,0,0.06);
+      border: 2px solid rgba(0,0,0,0.06);
+      margin-top: 50px;
+    }
+    .amenity-card {
+      background: var(--bg-white); padding: 36px 28px;
+      position: relative; overflow: hidden; transition: all .3s;
+    }
+    .amenity-card::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+      height: 3px; background: var(--gold);
+      transform: scaleX(0); transform-origin: left; transition: transform .35s;
+    }
+    .amenity-card:hover { background: #fdfcf9; }
+    .amenity-card:hover::after { transform: scaleX(1); }
+    .amenity-card:hover .ami-icon { background: var(--maroon); color: #fff; }
+
+    .ami-icon {
+      width: 52px; height: 52px; border-radius: var(--radius);
+      background: rgba(128,0,0,0.07); color: var(--maroon);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; margin-bottom: 18px; transition: all .3s;
+    }
+    .amenity-card h4 {
+      font-size: 15px; font-weight: 600; color: var(--text-dark); margin-bottom: 8px;
+    }
+    .amenity-card p { font-size: 13.5px; line-height: 1.7; color: var(--text-muted); }
+
+    /* ============================================================
+       DINING SECTION
+    ============================================================ */
+    .dining-section {
+      padding: 90px 5%;
+      background: var(--bg-white);
+    }
+    .dining-inner { max-width: 1200px; margin: 0 auto; }
+
+    .dining-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 28px; margin-top: 50px;
+    }
+    .dining-card {
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid rgba(0,0,0,0.07);
+      box-shadow: var(--shadow-soft);
+      transition: transform .3s, box-shadow .3s;
+      display: flex; flex-direction: column;
+    }
+    .dining-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lift); }
+
+    .dining-card-img {
+      height: 180px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 52px; position: relative; overflow: hidden;
+    }
+    .dining-card-img.boys-mess   { background: linear-gradient(135deg, #1a3a6e 0%, #2d5aa0 100%); }
+    .dining-card-img.girls-mess  { background: linear-gradient(135deg, #7d2352 0%, #a0366a 100%); }
+    .dining-card-img.coop-mess   { background: linear-gradient(135deg, var(--maroon-dark) 0%, var(--maroon) 100%); }
+    .dining-card-img.cafeteria   { background: linear-gradient(135deg, #3d5a3e 0%, #5a8a5e 100%); }
+    .dining-card-img::after {
+      content: ''; position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.04' fill-rule='evenodd'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E");
+    }
+    .dining-card-img i { position: relative; z-index: 1; color: rgba(255,255,255,0.9); }
+
+    .dining-card-body { padding: 26px 24px; flex: 1; display: flex; flex-direction: column; }
+    .dining-card-body h3 {
+      font-family: var(--serif); font-size: 20px; font-weight: 700;
+      color: var(--text-dark); margin-bottom: 10px;
+    }
+    .dining-card-body p { font-size: 14px; line-height: 1.75; color: var(--text-muted); flex: 1; }
+
+    .meal-times {
+      display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px;
+    }
+    .meal-time {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 12px; font-weight: 500; color: var(--text-mid);
+      background: var(--bg-light); padding: 5px 12px; border-radius: 20px;
+    }
+    .meal-time i { color: var(--maroon); font-size: 11px; }
+
+    /* Weekly menu teaser */
+    .menu-teaser {
+      max-width: 1200px; margin: 40px auto 0;
+      background: var(--bg-light);
+      border-radius: var(--radius);
+      border: 1px solid rgba(201,168,76,0.2);
+      overflow: hidden;
+    }
+    .menu-header {
+      background: var(--maroon); padding: 16px 28px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .menu-header i { color: var(--gold-light); font-size: 18px; }
+    .menu-header span { color: #fff; font-weight: 600; font-size: 14.5px; }
+    .menu-days {
+      display: grid; grid-template-columns: repeat(7, 1fr);
+      gap: 1px; background: rgba(0,0,0,0.06);
+    }
+    .menu-day { background: var(--bg-white); padding: 16px 14px; }
+    .menu-day .day-name {
+      font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--maroon); margin-bottom: 8px;
+    }
+    .menu-day .day-items { font-size: 12px; line-height: 1.7; color: var(--text-muted); }
+
+    /* ============================================================
+       RULES SECTION
+    ============================================================ */
+    .rules-section {
+      padding: 80px 5%;
+      background: var(--bg-warm);
+    }
+    .rules-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 50px; align-items: start;
+    }
+    .rules-list { list-style: none; margin-top: 28px; }
+    .rules-list li {
+      display: flex; align-items: flex-start; gap: 14px;
+      padding: 14px 0; border-bottom: 1px solid rgba(0,0,0,0.05);
+      font-size: 14px; color: var(--text-mid); line-height: 1.6;
+    }
+    .rules-list li:last-child { border-bottom: none; }
+    .rules-list li i {
+      width: 28px; height: 28px; flex-shrink: 0;
+      border-radius: 50%; background: rgba(128,0,0,0.08); color: var(--maroon);
+      display: flex; align-items: center; justify-content: center; font-size: 12px;
+      margin-top: 1px;
+    }
+    .contact-warden-box {
+      background: var(--maroon-dark); border-radius: var(--radius);
+      padding: 40px 36px; color: #fff;
+      border-top: 4px solid var(--gold);
+    }
+    .contact-warden-box .section-label { color: var(--gold-light); }
+    .contact-warden-box .section-label::before { background: var(--gold-light); }
+    .contact-warden-box h3 {
+      font-family: var(--serif); font-size: 22px; font-weight: 400; font-style: italic;
+      color: #fff; margin-bottom: 20px;
+    }
+    .warden-contact-row {
+      display: flex; align-items: center; gap: 14px;
+      padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+      font-size: 14px; color: rgba(255,255,255,0.8);
+    }
+    .warden-contact-row:last-child { border-bottom: none; }
+    .warden-contact-row i {
+      width: 36px; height: 36px; flex-shrink: 0;
+      border-radius: 50%; background: rgba(255,255,255,0.08); color: var(--gold-light);
+      display: flex; align-items: center; justify-content: center; font-size: 14px;
+    }
+    .warden-contact-row strong { color: #fff; display: block; font-size: 13px; margin-bottom: 1px; }
+    .warden-contact-row span { font-size: 13px; color: rgba(255,255,255,0.6); }
+
+    .apply-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--gold); color: var(--maroon-dark);
+      font-size: 13px; font-weight: 700; letter-spacing: 0.5px;
+      padding: 14px 28px; border-radius: 4px; text-decoration: none;
+      margin-top: 24px; transition: all .3s;
+    }
+    .apply-btn:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(201,168,76,0.3); }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 1024px) {
+      .intro-inner          { grid-template-columns: 1fr; }
+      .hostel-grid.boys-grid { grid-template-columns: repeat(2, 1fr); }
+      .amenities-grid        { grid-template-columns: repeat(2, 1fr); }
+      .stats-grid            { grid-template-columns: repeat(3, 1fr); }
+      .menu-days             { grid-template-columns: repeat(4, 1fr); }
+      .rules-inner           { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .hostel-grid.boys-grid,
+      .hostel-grid.girls-grid,
+      .dining-grid,
+      .amenities-grid        { grid-template-columns: 1fr; }
+      .stats-grid            { grid-template-columns: repeat(2, 1fr); }
+      .menu-days             { grid-template-columns: repeat(2, 1fr); }
+      .quick-tabs            { flex-direction: column; }
+    }
+  </style>
 </head>
-
 <body>
-<div id="topbar-placeholder"></div>
 
-<div id="content">
-<div id="header-placeholder"></div>
-<div id="navbar-placeholder"></div>
-<section class="page-banner" style="background: linear-gradient(rgba(128,0,0,0.8), rgba(128,0,0,0.8)), url('https://images.unsplash.com/photo-1555854877-bab0e564b8d5?auto=format&fit=crop&w=1350&q=80'); background-size: cover; padding: 80px 0; text-align: center; color: white;">
-    <h1>Hostels & Dining</h1>
-    <p>
-        <a href="index.html" style="color: white; text-decoration: none;">Home</a> / 
-        <a href="campus-life.html" style="color: white; text-decoration: none;">Campus Life</a> / 
-        <a href="hostels-dining.html" style="color: white; text-decoration: none;">Hostels & Dining</a>
-    </p>
-</section>
-<section class="container" style="padding: 60px 5%; text-align: center; background: #fff;">
-    <h2 style="color: #800000; font-size: 32px; margin-bottom: 20px;">Residential Life at Samrat Vikramaditya Vishwavidyalaya</h2>
-    <p style="max-width: 900px; margin: 0 auto; line-height: 1.8; color: #555; font-size: 16px;">
-        The university provides separate, well-maintained hostel facilities for boys and girls to ensure a safe and focused academic environment. With multiple blocks and dedicated dining halls, students enjoy a comfortable "home away from home" experience.
-    </p>
-</section>
+  <div id="topbar-placeholder"></div>
 
-<section class="facilities-section" style="padding: 40px 5%;">
-    <h2 style="color: #800000; border-bottom: 2px solid #eee; padding-bottom: 10px; margin-bottom: 30px;">
-        <i class="fa-solid fa-person"></i> Boys' Hostels (Separate Complex)
-    </h2>
-    <div class="facility-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px;">
-        
-        <div class="facility-card" style="background: #fff; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; border-bottom: 4px solid #800000;">
-            <div class="facility-content" style="padding: 20px;">
-                <span style="background: #0056b3; color: #fff; padding: 2px 10px; border-radius: 20px; font-size: 11px; font-weight: bold;">BLOCK 1</span>
-                <h3 style="margin: 15px 0 10px; color: #333;">Kalidas Hostel A</h3>
-                <p style="font-size: 14px; color: #666;">Warden Capt. Kania Maida</p>
+  <div id="content">
+    <div id="header-placeholder"></div>
+    <div id="navbar-placeholder"></div>
+
+    <!-- ══════════════════════════════════════
+         BANNER
+    ══════════════════════════════════════ -->
+    <section class="page-banner large">
+      <div class="banner-content">
+        <h1>Hostels &amp; <span>Dining</span></h1>
+        <nav class="banner-breadcrumb" aria-label="breadcrumb">
+          <a href="index.html">Home</a>
+          <i class="fa-solid fa-chevron-right"></i>
+          <a href="campus-life.html">Campus Life</a>
+          <i class="fa-solid fa-chevron-right"></i>
+          <span>Hostels &amp; Dining</span>
+        </nav>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         INTRO
+    ══════════════════════════════════════ -->
+    <section class="intro-section" id="intro">
+      <div class="intro-inner">
+        <div class="intro-text reveal">
+          <div class="section-label">Residential Life</div>
+          <h2 class="section-title-xl">A <em>Home</em> Away<br>From Home</h2>
+          <p>Samrat Vikramaditya Vishwavidyalaya provides well-maintained, secure hostel facilities for both boys and girls — designed to foster academic focus, personal growth, and a vibrant community spirit.</p>
+          <p>Spread across multiple residential blocks, each hostel is overseen by a dedicated warden and supported by round-the-clock security, modern amenities, and hygienic, nutritious dining facilities.</p>
+          <div class="quick-tabs">
+            <a href="#boys" class="qtab boys"><i class="fa-solid fa-person"></i> Boys' Hostels</a>
+            <a href="#girls" class="qtab girls"><i class="fa-solid fa-person-dress"></i> Girls' Hostels</a>
+            <a href="#dining" class="qtab mess"><i class="fa-solid fa-utensils"></i> Dining Facilities</a>
+          </div>
+        </div>
+
+        <div class="notice-card reveal d2">
+          <h4><i class="fa-solid fa-triangle-exclamation"></i> Admissions Notice</h4>
+          <p>Hostel seats are allotted on a first-come, first-served basis according to university merit lists. Applicants must submit a separate hostel application form during the counseling process. Fresh applications for 2025–26 are now open.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         STATS STRIP
+    ══════════════════════════════════════ -->
+    <section class="stats-strip">
+      <div class="stats-grid">
+        <div class="stat-item reveal">
+          <i class="fa-solid fa-building"></i>
+          <span class="snum">7</span>
+          <span class="slabel">Hostel Blocks</span>
+        </div>
+        <div class="stat-item reveal d1">
+          <i class="fa-solid fa-bed"></i>
+          <span class="snum">1,800+</span>
+          <span class="slabel">Resident Seats</span>
+        </div>
+        <div class="stat-item reveal d2">
+          <i class="fa-solid fa-utensils"></i>
+          <span class="snum">4</span>
+          <span class="slabel">Dining Halls</span>
+        </div>
+        <div class="stat-item reveal d3">
+          <i class="fa-solid fa-shield-halved"></i>
+          <span class="snum">24/7</span>
+          <span class="slabel">Security Cover</span>
+        </div>
+        <div class="stat-item reveal d4">
+          <i class="fa-solid fa-wifi"></i>
+          <span class="snum">100%</span>
+          <span class="slabel">Wi-Fi Coverage</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         BOYS' HOSTELS
+    ══════════════════════════════════════ -->
+    <section class="hostel-section boys-section" id="boys">
+      <div class="hostel-header">
+        <div>
+          <div class="section-label boys">Residential Blocks</div>
+          <h2 class="section-title-xl">Boys' <em>Hostels</em></h2>
+        </div>
+        <div class="gender-badge boys">
+          <i class="fa-solid fa-person"></i> Separate Complex · 5 Blocks
+        </div>
+      </div>
+
+      <div class="hostel-grid boys-grid">
+
+        <div class="hostel-card reveal">
+          <div class="hostel-card-top"></div>
+          <div class="hostel-card-body">
+            <span class="block-tag">Block 1</span>
+            <h3>Kalidas Hostel A</h3>
+            <p style="font-size:13.5px;color:var(--text-muted);line-height:1.7;">Named after the legendary Sanskrit poet, this block houses first and second year B.Tech students in shared double-occupancy rooms.</p>
+            <div class="hostel-amenity-chips">
+              <span class="chip">Double Rooms</span>
+              <span class="chip">Common Room</span>
+              <span class="chip">RO Water</span>
             </div>
-        </div>
-
-        <div class="facility-card" style="background: #fff; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; border-bottom: 4px solid #800000;">
-            <div class="facility-content" style="padding: 20px;">
-                <span style="background: #0056b3; color: #fff; padding: 2px 10px; border-radius: 20px; font-size: 11px; font-weight: bold;">BLOCK 2</span>
-                <h3 style="margin: 15px 0 10px; color: #333;">Sandipani Hostel B</h3>
-                <p style="font-size: 14px; color: #666;">Warden Dr. Kamal Bunkar</p>
+            <div class="warden-row">
+              <i class="fa-solid fa-user-tie"></i>
+              <span><strong>Warden:</strong> Capt. Kania Maida</span>
             </div>
+          </div>
         </div>
 
-        <div class="facility-card" style="background: #fff; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; border-bottom: 4px solid #800000;">
-            <div class="facility-content" style="padding: 20px;">
-                <span style="background: #0056b3; color: #fff; padding: 2px 10px; border-radius: 20px; font-size: 11px; font-weight: bold;">BLOCK 3</span>
-                <h3 style="margin: 15px 0 10px; color: #333;">Bhartrihari Hostel C</h3>
-                <p style="font-size: 14px; color: #666;">Warden Dr. Raj Boria</p>
+        <div class="hostel-card reveal d1">
+          <div class="hostel-card-top"></div>
+          <div class="hostel-card-body">
+            <span class="block-tag">Block 2</span>
+            <h3>Sandipani Hostel B</h3>
+            <p style="font-size:13.5px;color:var(--text-muted);line-height:1.7;">Named after the legendary gurukul of Ujjain, this block accommodates third and fourth year students with semi-furnished single rooms.</p>
+            <div class="hostel-amenity-chips">
+              <span class="chip">Single Rooms</span>
+              <span class="chip">Reading Hall</span>
+              <span class="chip">Laundry</span>
             </div>
-        </div>
-
-        <div class="facility-card" style="background: #fff; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; border-bottom: 4px solid #800000;">
-            <div class="facility-content" style="padding: 20px;">
-                <span style="background: #0056b3; color: #fff; padding: 2px 10px; border-radius: 20px; font-size: 11px; font-weight: bold;">BLOCK 4</span>
-                <h3 style="margin: 15px 0 10px; color: #333;">Management Hostel</h3>
-                <p style="font-size: 14px; color: #666;">Warden Dr. Raj Boria</p>
+            <div class="warden-row">
+              <i class="fa-solid fa-user-tie"></i>
+              <span><strong>Warden:</strong> Dr. Kamal Bunkar</span>
             </div>
+          </div>
         </div>
 
-        <div class="facility-card" style="background: #fff; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; border-bottom: 4px solid #800000;">
-            <div class="facility-content" style="padding: 20px;">
-                <span style="background: #0056b3; color: #fff; padding: 2px 10px; border-radius: 20px; font-size: 11px; font-weight: bold;">BLOCK 5</span>
-                <h3 style="margin: 15px 0 10px; color: #333;">Shaligram Tomar Hostel</h3>
-                <p style="font-size: 14px; color: #666;">Warden Dr. Ganpat Ahirwar</p>
+        <div class="hostel-card reveal d2">
+          <div class="hostel-card-top"></div>
+          <div class="hostel-card-body">
+            <span class="block-tag">Block 3</span>
+            <h3>Bhartrihari Hostel C</h3>
+            <p style="font-size:13.5px;color:var(--text-muted);line-height:1.7;">A quieter block with dedicated study zones and an in-house common library shelf, preferred by final-year and research students.</p>
+            <div class="hostel-amenity-chips">
+              <span class="chip">Study Zones</span>
+              <span class="chip">Indoor Games</span>
+              <span class="chip">Solar Geyser</span>
             </div>
-        </div>
-
-    </div>
-</section>
-
-<section class="facilities-section" style="padding: 40px 5%; background: #fffcfc;">
-    <h2 style="color: #d63384; border-bottom: 2px solid #ffd1dc; padding-bottom: 10px; margin-bottom: 30px;">
-        <i class="fa-solid fa-person-dress"></i> Girls' Hostels (Separate Complex)
-    </h2>
-    <div class="facility-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px;">
-        
-        <div class="facility-card" style="background: #fff; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; border-bottom: 4px solid #d63384;">
-            <div class="facility-content" style="padding: 20px;">
-                <span style="background: #d63384; color: #fff; padding: 2px 10px; border-radius: 20px; font-size: 11px; font-weight: bold;">MAIN BLOCK</span>
-                <h3 style="margin: 15px 0 10px; color: #333;">Vidyottama Hostel</h3>
-                <p style="font-size: 14px; color: #666;">Warden Dr. Nayantara Damor</p>
+            <div class="warden-row">
+              <i class="fa-solid fa-user-tie"></i>
+              <span><strong>Warden:</strong> Dr. Raj Boria</span>
             </div>
+          </div>
         </div>
 
-        <div class="facility-card" style="background: #fff; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; border-bottom: 4px solid #d63384;">
-            <div class="facility-content" style="padding: 20px;">
-                <span style="background: #d63384; color: #fff; padding: 2px 10px; border-radius: 20px; font-size: 11px; font-weight: bold;">PG WING</span>
-                <h3 style="margin: 15px 0 10px; color: #333;">Dr. Ramabai Ambedkar Hostel</h3>
-                <p style="font-size: 14px; color: #666;">Warden Dr. Nayantara Damor</p>
+        <div class="hostel-card reveal d1">
+          <div class="hostel-card-top"></div>
+          <div class="hostel-card-body">
+            <span class="block-tag">Block 4</span>
+            <h3>Management Hostel</h3>
+            <p style="font-size:13.5px;color:var(--text-muted);line-height:1.7;">Primarily for M.Tech, MBA and doctoral students, this block offers slightly larger rooms and dedicated cabin-style workspaces.</p>
+            <div class="hostel-amenity-chips">
+              <span class="chip">PG & PhD</span>
+              <span class="chip">Work Cabins</span>
+              <span class="chip">High-Speed Wi-Fi</span>
             </div>
+            <div class="warden-row">
+              <i class="fa-solid fa-user-tie"></i>
+              <span><strong>Warden:</strong> Dr. Raj Boria</span>
+            </div>
+          </div>
         </div>
 
-    </div>
-</section>
-
-<section class="facilities-section" style="padding: 60px 5%; background: #f9f9f9;">
-    <h2 style="text-align: center; color: #800000; margin-bottom: 40px;"><i class="fa-solid fa-utensils"></i> Campus Dining Facilities</h2>
-    <div class="facility-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px;">
-        
-        <div class="mess-card" style="background: #fff; padding: 25px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); text-align: center;">
-            <i class="fa-solid fa-plate-wheat" style="font-size: 40px; color: #ffcc00; margin-bottom: 15px;"></i>
-            <h3>Central Boys Mess</h3>
-            <p style="font-size: 14px; color: #777;">Large capacity dining hall serving nutritious, pure vegetarian meals for all male residents.</p>
+        <div class="hostel-card reveal d2">
+          <div class="hostel-card-top"></div>
+          <div class="hostel-card-body">
+            <span class="block-tag">Block 5</span>
+            <h3>Shaligram Tomar Hostel</h3>
+            <p style="font-size:13.5px;color:var(--text-muted);line-height:1.7;">A newer addition to the campus, offering modern fittings and an attached outdoor recreational area with badminton and volleyball courts.</p>
+            <div class="hostel-amenity-chips">
+              <span class="chip">Modern Block</span>
+              <span class="chip">Sports Court</span>
+              <span class="chip">CCTV</span>
+            </div>
+            <div class="warden-row">
+              <i class="fa-solid fa-user-tie"></i>
+              <span><strong>Warden:</strong> Dr. Ganpat Ahirwar</span>
+            </div>
+          </div>
         </div>
 
-        <div class="mess-card" style="background: #fff; padding: 25px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); text-align: center;">
-            <i class="fa-solid fa-bowl-food" style="font-size: 40px; color: #ffcc00; margin-bottom: 15px;"></i>
-            <h3>Vidyottama Girls Mess</h3>
-            <p style="font-size: 14px; color: #777;">Exclusive dining hall for female students with a focus on hygiene and balanced diets.</p>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         GIRLS' HOSTELS
+    ══════════════════════════════════════ -->
+    <section class="hostel-section girls-section" id="girls">
+      <div class="hostel-header">
+        <div>
+          <div class="section-label girls">Residential Blocks</div>
+          <h2 class="section-title-xl">Girls' <em>Hostels</em></h2>
+        </div>
+        <div class="gender-badge girls">
+          <i class="fa-solid fa-person-dress"></i> Separate Secured Complex · 2 Blocks
+        </div>
+      </div>
+
+      <div class="hostel-grid girls-grid">
+
+        <div class="hostel-card reveal">
+          <div class="hostel-card-top"></div>
+          <div class="hostel-card-body">
+            <span class="block-tag">Main Block</span>
+            <h3>Vidyottama Hostel</h3>
+            <p style="font-size:13.5px;color:var(--text-muted);line-height:1.7;">The primary residential facility for female students, situated within a fully secured compound with biometric entry, resident-only access, and dedicated lady wardens available round the clock.</p>
+            <div class="hostel-amenity-chips">
+              <span class="chip">Biometric Entry</span>
+              <span class="chip">Lady Warden</span>
+              <span class="chip">In-house Mess</span>
+              <span class="chip">CCTV</span>
+            </div>
+            <div class="warden-row">
+              <i class="fa-solid fa-user-tie"></i>
+              <span><strong>Warden:</strong> Dr. Nayantara Damor</span>
+            </div>
+          </div>
         </div>
 
-        <div class="mess-card" style="background: #fff; padding: 25px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); text-align: center;">
-            <i class="fa-solid fa-users-gear" style="font-size: 40px; color: #ffcc00; margin-bottom: 15px;"></i>
-            <h3>Cooperative Mess</h3>
-            <p style="font-size: 14px; color: #777;">Student-managed facility where residents collaborate on the menu and quality control.</p>
+        <div class="hostel-card reveal d2">
+          <div class="hostel-card-top"></div>
+          <div class="hostel-card-body">
+            <span class="block-tag">PG Wing</span>
+            <h3>Dr. Ramabai Ambedkar Hostel</h3>
+            <p style="font-size:13.5px;color:var(--text-muted);line-height:1.7;">Dedicated to postgraduate and research scholars, this wing offers a quieter, study-focused environment with enhanced facilities, a seminar room, and a small in-house library corner.</p>
+            <div class="hostel-amenity-chips">
+              <span class="chip">PG & Research</span>
+              <span class="chip">Seminar Room</span>
+              <span class="chip">Library Corner</span>
+              <span class="chip">Solar Geyser</span>
+            </div>
+            <div class="warden-row">
+              <i class="fa-solid fa-user-tie"></i>
+              <span><strong>Warden:</strong> Dr. Nayantara Damor</span>
+            </div>
+          </div>
         </div>
 
-        <div class="mess-card" style="background: #fff; padding: 25px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); text-align: center;">
-            <i class="fa-solid fa-clock" style="font-size: 40px; color: #ffcc00; margin-bottom: 15px;"></i>
-            <h3>Quick Bite Cafeteria</h3>
-            <p style="font-size: 14px; color: #777;">A daytime facility providing snacks and beverages for non-resident students and visitors.</p>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         AMENITIES
+    ══════════════════════════════════════ -->
+    <section class="amenities-section">
+      <div class="amenities-inner">
+        <div class="section-label">Facilities</div>
+        <h2 class="section-title-xl">Hostel <em>Amenities</em></h2>
+        <p style="font-size:15px;color:var(--text-muted);max-width:600px;line-height:1.8;">
+          Every block is equipped with modern conveniences to ensure students can focus on academics without worry.
+        </p>
+        <div class="amenities-grid">
+          <div class="amenity-card reveal">
+            <div class="ami-icon"><i class="fa-solid fa-droplet"></i></div>
+            <h4>24/7 Purified Water</h4>
+            <p>RO-filtered drinking water stations installed on every floor in all residential blocks.</p>
+          </div>
+          <div class="amenity-card reveal d1">
+            <div class="ami-icon"><i class="fa-solid fa-bolt"></i></div>
+            <h4>Power Backup</h4>
+            <p>Uninterrupted power supply through generator backup and solar-assisted geysers.</p>
+          </div>
+          <div class="amenity-card reveal d2">
+            <div class="ami-icon"><i class="fa-solid fa-wifi"></i></div>
+            <h4>High-Speed Wi-Fi</h4>
+            <p>Broadband internet connectivity with dedicated bandwidth for research and coursework.</p>
+          </div>
+          <div class="amenity-card reveal d3">
+            <div class="ami-icon"><i class="fa-solid fa-shield-halved"></i></div>
+            <h4>24/7 Security</h4>
+            <p>Trained security personnel, CCTV surveillance across all blocks, and gated access control.</p>
+          </div>
+          <div class="amenity-card reveal">
+            <div class="ami-icon"><i class="fa-solid fa-shirt"></i></div>
+            <h4>Laundry Facility</h4>
+            <p>Designated washing areas with washing machines available in select blocks.</p>
+          </div>
+          <div class="amenity-card reveal d1">
+            <div class="ami-icon"><i class="fa-solid fa-dumbbell"></i></div>
+            <h4>Recreation Area</h4>
+            <p>Indoor games rooms, TV lounges, and outdoor courts for badminton and volleyball.</p>
+          </div>
+          <div class="amenity-card reveal d2">
+            <div class="ami-icon"><i class="fa-solid fa-book-open"></i></div>
+            <h4>Reading Rooms</h4>
+            <p>Dedicated silent study halls open from 6 AM to midnight for focused academic work.</p>
+          </div>
+          <div class="amenity-card reveal d3">
+            <div class="ami-icon"><i class="fa-solid fa-kit-medical"></i></div>
+            <h4>Medical Support</h4>
+            <p>On-campus medical room with a visiting doctor and first-aid provisions available.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         DINING
+    ══════════════════════════════════════ -->
+    <section class="dining-section" id="dining">
+      <div class="dining-inner">
+        <div class="section-label">Campus Dining</div>
+        <h2 class="section-title-xl">Mess &amp; <em>Cafeteria</em> Facilities</h2>
+        <p style="font-size:15px;color:var(--text-muted);max-width:620px;line-height:1.8;">
+          Four separate dining facilities ensure every student — resident or day-scholar — has access to nutritious, hygienic, and affordable meals throughout the day.
+        </p>
+
+        <div class="dining-grid">
+
+          <div class="dining-card reveal">
+            <div class="dining-card-img boys-mess">
+              <i class="fa-solid fa-plate-wheat"></i>
+            </div>
+            <div class="dining-card-body">
+              <h3>Central Boys Mess</h3>
+              <p>A large-capacity dining hall serving pure vegetarian, nutritionally balanced meals for all male residents. A rotating weekly menu ensures variety, and a Mess Committee of student representatives oversees quality.</p>
+              <div class="meal-times">
+                <span class="meal-time"><i class="fa-solid fa-sun"></i> Breakfast 7:00–8:30</span>
+                <span class="meal-time"><i class="fa-solid fa-cloud-sun"></i> Lunch 12:00–2:00</span>
+                <span class="meal-time"><i class="fa-solid fa-moon"></i> Dinner 7:00–9:00</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="dining-card reveal d1">
+            <div class="dining-card-img girls-mess">
+              <i class="fa-solid fa-bowl-food"></i>
+            </div>
+            <div class="dining-card-body">
+              <h3>Vidyottama Girls Mess</h3>
+              <p>An exclusive dining hall for female residents, with a focus on hygiene, balanced diets, and seasonal variety. Access is restricted to hostel residents and authorised visitors only.</p>
+              <div class="meal-times">
+                <span class="meal-time"><i class="fa-solid fa-sun"></i> Breakfast 7:00–8:30</span>
+                <span class="meal-time"><i class="fa-solid fa-cloud-sun"></i> Lunch 12:00–2:00</span>
+                <span class="meal-time"><i class="fa-solid fa-moon"></i> Dinner 7:00–9:00</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="dining-card reveal d2">
+            <div class="dining-card-img coop-mess">
+              <i class="fa-solid fa-users-gear"></i>
+            </div>
+            <div class="dining-card-body">
+              <h3>Cooperative Mess</h3>
+              <p>A student-managed facility where residents collaboratively plan the weekly menu, manage procurement, and review quality — a practical exercise in budgeting, teamwork, and institutional responsibility.</p>
+              <div class="meal-times">
+                <span class="meal-time"><i class="fa-solid fa-sun"></i> Breakfast 7:00–9:00</span>
+                <span class="meal-time"><i class="fa-solid fa-cloud-sun"></i> Lunch 12:00–2:30</span>
+                <span class="meal-time"><i class="fa-solid fa-moon"></i> Dinner 7:30–9:30</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="dining-card reveal d3">
+            <div class="dining-card-img cafeteria">
+              <i class="fa-solid fa-mug-hot"></i>
+            </div>
+            <div class="dining-card-body">
+              <h3>Quick Bite Cafeteria</h3>
+              <p>A daytime facility open to all students and visitors, offering snacks, beverages, and light meals. Conveniently located near the academic blocks, it is a popular gathering spot between lectures.</p>
+              <div class="meal-times">
+                <span class="meal-time"><i class="fa-solid fa-clock"></i> Open 8:00 AM–8:00 PM</span>
+                <span class="meal-time"><i class="fa-solid fa-user"></i> All Students</span>
+              </div>
+            </div>
+          </div>
+
         </div>
 
-    </div>
-</section>
-
-<section style="padding: 50px 5%; background: #fff;">
-    <div style="max-width: 1100px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 30px; justify-content: space-between;">
-        <div style="flex: 1; min-width: 300px;">
-            <h3 style="color: #800000; margin-bottom: 20px;">Hostel Amenities</h3>
-            <ul style="list-style: none; padding: 0; line-height: 2.2; color: #444;">
-                <li><i class="fa-solid fa-check-circle" style="color: #28a745;"></i> 24/7 Purified Water (RO)</li>
-                <li><i class="fa-solid fa-check-circle" style="color: #28a745;"></i> Power Backup & Solar Geysers</li>
-                <li><i class="fa-solid fa-check-circle" style="color: #28a745;"></i> High-Speed Wi-Fi Connectivity</li>
-                <li><i class="fa-solid fa-check-circle" style="color: #28a745;"></i> Daily Cleaning & Security Guards</li>
-            </ul>
+        <!-- Sample Weekly Menu -->
+        <div class="menu-teaser reveal">
+          <div class="menu-header">
+            <i class="fa-solid fa-calendar-days"></i>
+            <span>Sample Weekly Mess Menu (Lunch)</span>
+          </div>
+          <div class="menu-days">
+            <div class="menu-day"><div class="day-name">Mon</div><div class="day-items">Dal Fry<br>Rice<br>Roti<br>Sabzi</div></div>
+            <div class="menu-day"><div class="day-name">Tue</div><div class="day-items">Rajma<br>Rice<br>Roti<br>Raita</div></div>
+            <div class="menu-day"><div class="day-name">Wed</div><div class="day-items">Kadhi<br>Rice<br>Roti<br>Aloo Sabzi</div></div>
+            <div class="menu-day"><div class="day-name">Thu</div><div class="day-items">Chhole<br>Puri<br>Rice<br>Kheer</div></div>
+            <div class="menu-day"><div class="day-name">Fri</div><div class="day-items">Mix Veg<br>Rice<br>Roti<br>Dal</div></div>
+            <div class="menu-day"><div class="day-name">Sat</div><div class="day-items">Paneer<br>Rice<br>Roti<br>Halwa</div></div>
+            <div class="menu-day"><div class="day-name">Sun</div><div class="day-items">Special<br>Thali<br>Dessert<br>Lassi</div></div>
+          </div>
         </div>
-        <div style="flex: 1; min-width: 300px; background: #fff3cd; padding: 25px; border-radius: 8px;">
-            <h3 style="color: #856404; margin-bottom: 15px;">Admissions Notice</h3>
-            <p style="color: #856404; font-size: 14px;">Hostel seats are allotted on a first-come, first-served basis according to university merit lists. Applicants must submit a separate hostel application form during the counseling process.</p>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         RULES + CONTACT
+    ══════════════════════════════════════ -->
+    <section class="rules-section">
+      <div class="rules-inner">
+
+        <div class="reveal">
+          <div class="section-label">Hostel Rules</div>
+          <h2 class="section-title-xl">Guidelines &amp;<br><em>Important Rules</em></h2>
+          <ul class="rules-list">
+            <li><i class="fa-solid fa-check"></i> Residents must return to hostel by 10:00 PM on weekdays.</li>
+            <li><i class="fa-solid fa-check"></i> Guests are not permitted inside rooms without prior warden approval.</li>
+            <li><i class="fa-solid fa-check"></i> Use of alcohol, tobacco, or illegal substances is strictly prohibited.</li>
+            <li><i class="fa-solid fa-check"></i> Ragging in any form will result in immediate expulsion from the hostel.</li>
+            <li><i class="fa-solid fa-check"></i> Residents are responsible for the upkeep and cleanliness of their rooms.</li>
+            <li><i class="fa-solid fa-check"></i> Cooking in rooms is not permitted; use designated mess/cafeteria only.</li>
+            <li><i class="fa-solid fa-check"></i> Hostel fee must be paid before the deadline each semester to retain the allotment.</li>
+            <li><i class="fa-solid fa-check"></i> Noise after 11:00 PM is prohibited to maintain a conducive study environment.</li>
+          </ul>
         </div>
-    </div>
-</section>
 
-<!-- FOOTER -->
-<div id="footer-placeholder"></div>
-<script src="js/script.js"></script>
-<script src="js/components-loader.js"></script>
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    // 1. Date & Time
-    const dateEl = document.getElementById("date");
-    const timeEl = document.getElementById("time");
-    
-    if(dateEl) dateEl.innerHTML = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
-    
-    setInterval(function(){
-        if(timeEl) timeEl.innerHTML = new Date().toLocaleTimeString('en-US', { hour12: false });
-    }, 1000);
+        <div class="reveal d2">
+          <div class="contact-warden-box">
+            <div class="section-label">Contact</div>
+            <h3>"Questions about your stay? Reach our Wardens."</h3>
+            <div class="warden-contact-row">
+              <i class="fa-solid fa-person"></i>
+              <div>
+                <strong>Boys' Hostel Office</strong>
+                <span>Capt. Kania Maida — 0734-251427 (Ext. 210)</span>
+              </div>
+            </div>
+            <div class="warden-contact-row">
+              <i class="fa-solid fa-person-dress"></i>
+              <div>
+                <strong>Girls' Hostel Office</strong>
+                <span>Dr. Nayantara Damor — 0734-251427 (Ext. 215)</span>
+              </div>
+            </div>
+            <div class="warden-contact-row">
+              <i class="fa-solid fa-envelope"></i>
+              <div>
+                <strong>Email</strong>
+                <span>hostel@vikramuniv.ac.in</span>
+              </div>
+            </div>
+            <div class="warden-contact-row">
+              <i class="fa-solid fa-clock"></i>
+              <div>
+                <strong>Office Hours</strong>
+                <span>Monday – Saturday, 10:00 AM – 4:00 PM</span>
+              </div>
+            </div>
+            <a href="contact.html" class="apply-btn">
+              <i class="fa-solid fa-file-pen"></i> Apply for Hostel Allotment
+            </a>
+          </div>
+        </div>
 
-    // 2. Weather API
-    const apiKey = "6ab4623b616a1ea162cf45d73c2dcb32";
-    const city = "Ujjain";
+      </div>
+    </section>
 
-    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`)
-    .then(response => response.json())
-    .then(data => {
-        if (data.weather && data.weather.length > 0) {
-            let desc = data.weather[0].description;
-            document.getElementById("weather").innerHTML = desc.charAt(0).toUpperCase() + desc.slice(1);
-            document.getElementById("temp").innerHTML = Math.round(data.main.temp) + "°C";
-        }
-    })
-    .catch(err => console.log("Weather error:", err));
+    <!-- FOOTER -->
+    <div id="footer-placeholder"></div>
 
-    // 3. Stats
-    const lastUp = document.getElementById("lastUpdated");
-    if(lastUp) lastUp.innerHTML = document.lastModified;
+  </div><!-- /#content -->
 
-    let count = localStorage.getItem("visitorCount");
-    count = count === null ? 1 : Number(count) + 1;
-    localStorage.setItem("visitorCount", count);
-    
-    const visCount = document.getElementById("visitorCount");
-    if(visCount) visCount.innerText = count.toLocaleString();
-});
-</script>
-</HTML>
+  <script src="js/script.js"></script>
+  <script src="js/components-loader.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      /* Scroll Reveal */
+      function revealElements() {
+        document.querySelectorAll(".reveal").forEach(function (el) {
+          if (el.getBoundingClientRect().top < window.innerHeight - 60) el.classList.add("active");
+        });
+      }
+      window.addEventListener("scroll", revealElements);
+      setTimeout(revealElements, 120);
+
+      /* Date / Time / Weather */
+      try {
+        const dateEl = document.getElementById("date");
+        const timeEl = document.getElementById("time");
+        if (dateEl) dateEl.innerHTML = new Date().toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
+        setInterval(function () { if (timeEl) timeEl.innerHTML = new Date().toLocaleTimeString("en-US", { hour12: false }); }, 1000);
+
+        fetch("https://api.openweathermap.org/data/2.5/weather?q=Ujjain&units=metric&appid=6ab4623b616a1ea162cf45d73c2dcb32")
+          .then(r => r.json()).then(data => {
+            if (data.weather) {
+              const d = data.weather[0].description;
+              const wEl = document.getElementById("weather"), tEl = document.getElementById("temp");
+              if (wEl) wEl.innerHTML = d.charAt(0).toUpperCase() + d.slice(1);
+              if (tEl) tEl.innerHTML = Math.round(data.main.temp) + "°C";
+            }
+          }).catch(() => {});
+
+        const lu = document.getElementById("lastUpdated");
+        if (lu) lu.innerHTML = document.lastModified;
+        let c = localStorage.getItem("visitorCount");
+        c = c === null ? 1 : Number(c) + 1;
+        localStorage.setItem("visitorCount", c);
+        const vc = document.getElementById("visitorCount");
+        if (vc) vc.innerText = c.toLocaleString();
+      } catch (e) {}
+    });
+  </script>
+</body>
+</html>
