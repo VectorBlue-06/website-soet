@@ -1,19 +1,32 @@
+// Smooth preloader fade (avoid abrupt display toggles causing reflow)
 window.addEventListener("load", function(){
+	try {
+		var preloader = document.getElementById("preloader");
+		var content = document.getElementById("content");
 
-setTimeout(function(){
+		if(content){
+			content.style.transition = 'opacity 350ms ease';
+			content.style.opacity = '0';
+			// ensure content is visible for layout (don't use display:none)
+			content.style.display = 'block';
+		}
 
-let preloader = document.getElementById("preloader");
-if(preloader){
-preloader.style.display = "none";
-}
-
-let content = document.getElementById("content");
-if(content){
-content.style.display = "block";
-}
-
-},1000);
-
+		// small delay to allow layout to stabilise, then fade
+		setTimeout(function(){
+			if(preloader){
+				preloader.style.transition = 'opacity 350ms ease, visibility 350ms ease';
+				preloader.style.opacity = '0';
+				preloader.style.visibility = 'hidden';
+				preloader.style.pointerEvents = 'none';
+			}
+			if(content){
+				content.style.opacity = '1';
+			}
+		}, 250);
+	} catch(e) {
+		// fail gracefully
+		console.error(e);
+	}
 });
 let currentSize = 16;
 
