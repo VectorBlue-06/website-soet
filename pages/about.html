@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>About - School Of Engineering and Technology</title>
+
+<link rel="stylesheet" href="../css/style.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+/* =========================================
+           1. GLOBAL ELITE TYPOGRAPHY & FIXES
+           ========================================= */
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+            background-color: #f8fafc; /* Very soft slate-white background */
+            color: #334155;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* =========================================
+           2. THE V2 ELITE IVY HERO
+           ========================================= */
+        .ivy-hero {
+            position: relative;
+            height: 46vh;
+            min-height: 380px;
+            display: flex;
+            align-items: flex-end;
+            padding: 0 8%;
+            margin-bottom: 90px;
+        }
+        .ivy-bg-image {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url('../images/madhavbhavan.png') center/cover no-repeat;
+            background-attachment: fixed;
+            z-index: 1;
+        }
+        .ivy-bg-image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: rgba(15, 23, 42, 0.4); 
+            background-image: radial-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 1px);
+            background-size: 24px 24px;
+            z-index: 2;
+        }
+        .ivy-hero::before {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0; height: 40%;
+            background: linear-gradient(to top, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0) 100%);
+            z-index: 3;
+        }
+        .ivy-content {
+            position: relative;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(12px);
+            padding: 60px 70px;
+            max-width: 780px;
+            border-left: 12px solid #800000; 
+            box-shadow: 0 40px 80px -15px rgba(0, 0, 0, 0.25), 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            transform: translateY(45px); 
+            animation: eliteSlideUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+        }
+        @keyframes eliteSlideUp {
+            0% { transform: translateY(80px); opacity: 0; }
+            100% { transform: translateY(45px); opacity: 1; }
+        }
+        .ivy-breadcrumb {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #800000;
+            margin-bottom: 25px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .ivy-breadcrumb::before {
+            content: '';
+            display: inline-block;
+            width: 30px;
+            height: 2px;
+            background-color: #800000;
+        }
+        .ivy-breadcrumb a { color: #800000; text-decoration: none; }
+        .ivy-breadcrumb span { color: #94a3b8; }
+        .ivy-content h1 {
+            font-size: 4.5rem;
+            font-weight: 900;
+            color: #0f172a; 
+            margin: 0 0 20px 0;
+            line-height: 1;
+            letter-spacing: -2px;
+        }
+        .ivy-content p {
+            font-size: 1.25rem;
+            color: #475569;
+            line-height: 1.7;
+            margin: 0;
+            font-weight: 400;
+            max-width: 600px;
+        }
+</style>
+</head>
+
+<body>
+<div id="topbar-placeholder"></div>
+
+<div id="content">
+<div id="header-placeholder"></div>
+<div id="navbar-placeholder"></div>
+<section class="ivy-hero">
+    <div class="ivy-bg-image"></div>
+    <div class="ivy-content">
+        <div class="ivy-breadcrumb">
+            <a href="../index.html">Home</a> <span>/</span> About Us
+        </div>
+        <h1>About SOET</h1>
+        <p>Engineering the future through uncompromising standards, rigorous academics, and a relentless pursuit of excellence since 2011.</p>
+    </div>
+</section>
+
+
+<section id="about-overview" class="section-padding" style="background: #fff;">
+    <div class="container" style="display: flex; flex-wrap: wrap; gap: 60px; align-items: center;">
+        
+        <div style="flex: 1; min-width: 350px;">
+            <h2 style="color: #111; font-size: 38px; font-weight: 800; margin-bottom: 20px; line-height: 1.2;">Pioneering the Future<br><span style="color: #800000;">of Engineering.</span></h2>
+            <p style="color: #555; font-size: 16px; line-height: 1.9; text-align: justify; margin-bottom: 20px;">
+                 The School of Engineering & Technology (SOET) is a premier University Teaching Department of Samrat Vikramaditya Vishwavidyalaya, Ujjain. We do not just teach syllabus; we forge innovators. Sanctioned by the AICTE and the Department of Technical Education (MP), SOET offers robust undergraduate (B.Tech) and postgraduate (M.Tech) programs designed to bridge the gap between theoretical knowledge and brutal industry demands.
+            </p>
+            <p style="color: #555; font-size: 16px; line-height: 1.9; text-align: justify;">
+                Our graduates do not simply enter the workforce—they arrive ready to lead, solve complex problems, and dictate the pace of technological advancement.
+            </p>
+        </div>
+
+        ... (content unchanged) ...
+</body>
+</HTML>
+
