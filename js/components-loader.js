@@ -22,10 +22,6 @@ async function loadSharedLayoutComponents() {
   await injectComponent("navbar-placeholder", "components/navbar.html");
   await injectComponent("footer-placeholder", "components/footer.html");
 
-  if (typeof initializeThemeState === "function") {
-    initializeThemeState();
-  }
-
   if (typeof initializeSharedFooterWidgets === "function") {
     initializeSharedFooterWidgets();
   }

@@ -1824,7 +1824,7 @@ display:block;
 
 /* --- Banner & Intro --- */
 .ug-banner {
-    background: linear-gradient(rgba(128, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=1200&h=600&fit=crop') center/cover;
+    background: linear-gradient(rgba(128, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url('images/heroes/ug-banner.jpg') center/cover;
     color: white; 
     text-align: center; 
     padding: 120px 20px; 
@@ -1980,7 +1980,7 @@ display:block;
 
 /* --- Banner --- */
 .nptel-banner {
-    background: linear-gradient(rgba(17, 34, 51, 0.85), rgba(17, 34, 51, 0.9)), url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1200&h=600&fit=crop') center/cover;
+    background: linear-gradient(rgba(17, 34, 51, 0.85), rgba(17, 34, 51, 0.9)), url('images/heroes/nptel-banner.jpg') center/cover;
     color: white; 
     text-align: center; 
     padding: 120px 20px; 
