@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Office of the Dean — School Of Engineering and Technology</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================================
+       CSS CUSTOM PROPERTIES — aligned with site's existing vars
+    ============================================================ */
+    :root {
+      --maroon:        #800000;
+      --maroon-dark:   #5a0000;
+      --maroon-light:  #a50000;
+      --gold:          #c9a84c;
+      --gold-light:    #e8c97a;
+      --bg-white:      #ffffff;
+      --bg-light:      #f5f4f0;
+      --bg-dark:       #0d1117;
+      --text-dark:     #1a1a2e;
+      --text-mid:      #444455;
+      --text-muted:    #777788;
+      --serif:         'Playfair Display', Georgia, serif;
+      --sans:          'DM Sans', 'Segoe UI', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--sans); color: var(--text-dark); background: var(--bg-white); }
+
+    /* ============================================================
+       PAGE BANNER — matches site's .page-banner.large pattern
+    ============================================================ */
+    .page-banner.large {
+      position: relative;
+      background: var(--maroon-dark);
+      padding: 80px 5% 60px;
+      overflow: hidden;
+    }
+    .page-banner.large::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 60% 80% at 80% 50%, rgba(201,168,76,0.18) 0%, transparent 70%),
+        url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c9a84c' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .banner-content { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; }
+    .banner-content h1 {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      color: #ffffff;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 14px;
+    }
+    .banner-content h1 span { color: var(--gold-light); }
+    .banner-breadcrumb {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 13px; color: rgba(255,255,255,0.65);
+    }
+    .banner-breadcrumb a { color: rgba(255,255,255,0.65); text-decoration: none; transition: color .2s; }
+    .banner-breadcrumb a:hover { color: var(--gold-light); }
+    .banner-breadcrumb i { font-size: 10px; opacity: 0.5; }
+    .banner-seal {
+      position: absolute; right: 5%; top: 50%; transform: translateY(-50%);
+      width: 120px; height: 120px; opacity: 0.07;
+    }
+    .banner-seal svg { width: 100%; height: 100%; }
+
+    /* ============================================================
+       SECTION TITLES
+    ============================================================ */
+    .section-label {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 11px; font-weight: 600; letter-spacing: 2.5px;
+      text-transform: uppercase; color: var(--maroon);
+      margin-bottom: 12px;
+    }
+    .section-label::before {
+      content: ''; display: block;
+      width: 28px; height: 2px; background: var(--gold);
+    }
+    .section-title-xl {
+      font-family: var(--serif);
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      color: var(--text-dark);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+    .section-title-xl em { color: var(--maroon); font-style: italic; }
+
+    /* ============================================================
+       DEAN PROFILE SECTION
+    ============================================================ */
+    .dean-section {
+      padding: 90px 5%;
+      background: var(--bg-white);
+    }
+    .dean-wrapper {
+      max-width: 1200px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: 380px 1fr;
+      gap: 70px;
+      align-items: start;
+    }
+
+    /* Left column — photo + credentials */
+    .dean-left { position: relative; }
+
+    .dean-photo-frame {
+      position: relative;
+      margin-bottom: 32px;
+    }
+    .dean-photo-frame::before {
+      content: '';
+      position: absolute;
+      top: 16px; left: 16px;
+      right: -16px; bottom: -16px;
+      border: 2px solid var(--gold);
+      border-radius: 4px;
+      z-index: 0;
+    }
+    .dean-photo-frame img {
+      position: relative; z-index: 1;
+      width: 100%;
+      border-radius: 4px;
+      display: block;
+      filter: grayscale(8%) contrast(1.05);
+      box-shadow: 0 20px 50px rgba(128,0,0,0.15);
+    }
+    .dean-photo-frame .gold-corner {
+      position: absolute; z-index: 2;
+      top: -1px; right: -1px;
+      width: 40px; height: 40px;
+      background: var(--gold);
+      clip-path: polygon(0 0, 100% 0, 100% 100%);
+    }
+
+    .dean-credentials {
+      background: var(--bg-light);
+      border-left: 4px solid var(--maroon);
+      padding: 28px;
+      border-radius: 0 8px 8px 0;
+    }
+    .dean-credentials h3 {
+      font-family: var(--serif);
+      font-size: 22px; font-weight: 700;
+      color: var(--text-dark); margin-bottom: 4px;
+    }
+    .dean-credentials .title-tag {
+      display: inline-block;
+      background: var(--maroon); color: #fff;
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      padding: 4px 10px; border-radius: 2px;
+      margin-bottom: 16px;
+    }
+    .credential-row {
+      display: flex; align-items: center; gap: 12px;
+      font-size: 13.5px; color: var(--text-mid);
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+    .credential-row:last-child { border-bottom: none; }
+    .credential-row i {
+      width: 32px; height: 32px;
+      background: var(--maroon); color: #fff;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; flex-shrink: 0;
+    }
+
+    /* Right column — message */
+    .dean-right {}
+    .dean-message-block {
+      position: relative;
+      padding: 40px 44px;
+      background: #fdfcf9;
+      border: 1px solid rgba(201,168,76,0.25);
+      border-radius: 8px;
+      margin-bottom: 32px;
+    }
+    .dean-message-block::before {
+      content: '\201C';
+      font-family: var(--serif);
+      position: absolute; top: -20px; left: 30px;
+      font-size: 100px; color: var(--gold); line-height: 1;
+      opacity: 0.4;
+    }
+    .dean-message-block p {
+      font-size: 15.5px; line-height: 1.9;
+      color: var(--text-mid);
+      margin-bottom: 18px; text-align: justify;
+    }
+    .dean-message-block p:last-child { margin-bottom: 0; }
+    .dean-message-block strong { color: var(--text-dark); }
+
+    .dean-signature {
+      display: flex; align-items: center; gap: 16px;
+      margin-top: 24px; padding-top: 24px;
+      border-top: 1px solid rgba(0,0,0,0.07);
+    }
+    .signature-thumb {
+      width: 52px; height: 52px; border-radius: 50%;
+      overflow: hidden; border: 2px solid var(--gold); flex-shrink: 0;
+    }
+    .signature-thumb img { width: 100%; height: 100%; object-fit: cover; }
+    .signature-text strong { display: block; font-size: 15px; color: var(--text-dark); }
+    .signature-text span { font-size: 12.5px; color: var(--text-muted); }
+
+    /* ============================================================
+       STATS STRIP
+    ============================================================ */
+    .stats-strip {
+      background: var(--maroon-dark);
+      padding: 50px 5%;
+      position: relative; overflow: hidden;
+    }
+    .stats-strip::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: repeating-linear-gradient(
+        45deg, transparent, transparent 20px,
+        rgba(255,255,255,0.015) 20px, rgba(255,255,255,0.015) 21px
+      );
+    }
+    .stats-grid {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 1px; background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.1);
+      position: relative; z-index: 1;
+    }
+    .stat-item {
+      padding: 36px 28px; text-align: center;
+      background: rgba(255,255,255,0.03);
+      transition: background .3s;
+    }
+    .stat-item:hover { background: rgba(255,255,255,0.06); }
+    .stat-item .stat-num {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700; color: var(--gold-light);
+      display: block; line-height: 1;
+      margin-bottom: 6px;
+    }
+    .stat-item .stat-label {
+      font-size: 12px; font-weight: 500;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+    }
+    .stat-item i {
+      display: block; font-size: 22px;
+      color: rgba(255,255,255,0.2); margin-bottom: 14px;
+    }
+
+    /* ============================================================
+       SERVICES SECTION
+    ============================================================ */
+    .services-section {
+      padding: 90px 5%;
+      background: var(--bg-light);
+    }
+    .services-header {
+      max-width: 1200px; margin: 0 auto 60px;
+    }
+    .services-grid {
+      max-width: 1200px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      background: rgba(0,0,0,0.06);
+      border: 2px solid rgba(0,0,0,0.06);
+    }
+    .service-card {
+      background: var(--bg-white);
+      padding: 42px 34px;
+      position: relative; overflow: hidden;
+      transition: all .35s ease;
+      cursor: default;
+    }
+    .service-card::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 3px; background: var(--gold);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform .35s ease;
+    }
+    .service-card:hover { background: #fdfcf9; }
+    .service-card:hover::after { transform: scaleX(1); }
+    .service-card:hover .svc-icon { background: var(--maroon); color: #fff; }
+
+    .svc-icon {
+      width: 56px; height: 56px; border-radius: 8px;
+      background: rgba(128,0,0,0.07);
+      color: var(--maroon);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; margin-bottom: 22px;
+      transition: all .3s ease;
+    }
+    .service-card h3 {
+      font-family: var(--serif);
+      font-size: 18px; font-weight: 700;
+      color: var(--text-dark); margin-bottom: 12px;
+    }
+    .service-card p {
+      font-size: 14px; line-height: 1.75;
+      color: var(--text-muted);
+    }
+    .svc-arrow {
+      display: inline-flex; align-items: center; gap: 6px;
+      margin-top: 20px; font-size: 12px; font-weight: 600;
+      color: var(--maroon); letter-spacing: 0.5px;
+      text-decoration: none; opacity: 0;
+      transition: opacity .3s ease;
+    }
+    .service-card:hover .svc-arrow { opacity: 1; }
+
+    /* ============================================================
+       QUICK LINKS / DOWNLOADS STRIP
+    ============================================================ */
+    .links-section {
+      padding: 70px 5%;
+      background: var(--bg-white);
+    }
+    .links-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 60px; align-items: start;
+    }
+    .links-col h3 {
+      font-family: var(--serif);
+      font-size: 22px; color: var(--text-dark);
+      margin-bottom: 24px; padding-bottom: 16px;
+      border-bottom: 2px solid var(--gold);
+    }
+    .link-list { list-style: none; }
+    .link-list li {
+      display: flex; align-items: center; gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      font-size: 14px; color: var(--text-mid);
+      transition: color .2s;
+    }
+    .link-list li:hover { color: var(--maroon); }
+    .link-list li i {
+      width: 34px; height: 34px; flex-shrink: 0;
+      border-radius: 6px; background: var(--bg-light);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; color: var(--maroon);
+      transition: all .2s;
+    }
+    .link-list li:hover i { background: var(--maroon); color: #fff; }
+    .link-list a { color: inherit; text-decoration: none; flex: 1; }
+    .link-badge {
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 1px; text-transform: uppercase;
+      padding: 2px 8px; border-radius: 20px;
+      background: rgba(128,0,0,0.08); color: var(--maroon);
+    }
+    .link-badge.new-badge { background: #fff3e0; color: #e65100; }
+
+    /* Notice board */
+    .notice-board {
+      background: var(--bg-light);
+      border: 1px solid rgba(201,168,76,0.2);
+      border-radius: 8px; overflow: hidden;
+    }
+    .notice-header {
+      background: var(--maroon);
+      padding: 16px 24px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .notice-header i { color: var(--gold-light); font-size: 18px; }
+    .notice-header span {
+      color: #fff; font-weight: 600;
+      font-size: 14px; letter-spacing: 0.5px;
+    }
+    .notice-item {
+      padding: 16px 24px;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      font-size: 13.5px; color: var(--text-mid);
+      display: flex; gap: 12px;
+    }
+    .notice-item:last-child { border-bottom: none; }
+    .notice-date {
+      flex-shrink: 0; width: 44px;
+      text-align: center; background: rgba(128,0,0,0.07);
+      border-radius: 4px; padding: 4px 6px;
+      color: var(--maroon); font-weight: 700; font-size: 12px;
+      line-height: 1.3;
+    }
+    .notice-date span { display: block; font-size: 10px; font-weight: 400; }
+
+    /* ============================================================
+       CONTACT SECTION
+    ============================================================ */
+    .contact-section {
+      padding: 90px 5%;
+      background: var(--maroon-dark);
+      position: relative; overflow: hidden;
+    }
+    .contact-section::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 50% 100% at 0% 50%, rgba(201,168,76,0.12) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 80% at 100% 50%, rgba(201,168,76,0.06) 0%, transparent 60%);
+    }
+    .contact-inner {
+      max-width: 1100px; margin: 0 auto;
+      position: relative; z-index: 1;
+      text-align: center;
+    }
+    .contact-inner .section-label { color: var(--gold-light); }
+    .contact-inner .section-label::before { background: var(--gold-light); }
+    .contact-inner h2 {
+      font-family: var(--serif);
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      color: #fff; font-weight: 400; font-style: italic;
+      margin-bottom: 12px;
+    }
+    .contact-inner > p {
+      color: rgba(255,255,255,0.6); font-size: 15px;
+      margin-bottom: 50px;
+    }
+    .contact-cards {
+      display: flex; flex-wrap: wrap;
+      justify-content: center; gap: 20px;
+      margin-bottom: 50px;
+    }
+    .contact-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 8px;
+      padding: 32px 36px;
+      min-width: 220px; flex: 1; max-width: 300px;
+      text-align: center;
+      transition: all .3s;
+    }
+    .contact-card:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: var(--gold);
+      transform: translateY(-4px);
+    }
+    .contact-card i {
+      font-size: 28px; color: var(--gold-light);
+      margin-bottom: 16px; display: block;
+    }
+    .contact-card .cc-label {
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: rgba(255,255,255,0.4); margin-bottom: 8px;
+    }
+    .contact-card .cc-value {
+      font-size: 15px; font-weight: 500; color: #fff;
+    }
+    .contact-cta {
+      display: inline-flex; align-items: center; gap: 12px;
+      background: var(--gold);
+      color: var(--maroon-dark);
+      font-size: 14px; font-weight: 700;
+      letter-spacing: 0.5px; padding: 16px 36px;
+      border-radius: 4px; text-decoration: none;
+      transition: all .3s;
+    }
+    .contact-cta:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(201,168,76,0.3);
+    }
+
+    /* ============================================================
+       REVEAL ANIMATIONS
+    ============================================================ */
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 1024px) {
+      .dean-wrapper { grid-template-columns: 1fr; gap: 40px; }
+      .dean-left { max-width: 400px; margin: 0 auto; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .links-inner { grid-template-columns: 1fr; gap: 40px; }
+    }
+    @media (max-width: 640px) {
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .services-grid { grid-template-columns: 1fr; }
+      .contact-cards { flex-direction: column; align-items: center; }
+      .contact-card { max-width: 100%; min-width: unset; width: 100%; }
+      .dean-message-block { padding: 28px 24px; }
+      .dean-message-block::before { font-size: 70px; top: -14px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP BAR PLACEHOLDER (loaded by components-loader.js) -->
+  <div id="topbar-placeholder"></div>
+
+  <div id="content">
+
+    <!-- HEADER / NAVBAR PLACEHOLDER -->
+    <div id="header-placeholder"></div>
+    <div id="navbar-placeholder"></div>
+
+    <!-- ═══════════════════════════════════════════════
+         PAGE BANNER
+    ═══════════════════════════════════════════════ -->
+    <section class="page-banner large">
+      <!-- Decorative seal watermark -->
+      <div class="banner-seal" aria-hidden="true">
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="50" r="48" stroke="white" stroke-width="2"/>
+          <circle cx="50" cy="50" r="38" stroke="white" stroke-width="1.5"/>
+          <path d="M50 15 L53 30 L68 30 L56 39 L61 54 L50 45 L39 54 L44 39 L32 30 L47 30 Z" fill="white"/>
+          <circle cx="50" cy="50" r="12" stroke="white" stroke-width="1"/>
+        </svg>
+      </div>
+
+      <div class="banner-content">
+        <h1>Office of the <span>Dean</span></h1>
+        <nav class="banner-breadcrumb" aria-label="breadcrumb">
+          <a href="../index.html">Home</a>
+          <i class="fa-solid fa-chevron-right"></i>
+          <a href="campus-life.html">Campus Life</a>
+          <i class="fa-solid fa-chevron-right"></i>
+          <span>Office of the Dean</span>
+        </nav>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════
+         DEAN PROFILE & MESSAGE
+    ═══════════════════════════════════════════════ -->
+    <section class="dean-section">
+      <div class="dean-wrapper">
+
+        <!-- LEFT: Photo + Credentials -->
+        <div class="dean-left reveal">
+          <div class="dean-photo-frame">
+            <div class="gold-corner"></div>
+            <img src="../images/dean.jpeg" alt="Dr. S.K. Mishra – Dean of Student Welfare">
+          </div>
+
+          <div class="dean-credentials">
+            <h3>Dr. S.K. Mishra</h3>
+            <div class="title-tag">Dean · Student Welfare</div>
+
+            <div class="credential-row">
+              <i class="fa-solid fa-phone"></i>
+              <span>Office: 0734-251427</span>
+            </div>
+            <div class="credential-row">
+              <i class="fa-solid fa-envelope"></i>
+              <span>dsw@vikramuniv.ac.in</span>
+            </div>
+            <div class="credential-row">
+              <i class="fa-solid fa-location-dot"></i>
+              <span>Ground Floor, Administrative Block</span>
+            </div>
+            <div class="credential-row">
+              <i class="fa-solid fa-clock"></i>
+              <span>Mon – Fri, 11:00 AM – 1:00 PM</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: Message -->
+        <div class="dean-right reveal reveal-delay-2">
+          <div class="section-label">Dean's Message</div>
+          <h2 class="section-title-xl">Shaping <em>Engineers,</em><br>Nurturing <em>Leaders.</em></h2>
+
+          <div class="dean-message-block">
+            <p>Welcome to the School of Engineering and Technology! The Office of the Dean (Student Welfare) is dedicated to ensuring that your time at the university is enriching, safe, and holistic. We believe that true engineering excellence is achieved not just inside the classroom, but through active participation in campus life, leadership roles, and community service.</p>
+            <p>Our office serves as the central hub for all student activities, grievance redressal, extracurricular clubs, and personal counseling. We are here to support your mental, physical, and academic well-being. My door is always open to students who need guidance, have innovative ideas for the campus, or require support navigating university life.</p>
+            <p><strong>Wishing you a transformative journey at SOET — build boldly, think deeply, and serve generously.</strong></p>
+
+            <div class="dean-signature">
+              <div class="signature-thumb">
+                <img src="../images/dean.jpeg" alt="Dean Thumbnail">
+              </div>
+              <div class="signature-text">
+                <strong>Dr. S.K. Mishra</strong>
+                <span>Dean of Student Welfare, SOET — Samrat Vikramaditya Vishwavidyalaya</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════
+         STATS STRIP
+    ═══════════════════════════════════════════════ -->
+    <section class="stats-strip">
+      <div class="stats-grid">
+        <div class="stat-item reveal">
+          <i class="fa-solid fa-users"></i>
+          <span class="stat-num">3,200+</span>
+          <span class="stat-label">Students Supported</span>
+        </div>
+        <div class="stat-item reveal reveal-delay-1">
+          <i class="fa-solid fa-layer-group"></i>
+          <span class="stat-num">18+</span>
+          <span class="stat-label">Registered Clubs</span>
+        </div>
+        <div class="stat-item reveal reveal-delay-2">
+          <i class="fa-solid fa-trophy"></i>
+          <span class="stat-num">100%</span>
+          <span class="stat-label">Anti-Ragging Compliance</span>
+        </div>
+        <div class="stat-item reveal reveal-delay-3">
+          <i class="fa-solid fa-calendar-check"></i>
+          <span class="stat-num">40+</span>
+          <span class="stat-label">Events Per Year</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════
+         SERVICES GRID
+    ═══════════════════════════════════════════════ -->
+    <section class="services-section">
+      <div class="services-header">
+        <div class="section-label">What We Do</div>
+        <h2 class="section-title-xl">Student Services<br>&amp; <em>Support Pillars</em></h2>
+        <p style="font-size:15px; color:var(--text-muted); max-width:550px; line-height:1.8;">
+          The Dean's Office manages a wide array of student-centric initiatives — from disciplinary oversight and wellness to scholarship facilitation and hostel governance.
+        </p>
+      </div>
+
+      <div class="services-grid">
+
+        <div class="service-card reveal">
+          <div class="svc-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+          <h3>Discipline &amp; Anti-Ragging</h3>
+          <p>Maintaining a zero-tolerance policy against ragging and ensuring a safe, respectful campus environment for all students through regular awareness drives and vigilance committees.</p>
+          <a href="anti-ragging.html" class="svc-arrow">Know more <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <div class="service-card reveal reveal-delay-1">
+          <div class="svc-icon"><i class="fa-solid fa-users-gear"></i></div>
+          <h3>Clubs &amp; Societies</h3>
+          <p>Overseeing the formation, funding, and events of all technical, cultural, and sports clubs managed by the Student Council — over 18 active bodies year-round.</p>
+          <a href="clubs-society.html" class="svc-arrow">Explore clubs <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <div class="service-card reveal reveal-delay-2">
+          <div class="svc-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
+          <h3>Counseling &amp; Wellness</h3>
+          <p>Providing confidential psychological counseling and peer mentorship to help students manage academic pressure, career anxiety, and personal well-being effectively.</p>
+          <a href="contact.html" class="svc-arrow">Reach out <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <div class="service-card reveal">
+          <div class="svc-icon"><i class="fa-solid fa-file-signature"></i></div>
+          <h3>Scholarships &amp; Approvals</h3>
+          <p>Facilitating state and central government scholarship verifications, bonafide certificates, student NOCs, and financial aid processing on behalf of enrolled students.</p>
+          <a href="fees-scholarships.html" class="svc-arrow">Learn more <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <div class="service-card reveal reveal-delay-1">
+          <div class="svc-icon"><i class="fa-solid fa-bed"></i></div>
+          <h3>Hostel &amp; Mess Welfare</h3>
+          <p>Coordinating with Chief Wardens to ensure quality living conditions, hygiene standards, and proper dining facilities across all university hostels and residential blocks.</p>
+          <a href="hostels-dining.html" class="svc-arrow">View facilities <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <div class="service-card reveal reveal-delay-2">
+          <div class="svc-icon"><i class="fa-solid fa-comments"></i></div>
+          <h3>Grievance Redressal</h3>
+          <p>A structured committee and accessible portal to transparently address student complaints regarding academics, infrastructure, peer disputes, or administrative matters.</p>
+          <a href="contact.html" class="svc-arrow">File a grievance <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════
+         QUICK LINKS + NOTICE BOARD
+    ═══════════════════════════════════════════════ -->
+    <section class="links-section">
+      <div class="links-inner">
+
+        <!-- Quick Links -->
+        <div class="reveal">
+          <div class="section-label">Quick Access</div>
+          <h3>Important Links &amp; Forms</h3>
+          <ul class="link-list">
+            <li>
+              <i class="fa-solid fa-file-pdf"></i>
+              <a href="#">Anti-Ragging Undertaking Form</a>
+              <span class="link-badge new-badge">NEW</span>
+            </li>
+            <li>
+              <i class="fa-solid fa-id-card"></i>
+              <a href="#">Bonafide Certificate Request</a>
+              <span class="link-badge">ONLINE</span>
+            </li>
+            <li>
+              <i class="fa-solid fa-graduation-cap"></i>
+              <a href="fees-scholarships.html">Scholarship Application Portal</a>
+            </li>
+            <li>
+              <i class="fa-solid fa-home"></i>
+              <a href="hostels-dining.html">Hostel Allotment Form 2025–26</a>
+            </li>
+            <li>
+              <i class="fa-solid fa-person-running"></i>
+              <a href="ncc-nss.html">NCC / NSS Enrolment</a>
+            </li>
+            <li>
+              <i class="fa-solid fa-circle-info"></i>
+              <a href="anti-ragging.html">Anti-Ragging Policy &amp; Rules</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Notice Board -->
+        <div class="reveal reveal-delay-2">
+          <div class="section-label">Notice Board</div>
+          <div class="notice-board">
+            <div class="notice-header">
+              <i class="fa-solid fa-bell"></i>
+              <span>Latest Notices from DSW Office</span>
+            </div>
+            <div class="notice-item">
+              <div class="notice-date">18<span>Mar</span></div>
+              <span>Schedule for Inter-Department Cultural Competitions 2025–26 now published.</span>
+            </div>
+            <div class="notice-item">
+              <div class="notice-date">10<span>Mar</span></div>
+              <span>Last date for hostel room change requests is 20th March 2026.</span>
+            </div>
+            <div class="notice-item">
+              <div class="notice-date">02<span>Mar</span></div>
+              <span>Anti-Ragging awareness workshop: compulsory attendance for all I-year students.</span>
+            </div>
+            <div class="notice-item">
+              <div class="notice-date">22<span>Feb</span></div>
+              <span>State scholarship verification camp — Administrative Block, 10 AM to 3 PM.</span>
+            </div>
+            <div class="notice-item">
+              <div class="notice-date">14<span>Feb</span></div>
+              <span>Student grievance portal updated. Submit issues directly via the online form.</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════
+         CONTACT SECTION
+    ═══════════════════════════════════════════════ -->
+    <section class="contact-section">
+      <div class="contact-inner">
+        <div class="section-label">Reach Out</div>
+        <h2>"Need Assistance? We're Here."</h2>
+        <p>The Office of the Dean is located on the Ground Floor, Administrative Block, SOET Campus.</p>
+
+        <div class="contact-cards">
+          <div class="contact-card reveal">
+            <i class="fa-solid fa-clock"></i>
+            <div class="cc-label">Visiting Hours</div>
+            <div class="cc-value">Mon – Fri<br>11:00 AM – 1:00 PM</div>
+          </div>
+          <div class="contact-card reveal reveal-delay-1">
+            <i class="fa-solid fa-phone"></i>
+            <div class="cc-label">Office Extension</div>
+            <div class="cc-value">0734-2514271</div>
+          </div>
+          <div class="contact-card reveal reveal-delay-2">
+            <i class="fa-solid fa-envelope"></i>
+            <div class="cc-label">Email</div>
+            <div class="cc-value">dsw@vikramuniv.ac.in</div>
+          </div>
+          <div class="contact-card reveal reveal-delay-3">
+            <i class="fa-solid fa-location-dot"></i>
+            <div class="cc-label">Location</div>
+            <div class="cc-value">Admin Block, GF<br>SOET, Ujjain</div>
+          </div>
+        </div>
+
+        <a href="contact.html" class="contact-cta">
+          <i class="fa-solid fa-paper-plane"></i>
+          Submit a Query Online
+        </a>
+      </div>
+    </section>
+
+    <!-- FOOTER PLACEHOLDER -->
+    <div id="footer-placeholder"></div>
+
+  </div><!-- /#content -->
+
+  <!-- SCRIPTS -->
+  <script src="../js/script.js"></script>
+  <script src="../js/components-loader.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+      /* ---- Scroll Reveal ---- */
+      function revealElements() {
+        document.querySelectorAll(".reveal").forEach(function (el) {
+          if (el.getBoundingClientRect().top < window.innerHeight - 60) {
+            el.classList.add("active");
+          }
+        });
+      }
+      window.addEventListener("scroll", revealElements);
+      setTimeout(revealElements, 120);
+
+      /* ---- Date / Time / Weather (topbar) ---- */
+      try {
+        const dateEl = document.getElementById("date");
+        const timeEl = document.getElementById("time");
+        if (dateEl) dateEl.innerHTML = new Date().toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
+        setInterval(function () {
+          if (timeEl) timeEl.innerHTML = new Date().toLocaleTimeString("en-US", { hour12: false });
+        }, 1000);
+
+        const apiKey = "6ab4623b616a1ea162cf45d73c2dcb32";
+        fetch("https://api.openweathermap.org/data/2.5/weather?q=Ujjain&units=metric&appid=" + apiKey)
+          .then(r => r.json())
+          .then(data => {
+            if (data.weather && data.weather.length > 0) {
+              const desc = data.weather[0].description;
+              const wEl = document.getElementById("weather");
+              const tEl = document.getElementById("temp");
+              if (wEl) wEl.innerHTML = desc.charAt(0).toUpperCase() + desc.slice(1);
+              if (tEl) tEl.innerHTML = Math.round(data.main.temp) + "°C";
+            }
+          }).catch(function () {});
+
+        const lastUp = document.getElementById("lastUpdated");
+        if (lastUp) lastUp.innerHTML = document.lastModified;
+
+        let count = localStorage.getItem("visitorCount");
+        count = count === null ? 1 : Number(count) + 1;
+        localStorage.setItem("visitorCount", count);
+        const visCount = document.getElementById("visitorCount");
+        if (visCount) visCount.innerText = count.toLocaleString();
+      } catch (e) { console.warn("Widget error:", e); }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Anti-Ragging - School Of Engineering and Technology</title>
+
+<link rel="stylesheet" href="../css/style.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+/* =========================================
+   1. GLOBAL ELITE TYPOGRAPHY & FIXES
+   ========================================= */
+body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+    background-color: #f8fafc; /* Very soft slate-white background */
+    color: #8ea4c4;
+    margin: 0;
+    padding: 0;
+}
+
+/* =========================================
+   2. THE V2 ELITE IVY HERO
+   ========================================= */
+.ivy-hero {
+    position: relative;
+    height: 46vh;
+    min-height: 380px;
+    display: flex;
+    align-items: flex-end;
+    padding: 0 8%;
+    margin-bottom: 90px;
+}
+.ivy-bg-image {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #0c2340;
+    background-attachment: fixed;
+    z-index: 1;
+}
+.ivy-bg-image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: rgba(15, 23, 42, 0.5); 
+    background-image: radial-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 1px);
+    background-size: 24px 24px;
+    z-index: 2;
+}
+.ivy-hero::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0; height: 40%;
+    background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 100%);
+    z-index: 3;
+}
+.ivy-content {
+    position: relative;
+    z-index: 10;
+    background: rgba(255, 255, 255, 0.97);
+    backdrop-filter: blur(12px);
+    padding: 60px 70px;
+    max-width: 850px;
+    border-left: 12px solid #800000; 
+    box-shadow: 0 40px 80px -15px rgba(0, 0, 0, 0.25), 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    transform: translateY(45px); 
+    animation: eliteSlideUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+}
+@keyframes eliteSlideUp {
+    0% { transform: translateY(80px); opacity: 0; }
+    100% { transform: translateY(45px); opacity: 1; }
+}
+.ivy-breadcrumb {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: #800000;
+    margin-bottom: 25px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.ivy-breadcrumb::before {
+    content: '';
+    display: inline-block;
+    width: 30px;
+    height: 2px;
+    background-color: #800000;
+}
+.ivy-breadcrumb a { color: #800000; text-decoration: none; }
+.ivy-breadcrumb span { color: #94a3b8; }
+.ivy-content h1 {
+    font-size: 4rem;
+    font-weight: 900;
+    color: #0f172a; 
+    margin: 0 0 20px 0;
+    line-height: 1.1;
+    letter-spacing: -1.5px;
+}
+.ivy-content p {
+    font-size: 1.25rem;
+    color: #475569;
+    line-height: 1.7;
+    margin: 0;
+    font-weight: 400;
+}
+</style>
+
+</head>
+
+<body>
+<div id="topbar-placeholder"></div>
+
+<div id="content">
+<div id="header-placeholder"></div>
+<div id="navbar-placeholder"></div>
+<section class="ivy-hero">
+    <div class="ivy-bg-image" style="background: url('../images/heroes/anti-ragging-hero.jpg') center/cover no-repeat;"></div>
+    <div class="ivy-content">
+        <div class="ivy-breadcrumb">
+            <a href="../index.html">Home</a> <span>/</span><a href="admission.html">Admissions</a> <span>/</span> <a href="anti-ragging.html">Anti-Ragging Policy</a>
+        </div>
+        <h1>Zero Tolerance for Ragging</h1>
+        <p>Ragging in any form is strictly prohibited in the School of Engineering and Technology. SOET is committed to maintaining a safe, respectful, and inclusive environment where every student can learn with dignity and confidence.</p>
+    </div>
+</section>
+
+<section style="padding: 60px 0 80px;">
+    <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 5%;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px;">
+            
+            <div style="background: white; padding: 40px; border-radius: 6px; border-top: 4px solid #800000; box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);">
+                <h3 style="color: #0f172a; font-size: 1.4rem; margin-top: 0; margin-bottom: 15px; font-weight: 700;">What Is Ragging?</h3>
+                <p style="color: #475569; line-height: 1.7; margin: 0; font-size: 1rem;">
+                    Ragging includes any act of physical abuse, verbal abuse, psychological harassment, intimidation, humiliation, or coercion by senior students that causes discomfort, fear, or harm to juniors.
+                </p>
+            </div>
+            
+            <div style="background: white; padding: 40px; border-radius: 6px; border-top: 4px solid #C5B358; box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);">
+                <h3 style="color: #0f172a; font-size: 1.4rem; margin-top: 0; margin-bottom: 15px; font-weight: 700;">Punishable Offence</h3>
+                <p style="color: #475569; line-height: 1.7; margin: 0; font-size: 1rem;">
+                    As per UGC regulations, strict disciplinary actions are taken against offenders, including suspension, expulsion, fines, and legal proceedings under applicable laws.
+                </p>
+            </div>
+            
+            <div style="background: white; padding: 40px; border-radius: 6px; border-top: 4px solid #800000; box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);">
+                <h3 style="color: #0f172a; font-size: 1.4rem; margin-top: 0; margin-bottom: 15px; font-weight: 700;">Report Immediately</h3>
+                <p style="color: #475569; line-height: 1.7; margin: 0; font-size: 1rem;">
+                    Any incident of ragging must be reported without delay. Confidential support and prompt action are ensured by the institute anti-ragging committee.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section style="background-color: white; padding: 100px 0; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0;">
+    <div class="container" style="max-width: 1000px; margin: 0 auto; padding: 0 5%;">
+        <h2 style="color: #0f172a; font-size: 2.5rem; text-align: center; margin-bottom: 60px; font-weight: 800; letter-spacing: -1px;">Awareness Posters</h2>
+        <div style="display: grid; gap: 60px;">
+            <img src="../images/anti-ragging-posters/antiragging-poster1.jpg" alt="Anti-ragging awareness poster 1" style="display: block; width: 100%; height: auto; border: 1px solid #e2e8f0; padding: 10px; background: #f8fafc; border-radius: 8px; box-shadow: 0 20px 40px rgba(15, 23, 42, 0.06);">
+            <img src="../images/anti-ragging-posters/antiragging-poster2.jpg" alt="Anti-ragging awareness poster 2" style="display: block; width: 100%; height: auto; border: 1px solid #e2e8f0; padding: 10px; background: #f8fafc; border-radius: 8px; box-shadow: 0 20px 40px rgba(15, 23, 42, 0.06);">
+        </div>
+    </div>
+</section>
+
+<section style="background-color: #0f172a; padding: 100px 0; position: relative; overflow: hidden;">
+    <div style="position: absolute; inset: 0; background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px); background-size: 24px 24px; opacity: 0.5;"></div>
+    
+    <div class="container" style="max-width: 1000px; margin: 0 auto; padding: 0 5%; text-align: center; position: relative; z-index: 5;">
+        <h2 style="color: white; font-size: 2.8rem; margin-bottom: 20px; font-weight: 800; letter-spacing: -1px;">Helpline & Contact</h2>
+        <p style="font-size: 1.15rem; color: #94a3b8; margin-bottom: 60px; line-height: 1.8; max-width: 700px; margin-left: auto; margin-right: auto;">
+            If you or someone you know is facing ragging, do not stay silent. Reach out immediately to the proper authorities.
+        </p>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+            
+            <a href="tel:18001805522" style="display: block; text-decoration: none; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: white; padding: 40px 20px; transition: all 0.3s ease;">
+                <i class="fa-solid fa-phone" style="font-size: 32px; margin-bottom: 20px; color: #C5B358;"></i>
+                <div style="font-size: 1.2rem; font-weight: 700; letter-spacing: 0.5px; margin-bottom: 10px;">UGC Helpline</div>
+                <div style="font-size: 0.95rem; color: #94a3b8; letter-spacing: 1px;">1800-180-5522</div>
+            </a>
+            
+            <a href="https://www.antiragging.in" target="_blank" style="display: block; text-decoration: none; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: white; padding: 40px 20px; transition: all 0.3s ease;">
+                <i class="fa-solid fa-globe" style="font-size: 32px; margin-bottom: 20px; color: #C5B358;"></i>
+                <div style="font-size: 1.2rem; font-weight: 700; letter-spacing: 0.5px; margin-bottom: 10px;">Anti-Ragging Portal</div>
+                <div style="font-size: 0.95rem; color: #94a3b8; letter-spacing: 1px;">www.antiragging.in</div>
+            </a>
+            
+            <a href="mailto:soet@soet.ac.in" style="display: block; text-decoration: none; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: white; padding: 40px 20px; transition: all 0.3s ease;">
+                <i class="fa-solid fa-envelope" style="font-size: 32px; margin-bottom: 20px; color: #C5B358;"></i>
+                <div style="font-size: 1.2rem; font-weight: 700; letter-spacing: 0.5px; margin-bottom: 10px;">Institute Email</div>
+                <div style="font-size: 0.95rem; color: #94a3b8; letter-spacing: 1px;">soet@soet.ac.in</div>
+            </a>
+            
+        </div>
+    </div>
+</section>
+<div id="footer-placeholder"></div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const dateEl = document.getElementById("date");
+    const timeEl = document.getElementById("time");
+    
+    if(dateEl) dateEl.innerHTML = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+    
+    setInterval(function(){
+        if(timeEl) timeEl.innerHTML = new Date().toLocaleTimeString('en-US', { hour12: false });
+    }, 1000);
+
+    const apiKey = "6ab4623b616a1ea162cf45d73c2dcb32";
+    const city = "Ujjain";
+
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`)
+    .then(response => response.json())
+    .then(data => {
+        if (data.weather && data.weather.length > 0) {
+            let desc = data.weather[0].description;
+            document.getElementById("weather").innerHTML = desc.charAt(0).toUpperCase() + desc.slice(1);
+            document.getElementById("temp").innerHTML = Math.round(data.main.temp) + "°C";
+        }
+    })
+    .catch(err => console.log("Weather error:", err));
+
+    const lastUp = document.getElementById("lastUpdated");
+    if(lastUp) lastUp.innerHTML = document.lastModified;
+
+    let count = localStorage.getItem("visitorCount");
+    count = count === null ? 1 : Number(count) + 1;
+    localStorage.setItem("visitorCount", count);
+    
+    const visCount = document.getElementById("visitorCount");
+    if(visCount) visCount.innerText = count.toLocaleString();
+});
+</script>
+
+</div>
+
+<script src="../js/script.js"></script>
+<script src="../js/components-loader.js"></script>
+
+</body>
+</html>
+
